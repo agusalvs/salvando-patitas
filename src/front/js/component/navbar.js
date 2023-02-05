@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext }from "react";
 import { Link } from "react-router-dom";
-
+import { Context } from "../store/appContext";
 export const Navbar = () => {
+  const { store } = useContext(Context);
+
   return (
     <nav className="navbar bg-body-tertiary" style={{ backgroundColor: "#86C8BC" }}>
       <div className="container-fluid">
@@ -24,25 +26,21 @@ export const Navbar = () => {
             </a>
           </div>
           <div className="float-right">
+            {store.auth ?
             <div className="nav-item">
               <a className="nav-link active ml-25px" style={{backgroundColor: "#CEEDC7", color:"#36544F"}} aria-current="page" href="#">
-                Iniciar sesion
-              </a>
-            </div>
-            <div className="nav-item">
-              <a className="nav-link active" style={{backgroundColor: "#CEEDC7", color:"#36544F"}} aria-current="page" href="#">
                 Cerrar sesion
               </a>
-            </div>
-            </div>
+            </div>:
+            <div className="nav-item">
+              <a className="nav-link active" style={{backgroundColor: "#CEEDC7", color:"#36544F"}} aria-current="page" href="#">
+                Iniciar sesion
+              </a>
+            </div>}
+          </div>
         </div>
       </div>
     </nav>
   );
 };
 
-//  {
-// 	store.auth ?
-// 	<button className="btn btn-secondary ms-2" onClick={handleLogout}>Log out</button> :
-// 	<button className="btn btn-secondary ms-2" onClick={handleLogin}>Log in</button>
-// }
