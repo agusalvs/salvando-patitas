@@ -1,18 +1,23 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from flask import Flask, request, jsonify, url_for, Blueprint, json
+from api.models import db, Usuario, Mascota
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
+@api.route('/registro', methods=['POST'])
+def registrar_usuario():
+    request_body = json.loads(request.data)
+    nuevo_usuario = Usuario(email =  request_body['email'], nombre = request_body['nombre'], contraseña = request_body['contraseña'], celular = request_body['celular'], direccion = request_body['direccion'])
+    usuario = Usuario.query.filter_by(email=request_body['email']).first()
+    if usuario is None:
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        todos_los_usuarios = Usuario.query.all()
+        resultados = list(map(lambda item: item.serialize(),todos_los_usuarios))
+        return jsonify(resultados), 201
+    
+    return jsonify("User already exists"), 400
