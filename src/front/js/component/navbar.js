@@ -57,7 +57,7 @@ return (
                 <a className="dropdown-item" href="#encontrados">Encontrados</a>
                 <a className="dropdown-item" href="#adopcion">En adopcion</a>
                 <a className="dropdown-item" href="#donaciones">Donaciones</a>
-                {/* CUANDO SE HAGA LA VISTA PPAL, HAY QUE DIVIDIR EN SECCIONES CADA PARTE, Y PONER ID PERDIDO, ENCONTRADO... EN CADA SECCION QUE CORRESPONDA LUEGO SE TRAE POR ACA CON EL ID */}
+                {/* CUANDO SE HAGA LA VISTA PPAL, TENEMOS QUE DIVIDIR EN SECCIONES CADA PARTE, Y PONER ID PERDIDO, ENCONTRADO... EN cADA SECCION LUEGO SE TRAE POR ACA CON EL ID */}
               </div>
             </div>
 
