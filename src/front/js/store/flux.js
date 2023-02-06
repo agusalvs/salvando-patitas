@@ -17,14 +17,20 @@ const getState = ({
                     initial: "white",
                 },
             ],
-            auth: false,
+            auth: false, // volver a true para probarlo mientras no tengo el form inicio sesion 
         },
         actions: {
             // Use getActions to call a function within a fuction
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },
-
+            // para cerrar sesion:
+            logout: () => {
+                localStorage.removeItem('token');
+                setStore({
+                    auth: false
+                })
+            },
             getMessage: async () => {
                 try {
                     // fetching data from the backend
