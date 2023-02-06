@@ -33,7 +33,7 @@ def inicio_de_sesion():
     if usuario is None:
         return jsonify({"msg": "El usuario no existe"}), 404   
     if contraseña != usuario.contraseña:
-        return jsonify({"msg": "Contraseña incorrecta"}), 404
+        return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token), 200
