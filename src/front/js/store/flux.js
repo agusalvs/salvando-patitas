@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const getState = ({
     getStore,
     getActions,
@@ -17,6 +19,7 @@ const getState = ({
                     initial: "white",
                 },
             ],
+            Swal: require("sweetalert2"),
         },
         actions: {
             // Use getActions to call a function within a fuction
@@ -46,7 +49,14 @@ const getState = ({
                     )
                     .then((response) => {
                         console.log(response.status);
-                        if (response.status === 200) {
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "Te registraste correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
                             setStore({
                                 auth: true,
                             });
