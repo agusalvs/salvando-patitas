@@ -75,6 +75,28 @@ return (
 
           </div>
         </div>
+        {/* <!-- Modal --> */}
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div
+              className="modal-content"
+              style={{
+                borderRadius: "2rem",
+                borderColor: "#36544F",
+                borderWidth: "3px",
+                backgroundColor: "#FFF6BD",
+              }}
+            >
+              <Login />
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
