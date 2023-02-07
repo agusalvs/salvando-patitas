@@ -14,9 +14,19 @@ export const Home = () => {
     <div className="container-fluid bg-white">
       {/* <!-- First Featurette --> */}
       <Inicio />
-      <Perdidos />
-      <Encontrados />
-      <Adopción />
+      <h2 className="ms-5 ps-5">Characters</h2>
+      <div
+        className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
+        style={{ width: "90%" }}
+      >
+        {store.characters.map((props) => (
+          <div className="col">
+            <Perdidos name={props.name} id={props.uid} key={props.uid} />
+          </div>
+        ))}
+      </div>
+      {/* <Encontrados />
+      <Adopción /> */}
     </div>
   );
 };
