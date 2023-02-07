@@ -20,14 +20,59 @@ const getState = ({
                 },
             ],
             Swal: require("sweetalert2"),
-            // showModal: "",
         },
         actions: {
             // Use getActions to call a function within a fuction
-            exampleFunction: () => {
-                getActions().changeColor(0, "green");
-            },
 
+            signup: (
+                userNombre,
+                userCorreo,
+                userCelular,
+                userContraseña,
+                userDireccion
+            ) => {
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/registro", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                nombre: userNombre,
+                                email: userCorreo,
+                                celular: userCelular,
+                                contraseña: userContraseña,
+                                direccion: userDireccion,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "Te registraste correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            setStore({
+                                auth: true,
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        if (data.msg === "Bad email or password") {
+                            alert(data.msg);
+                        }
+                        localStorage.setItem("token", data.access_token);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            
             login: (userEmail, userPassword) => {
                 fetch(
                         "https://3001-agusalvs-salvandopatita-aarew83zv9d.ws-us85.gitpod.io/api/autenticacion", {
