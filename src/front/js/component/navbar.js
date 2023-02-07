@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import { Link } from "react-router-dom";
+import Login from "../component/login.jsx";
+import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <nav
       className="navbar navbar-light"
@@ -16,22 +21,40 @@ export const Navbar = () => {
             />
           </span>
         </Link>
-        <div className="ml-auto">
-          <Link to="/demo">
-            <button
-              className="btn"
+        {/* <!-- Button trigger modal --> */}
+        <button
+          type="button"
+          className="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          style={{ backgroundColor: "#CEEDC7" }}
+        >
+          Iniciar sesión
+        </button>
+
+        {/* <!-- Modal --> */}
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div
+              className="modal-content"
               style={{
-                backgroundColor: "RGB(206, 238, 200)",
-                color: "RGB(55, 56, 103)",
+                borderRadius: "2rem",
+                borderColor: "#36544F",
+                borderWidth: "3px",
+                backgroundColor: "#FFF6BD",
               }}
             >
-              Iniciar sesión
-            </button>
-          </Link>
+              <Login />
+            </div>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
-
-// https://o.remove.bg/downloads/f521f910-bf40-41e9-aa7c-a516d5f45618/9479452d783b1ae2605a4547577e1313-removebg-preview.png
