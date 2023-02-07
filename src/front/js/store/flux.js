@@ -72,9 +72,63 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
-
-            exampleFunction: () => {
-                getActions().changeColor(0, "green");
+            
+            login: (userEmail, userPassword) => {
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-aarew83zv9d.ws-us85.gitpod.io/api/autenticacion", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                email: userEmail,
+                                contraseña: userPassword,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 200) {
+                            // setStore({
+                            //     showModal: "show"
+                            // });
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "Has iniciado sesión",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            setStore({
+                                auth: true,
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        if (data.msg === "Usuario o contraseña incorrectos") {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Opa, qué rompimo'?...",
+                                text: data.msg,
+                                // footer: '<a href="">Why do I have this issue?</a>'
+                            })(data.msg);
+                        } else if (data.msg === "Necesitas registrarte") {
+                            Swal.fire({
+                                title: data.msg,
+                                showClass: {
+                                    popup: "animate__animated animate__fadeInDown",
+                                },
+                                hideClass: {
+                                    popup: "animate__animated animate__fadeOutUp",
+                                },
+                            });
+                        }
+                        localStorage.setItem("token", data.access_token);
+                    })
+                    .catch((err) => console.log(err));
             },
 
             getMessage: async () => {
