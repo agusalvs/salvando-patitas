@@ -131,6 +131,8 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
+            //FALTA CAMBIAR LA URL
+
             recuperar: (userNuevacontraseña, userRepetircontraseña) => {
                 fetch(
                         "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/recuperar", {
