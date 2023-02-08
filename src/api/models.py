@@ -55,7 +55,6 @@ class Mascota(db.Model):
             "nombre": self.nombre,
             "edad": self.edad,
             "tamaño": self.tamaño,
-            "nombre": self.nombre,
             "genero": self.genero,
             "raza": self.raza,
             "descripcion": self.descripcion,
