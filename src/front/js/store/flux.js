@@ -72,7 +72,7 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
-            
+
             login: (userEmail, userPassword) => {
                 fetch(
                         "https://3001-agusalvs-salvandopatita-aarew83zv9d.ws-us85.gitpod.io/api/autenticacion", {
@@ -159,6 +159,13 @@ const getState = ({
                 //reset the global store
                 setStore({
                     demo: demo,
+                });
+            },
+            // para cerrar sesion:
+            logout: () => {
+                localStorage.removeItem("token");
+                setStore({
+                    auth: false,
                 });
             },
         },
