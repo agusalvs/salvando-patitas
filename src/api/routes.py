@@ -47,3 +47,9 @@ def publicar(user_id):
     todos_las_mascota = Mascota.query.all()
     resultados = list(map(lambda item: item.serialize(),todos_las_mascota))
     return jsonify(resultados), 201
+
+@api.route('/mascotas', methods=['GET'])
+def traer_mascotas():
+    mascotas= Mascota.query.all()
+    results = list(map(lambda item: item.serialize(), mascotas))
+    return jsonify(results), 200
