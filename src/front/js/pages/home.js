@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Inicio } from "../component/inicio.jsx";
 import { Perdidos } from "../component/perdidos.jsx";
 // import { Encontrados } from "../component/encontrados.jsx";
 // import { Adopción } from "../component/adopcion.jsx";
-import { Inicio } from "../component/inicio.jsx";
 import "../../styles/home.css";
+import { element } from "prop-types";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -19,18 +20,18 @@ export const Home = () => {
         className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
         style={{ width: "90%" }}
       >
-        {store.mascotas.map((props) => (
+        {store.mascotas?.map((props) => (
           <div className="col">
             <Perdidos
-              name={props.titulo}
-              id={props.foto1}
-              key={props.descripcion}
+              titulo={props.titulo}
+              descripcion={props.descripcion}
+              foto1={props.foto1}
+              id={props.id}
+              key={props.id}
             />
           </div>
         ))}
       </div>
-      {/* <Encontrados />
-      <Adopción /> */}
     </div>
   );
 };

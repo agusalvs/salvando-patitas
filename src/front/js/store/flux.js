@@ -9,11 +9,6 @@ const getState = ({
         store: {
             message: null,
             mascotas: [],
-            demo: [{
-                title: "FIRST",
-                background: "white",
-                initial: "white",
-            }, ],
             Swal: require("sweetalert2"),
         },
         actions: {
@@ -166,15 +161,15 @@ const getState = ({
                 });
             },
 
-            mascotas: () => {
+            mascotasHome: () => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-d44oiqporj9.ws-us86.gitpod.io/api/mascotas"
+                        "https://3001-agusalvs-salvandopatita-d44oiqporj9.ws-us86.gitpod.io./api/mascotas"
                     )
                     .then((res) => res.json())
                     // .then(data => console.log(data))
                     .then((data) =>
                         setStore({
-                            characters: data.results,
+                            mascotas: data.results,
                         })
                     );
                 // .catch(err => console.error(err))
