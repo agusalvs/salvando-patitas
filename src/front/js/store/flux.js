@@ -72,7 +72,60 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
-            
+
+            publicar: (
+                Titulo,
+                Telefono,
+                Genero,
+                Direccion,
+                Raza,
+                SeccionEnLaQuePublica,
+                Comentarios
+            ) => {
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/publicacion", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                Titulo,
+                                Telefono,
+                                Genero,
+                                Direccion,
+                                Genero,
+                                Edad,
+                                Raza,
+                                SeccionEnLaQuePublica,
+                                Comentarios,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "Has publicado correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        if (data.msg === "Intente nuevamente") {
+                            alert(data.msg);
+                        }
+                        // localStorage.setItem("token", data.access_token);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            // TERMINA PUBLICAR
+
             login: (userEmail, userPassword) => {
                 fetch(
                         "https://3001-agusalvs-salvandopatita-aarew83zv9d.ws-us85.gitpod.io/api/autenticacion", {

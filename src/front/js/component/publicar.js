@@ -4,12 +4,19 @@ import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
 
 export const Publicar = () => {
+  const [image, setImage] = useState(null);
+
+  const handleFileChange = (event) => {
+    setImage(URL.createObjectURL(event.target.files[0]));
+  };
   return (
     <div className="card-body">
-      <form className="row g-3">
+      <form 
+      className="row g-3">
         <div className="alert alert-danger" role="alert">
           Complete los siguientes campos para realizar una nueva publicacion:
         </div>
+
         <div className="col-md-6">
           <label for="inputTitulo" className="form-label">
            Titulo
@@ -20,6 +27,7 @@ export const Publicar = () => {
             id="inputTitulo"
             placeholder="Escriba aqui el titulo de su publicacion"
           />
+
         </div>
         <div className="col-md-6">
           <label for="inputState" className="form-label">
@@ -49,13 +57,13 @@ export const Publicar = () => {
           <label for="inputNombre" className="form-label">
            Telefono
           </label>
-          <input type="number" className="form-control" id="inputTel" placeholder="Ingrese su telefono de contacto"/>
+          <input type="number" className="form-control" id="inputTelefono" placeholder="Ingrese su telefono de contacto"/>
         </div>
         <div className="col-md-6">
-          <label for="inputState" className="form-label">
+          <label for="inputEdad" className="form-label">
             Seccione edad:
           </label>
-          <select id="inputState" className="form-select">
+          <select id="inputEdad" className="form-select">
             <option selected>Seleccione edad</option>
             <option>Cachorro</option>
             <option>Joven</option>
@@ -63,10 +71,10 @@ export const Publicar = () => {
           </select>
         </div>
         <div className="col-md-6">
-          <label for="inputState" className="form-label">
+          <label for="inputGenero" className="form-label">
             Seccione genero:
           </label>
-          <select id="inputState" className="form-select">
+          <select id="inputGenero" className="form-select">
             <option selected>Seleccione genero</option>
             <option>Macho</option>
             <option>Hembra</option>
@@ -92,14 +100,17 @@ export const Publicar = () => {
                     </div>
             <div class="ui segment">
         <div class="field">
-          <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-          <label for="#elegir">A continuacion puede subir una foto de la mascota: </label>
-          <input id="elegir" name="uploadedfile" type="file" /><br />
-          <input type="submit" class="ui blue inline button" value="Subir archivo" />
+          <label for="#elegir">A continuacion puede subir una foto de la mascota: </label><br/>
+          <input id="elegir" name="uploadedfile" type="file" onChange={handleFileChange}  /><br />
+
         </div>
-        
+        <br />
+        {image && <img src={image} alt="Uploaded Image"  width="100" height="100"/>}
+<br />
       </div>
       </form>
+    
+      <button type="button" class="btn btn-secondary" style={{ color: "black", backgroundColor: "RGB(134, 200, 188)" }}>Publicar Anuncio</button>
     </div>
 
   );
