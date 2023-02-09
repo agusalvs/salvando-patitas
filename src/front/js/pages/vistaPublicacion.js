@@ -1,7 +1,7 @@
 import React from "react";
-import Registro from "../component/registro";
+import {Publicar} from "../component/publicar";
 
-export const Formulario = () => {
+export const PublicacionNueva = () => {
   return (
     <div
       className="mx-auto py-5"
@@ -10,7 +10,7 @@ export const Formulario = () => {
       }}
     >
       {" "}
-      <Registro />{" "}
+      <Publicar />{" "}
     </div>
   );
 };
