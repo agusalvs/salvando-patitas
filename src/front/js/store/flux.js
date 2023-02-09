@@ -80,10 +80,12 @@ const getState = ({
                 Direccion,
                 Raza,
                 SeccionEnLaQuePublica,
-                Comentarios
+                Comentarios,
+                id
             ) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/publicacion", {
+                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/publicacion/" +
+                        id, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -212,6 +214,13 @@ const getState = ({
                 //reset the global store
                 setStore({
                     demo: demo,
+                });
+            },
+            // para cerrar sesion:
+            logout: () => {
+                localStorage.removeItem("token");
+                setStore({
+                    auth: false,
                 });
             },
         },

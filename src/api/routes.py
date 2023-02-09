@@ -37,3 +37,19 @@ def inicio_de_sesion():
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token), 200
+
+@api.route('/publicacion/<int:user_id>', methods=['POST'])
+def publicar(user_id):
+    request_body = json.loads(request.data)
+    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], fecha = request_body['fecha'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
+    db.session.add(nueva_publicacion)
+    db.session.commit()
+    todos_las_mascota = Mascota.query.all()
+    resultados = list(map(lambda item: item.serialize(),todos_las_mascota))
+    return jsonify(resultados), 201
+
+@api.route('/mascotas', methods=['GET'])
+def traer_mascotas():
+    mascotas= Mascota.query.all()
+    results = list(map(lambda item: item.serialize(), mascotas))
+    return jsonify(results), 200
