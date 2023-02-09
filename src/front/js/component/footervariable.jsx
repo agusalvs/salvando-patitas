@@ -6,5 +6,7 @@ import { Footer } from "./footer.jsx";
 import { Footerhome } from "./footerhome.jsx";
 export const FooterVariable = () => {
   const location = useLocation();
-  return <div>{location.pathname === "/" ? <Footerhome /> : <Footer />}</div>;
+  return (
+    <footer>{location.pathname === "/" ? <Footerhome /> : <Footer />}</footer>
+  );
 };
