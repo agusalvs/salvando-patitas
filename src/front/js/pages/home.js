@@ -5,6 +5,10 @@ import { Inicio } from "../component/inicio.jsx";
 import { Perdidos } from "../component/perdidos.jsx";
 // import { Encontrados } from "../component/encontrados.jsx";
 // import { Adopción } from "../component/adopcion.jsx";
+// import Login from "../component/login.jsx";
+import { Footer } from "../component/footer.jsx";
+import { Footerhome } from "../component/footerhome.jsx";
+import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { element } from "prop-types";
 
