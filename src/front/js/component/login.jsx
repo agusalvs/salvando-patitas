@@ -34,7 +34,7 @@ const Login = () => {
               <div className="form-outline form-white mb-4">
                 <input
                   type="email"
-                  id="typeEmailX"
+                  id="loginEmail"
                   className="form-control form-control-lg mb-2"
                   placeholder="Correo electrónico"
                   value={email}
@@ -53,7 +53,7 @@ const Login = () => {
               <div className="form-outline form-white mb-2">
                 <input
                   type="password"
-                  id="typePasswordX"
+                  id="loginPassword"
                   className="form-control form-control-lg mb-2"
                   placeholder="Contraseña"
                   value={password}

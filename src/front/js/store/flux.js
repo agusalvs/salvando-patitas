@@ -8,17 +8,7 @@ const getState = ({
     return {
         store: {
             message: null,
-            demo: [{
-                    title: "FIRST",
-                    background: "white",
-                    initial: "white",
-                },
-                {
-                    title: "SECOND",
-                    background: "white",
-                    initial: "white",
-                },
-            ],
+            mascotas: [],
             Swal: require("sweetalert2"),
         },
         actions: {
@@ -145,6 +135,7 @@ const getState = ({
                     console.log("Error loading message from backend", error);
                 }
             },
+
             changeColor: (index, color) => {
                 //get the store
                 const store = getStore();
@@ -161,6 +152,7 @@ const getState = ({
                     demo: demo,
                 });
             },
+
             // para cerrar sesion:
             logout: () => {
                 localStorage.removeItem("token");
@@ -168,8 +160,25 @@ const getState = ({
                     auth: false,
                 });
             },
+
+            mascotasHome: () => {
+                let store = getStore();
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dhrlta8rnxk.ws-us86.gitpod.io/api/mascotas"
+                    )
+                    .then((res) => res.json())
+                    // .then((data) => console.log(data))
+                    .then((data) =>
+                        setStore({
+                            mascotas: data,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+                return store.mascotas;
+
+                // console.log(store.mascotas);
+            },
         },
     };
 };
-
 export default getState;
