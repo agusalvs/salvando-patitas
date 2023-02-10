@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 // import { Context } from "../store/appContext.js";
 
-export const Perdidos = (props) => {
+export const Mascotas = (props) => {
   // const { store, actions } = useContext(Context);
 
   return (
@@ -20,20 +20,22 @@ export const Perdidos = (props) => {
       </div> */}
 
       <div
-        class="card mb-3"
+        className="card mb-3"
         style={{
           width: "18rem",
           backgroundColor: "#CEEDC7",
           borderRadius: "1rem",
         }}
       >
-        <div class="card-header bg-transparent text-center">{props.titulo}</div>
-        {/* <div class="card-body"> */}
-        {/* <h5 class="card-title">Success card title</h5> */}
+        <div className="card-header bg-transparent text-center">
+          {props.titulo}
+        </div>
+        {/* <div className="card-body"> */}
+        {/* <h5 className="card-title">Success card title</h5> */}
         <img src={props.foto1} className="card-img-top" alt="..." />
         {/* </div> */}
-        <div class="card-footer bg-transparent justify-content-center">
-          <p class="card-text">{props.descripcion}</p>
+        <div className="card-footer bg-transparent justify-content-center">
+          <p className="card-text">{props.descripcion}</p>
           {/* <a href="/perdidos" className="btn btn-light">
             Más información
           </a> */}
