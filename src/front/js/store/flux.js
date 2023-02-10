@@ -162,17 +162,21 @@ const getState = ({
             },
 
             mascotasHome: () => {
+                let store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-d44oiqporj9.ws-us86.gitpod.io./api/mascotas"
+                        "https://3001-agusalvs-salvandopatita-dhrlta8rnxk.ws-us86.gitpod.io/api/mascotas"
                     )
                     .then((res) => res.json())
-                    // .then(data => console.log(data))
+                    // .then((data) => console.log(data))
                     .then((data) =>
                         setStore({
-                            mascotas: data.results,
+                            mascotas: data,
                         })
-                    );
-                // .catch(err => console.error(err))
+                    )
+                    .catch((err) => console.error(err));
+                return store.mascotas;
+
+                // console.log(store.mascotas);
             },
         },
     };
