@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Inicio } from "../component/inicio.jsx";
-import { Perdidos } from "../component/perdidos.jsx";
+import { Mascotas } from "../component/mascotas.jsx";
 // import { Encontrados } from "../component/encontrados.jsx";
 // import { Adopción } from "../component/adopcion.jsx";
 // import Login from "../component/login.jsx";
@@ -28,8 +28,6 @@ export const Home = () => {
     (mascota) => mascota.estado == "Encontrado"
   );
 
-  console.log(store.mascotas);
-
   return (
     // <!-- Page Content -->
     <div className="container-fluid bg-white">
@@ -41,7 +39,7 @@ export const Home = () => {
         id="portfolio"
         style={{ backgroundColor: "#FFF6BD" }}
       >
-        <h1>Animales</h1>
+        <h1>Perdidos</h1>
         <p>
           En esta sección podrás ver todos los animalitos que se encuentran
           actualmente perdidos, encontrados o en adopción.
@@ -55,12 +53,12 @@ export const Home = () => {
         {/* <div className="row">
           <div className="col-4"> */}
         <div
-          className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
+          className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black round"
           style={{ width: "90%" }}
         >
           {perdidos.map((item) => (
             <div className="col">
-              <Perdidos
+              <Mascotas
                 titulo={item?.titulo}
                 descripcion={item.descripcion}
                 foto1={item.foto1}
@@ -78,7 +76,7 @@ export const Home = () => {
         <h1>Encontrados</h1>
         <p>
           En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente perdidos, encontrados o en adopción.
+          actualmente encontrados, encontrados o en adopción.
         </p>
         {/* <p>
           En esta sección podrás ver todos los animalitos que se encuentran
@@ -94,7 +92,7 @@ export const Home = () => {
         >
           {encontrados.map((item) => (
             <div className="col">
-              <Perdidos
+              <Mascotas
                 titulo={item?.titulo}
                 descripcion={item.descripcion}
                 foto1={item.foto1}
