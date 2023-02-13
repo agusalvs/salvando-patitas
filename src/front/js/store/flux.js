@@ -79,9 +79,11 @@ const getState = ({
                 Genero,
                 Direccion,
                 Raza,
-                SeccionEnLaQuePublica,
+                inputState,
                 Comentarios,
-                id
+                id,
+                Edad,
+                Image
             ) => {
                 fetch(
                         "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/publicacion/" +
@@ -99,8 +101,9 @@ const getState = ({
                                 Genero,
                                 Edad,
                                 Raza,
-                                SeccionEnLaQuePublica,
+                                inputState,
                                 Comentarios,
+                                Image,
                             }), // body data type must match "Content-Type" header
                         }
                     )
