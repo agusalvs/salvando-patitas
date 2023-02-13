@@ -7,10 +7,10 @@ import {Home} from "./pages/home";
 import {Single} from "./pages/single";
 import injectContext from "./store/appContext";
 
-import {Navbar} from "./component/navbar";
-import {Footer} from "./component/footer";
-import {Formulario} from "./pages/vistaRegistro";
 import {Vistaenviarcorreo} from "./pages/vistaEnviarcorreo";
+import {FooterVariable} from "./component/footervariable.jsx";
+import {Navbar} from "./component/navbar";
+import {Formulario} from "./pages/vistaRegistro";
 
 // import { Login } from "./component/login";
 
@@ -28,10 +28,10 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home/>}
                             path="/"/>
-                        <Route element={<Vistaenviarcorreo/>}
-                            path="/enviarcorreo"/>
                         <Route element={<Formulario/>}
-                            path="/formulario"/> {/* <Route element={<Demo />} path="/demo" /> */}
+                            path="/registro"/>{" "}
+                        <Route element={<Vistaenviarcorreo/>}
+                            path="/recuperar"/>{" "}
                         <Route element={<Single/>}
                             path="/single/:theid"/>
                         <Route element={
@@ -39,7 +39,7 @@ const Layout = () => {
                         }/>
                     </Routes>
                     {" "}
-                    <Footer/>
+                    <FooterVariable/>
                 </ScrollToTop>
                 {" "} </BrowserRouter>
             {" "} </div>

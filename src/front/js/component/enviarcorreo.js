@@ -5,13 +5,11 @@ import {Context} from "../store/appContext.js";
 const Enviarcorreo = () => {
 
     const [correo, setCorreo] = useState("");
-
+    const {actions} = useContext(Context);
     function enviarDatos(e) {
         e.preventDefault();
-        if (nuevacontraseña === repetircontraseña) {
-            actions.enviarcorreo(correo);
-            setCorreo("");
-        }
+        actions.enviarcorreo(correo);
+        setCorreo("");
         console.log(correo);
     }
 
@@ -41,7 +39,7 @@ const Enviarcorreo = () => {
                 </p>
 
                 <form className="row g-3 mx-auto "
-                    // onSubmit={enviarDatos}
+                    onSubmit={enviarDatos}
                     style={
                         {width: "700px"}
                 }>
