@@ -131,6 +131,45 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
+            enviarcorreo: (userCorreo) => {
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/enviarcorreo", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                email: userCorreo,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "Te registraste correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            setStore({
+                                auth: true,
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        if (data.msg === "Bad email or password") {
+                            alert(data.msg);
+                        }
+                        localStorage.setItem("token", data.access_token);
+                    })
+                    .catch((err) => console.log(err));
+            },
+
             getMessage: async () => {
                 try {
                     // fetching data from the backend
