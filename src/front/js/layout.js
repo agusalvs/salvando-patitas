@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-// import {Demo} from "./pages/demo";
+// import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
+import { Vistaenviarcorreo } from "./pages/vistaEnviarcorreo";
+import { FooterVariable } from "./component/footervariable.jsx";
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
 import { Formulario } from "./pages/vistaRegistro";
 import { PublicacionNueva } from "./pages/vistaPublicacion";
 
@@ -27,17 +28,15 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<Formulario />} path="/formulario" />
             <Route element={<PublicacionNueva />} path="/publicacion" />
-
-            {/* <Route element={<Demo/>}
-                            path="/demo"/> */}
+            <Route element={<Formulario />} path="/registro" />{" "}
+            <Route element={<Vistaenviarcorreo />} path="/recuperar" />{" "}
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
-          </Routes>
-          <Footer />
-        </ScrollToTop>
-      </BrowserRouter>
+          </Routes>{" "}
+          <FooterVariable />
+        </ScrollToTop>{" "}
+      </BrowserRouter>{" "}
     </div>
   );
 };
