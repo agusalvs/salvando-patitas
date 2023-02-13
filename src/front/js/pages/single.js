@@ -40,39 +40,49 @@ export const Single = () => {
               />
               {/* <img src={store.mascota.foto1} alt="pepito" /> */}
             </div>
-            <div className="d-flex justify-content-around m-3">
-              <p
-                className="rounded-3 p-4"
+            <div className="d-flex justify-content-around m-2 mx-4">
+              <div
+                className="rounded-3 px-3 mb-2"
                 style={{ backgroundColor: "#FFF6BD" }}
               >
-                - 1 año
-                {/* {store.mascota.edad} */}
-              </p>
-              <p
-                className="rounded-3 p-4"
+                <h6 className="p-3">
+                  - 1 año
+                  {/* {store.mascota.edad} */}
+                </h6>
+                <p className="px-3">Edad</p>
+              </div>
+
+              <div
+                className="rounded-3 px-3 mb-2"
                 style={{ backgroundColor: "#FFF6BD" }}
               >
-                Grande
-                {/* {store.mascota.tamaño} */}
-              </p>
-              <p
-                className="rounded-3 p-4"
+                <h6 className="p-3">
+                  Grande
+                  {/* {store.mascota.tamaño} */}
+                </h6>
+                <p className="px-3">Tamaño</p>
+              </div>
+              <div
+                className="rounded-3 px-3 mb-2"
                 style={{ backgroundColor: "#FFF6BD" }}
               >
-                Hembra
-                {/* {store.mascota.genero} */}
-              </p>
+                <h6 className="p-3">
+                  Hembra
+                  {/* {store.mascota.genero} */}
+                </h6>
+                <p className="px-3">Genero</p>
+              </div>
             </div>
           </section>
           <section className="d-flex flex-column">
             <div className="d-flex flex-column justify-content-around m-5 text-center">
-              <p
+              <h5
                 className="rounded-3 p-2 px-5 mb-2"
                 style={{ backgroundColor: "#FFF6BD" }}
               >
                 Pepito alias "Pepe Grillo"
                 {/* {store.mascota.nombre} */}
-              </p>
+              </h5>
               <p
                 className="rounded-3 p-1 mx-2 my-2"
                 style={{ backgroundColor: "#FFF6BD" }}
@@ -120,7 +130,7 @@ export const Single = () => {
             </div>
             <div className="my-5 mx-3 object-fit-contain">
               <img
-                className="rounded-3 w-100  my-1 px-5 py-2"
+                className="rounded-3 w-100 my-1 px-5 py-2"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Google_Maps_icon_%282015-2020%29.svg/1200px-Google_Maps_icon_%282015-2020%29.svg.png"
                 alt="pepito"
               />
