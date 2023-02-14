@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Inicio } from "../component/inicio.jsx";
@@ -32,6 +32,12 @@ export const Home = () => {
     (mascota) => mascota.estado == "En adopción"
   );
 
+  const ref = useRef(null);
+
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+
   return (
     // <!-- Page Content -->
     <div className="mx-auto">
@@ -39,31 +45,54 @@ export const Home = () => {
       <Inicio />
 
       <div
-        className="container-fluid py-5 text-center justify-content-center align-items-center mx-auto"
+        className="container-fluid py-5 text-center mx-auto"
         id="perdidos"
         style={{ backgroundColor: "#FFF6BD" }}
       >
         <h1 style={{ color: "#36544F" }}>Perdidos</h1>
-        <p style={{ color: "#36544F" }}>
+        <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
           actualmente perdidos, encontrados o en adopción.
         </p>
-        <div
-          className="row mx-auto justify-content-center flex-nowrap overflow-auto scrollbar scrollbar-black bordered-black round"
-          style={{ width: "90%" }}
-        >
-          {perdidos.map((item) => (
-            <div className="col mx-auto d-flex justify-content-center align-items-center">
-              <Mascotas
-                backgroundColor={"#CEEDC7"}
-                titulo={item?.titulo}
-                descripcion={item.descripcion}
-                foto1={item.foto1}
-                key={item}
-                id={item.id}
-              />
-            </div>
-          ))}
+        <div className="d-flex px-5">
+          <button
+            className="border-0"
+            onClick={() => scroll(-180)}
+            style={{ backgroundColor: "#FFF6BD" }}
+          >
+            <i
+              class="fa fa-chevron-left"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
+          <div
+            className="row mx-auto flex-nowrap overflow-auto scrollbar scrollbar-black bordered-black round"
+            style={{ width: "70%", scrollBehavior: "smooth" }}
+            ref={ref}
+          >
+            {perdidos.map((item) => (
+              <div className="col mx-auto ">
+                <Mascotas
+                  backgroundColor={"#CEEDC7"}
+                  titulo={item?.titulo}
+                  descripcion={item.descripcion}
+                  foto1={item.foto1}
+                  key={item}
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </div>
+          <button
+            className="border-0"
+            onClick={() => scroll(180)}
+            style={{ backgroundColor: "#FFF6BD" }}
+          >
+            <i
+              class="fa fa-chevron-right"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
         </div>
         <div className="card-footer bg-transparent justify-content-center">
           <a
@@ -86,38 +115,52 @@ export const Home = () => {
         style={{ backgroundColor: "#FFD4B2" }}
       >
         <h1 style={{ color: "#36544F" }}>Encontrados</h1>
-        <p style={{ color: "#36544F" }}>
+        <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
           actualmente encontrados, encontrados o en adopción.
         </p>
-        {/* <p>
-          En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente perdidos. Cualquier información que desees aportar, puedes
-          ponerte en contacto con quien hizo la publicación ingresando en "más
-          información".
-        </p> */}
-        {/* <div className="row">
-          <div className="col-4"> */}
-        <div
-          className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
-          style={{ width: "90%" }}
-        >
-          {encontrados.map((item) => (
-            <div className="col mx-auto d-flex justify-content-center align-items-center">
-              <Mascotas
-                backgroundColor={"#FFF6BD"}
-                titulo={item?.titulo}
-                descripcion={item.descripcion}
-                foto1={item.foto1}
-                key={item}
-                id={item.id}
-              />
-            </div>
-          ))}
+        <div className="d-flex px-5">
+          <button
+            className="border-0"
+            onClick={() => scroll(-180)}
+            style={{ backgroundColor: "#FFD4B2" }}
+          >
+            <i
+              class="fa fa-chevron-left"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
+          <div
+            className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
+            style={{ width: "70%" }}
+          >
+            {encontrados.map((item) => (
+              <div className="col mx-auto">
+                <Mascotas
+                  backgroundColor={"#FFF6BD"}
+                  titulo={item?.titulo}
+                  descripcion={item.descripcion}
+                  foto1={item.foto1}
+                  key={item}
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </div>
+          <button
+            className="border-0"
+            onClick={() => scroll(180)}
+            style={{ backgroundColor: "#FFD4B2" }}
+          >
+            <i
+              class="fa fa-chevron-right"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
         </div>
         <div className="card-footer bg-transparent justify-content-center">
           <a
-            href={"/perdidos"}
+            href={"/encontrados"}
             className="btn btn-light mt-4"
             style={{
               width: "160px",
@@ -136,38 +179,52 @@ export const Home = () => {
         style={{ backgroundColor: "#CEEDC7" }}
       >
         <h1 style={{ color: "#36544F" }}>En adopción</h1>
-        <p style={{ color: "#36544F" }}>
+        <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
           actualmente encontrados, encontrados o en adopción.
         </p>
-        {/* <p>
-          En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente perdidos. Cualquier información que desees aportar, puedes
-          ponerte en contacto con quien hizo la publicación ingresando en "más
-          información".
-        </p> */}
-        {/* <div className="row">
-          <div className="col-4"> */}
-        <div
-          className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
-          style={{ width: "90%" }}
-        >
-          {adopcion.map((item) => (
-            <div className="col mx-auto d-flex justify-content-center align-items-center">
-              <Mascotas
-                backgroundColor={"#FFD4B2"}
-                titulo={item?.titulo}
-                descripcion={item.descripcion}
-                foto1={item.foto1}
-                key={item}
-                id={item.id}
-              />
-            </div>
-          ))}
+        <div className="d-flex px-5">
+          <button
+            className="border-0"
+            onClick={() => scroll(-180)}
+            style={{ backgroundColor: "#CEEDC7" }}
+          >
+            <i
+              class="fa fa-chevron-left"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
+          <div
+            className="row flex-nowrap overflow-auto mx-auto scrollbar scrollbar-black bordered-black square"
+            style={{ width: "70%" }}
+          >
+            {adopcion.map((item) => (
+              <div className="col mx-auto">
+                <Mascotas
+                  backgroundColor={"#FFD4B2"}
+                  titulo={item?.titulo}
+                  descripcion={item.descripcion}
+                  foto1={item.foto1}
+                  key={item}
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </div>
+          <button
+            className="border-0"
+            onClick={() => scroll(180)}
+            style={{ backgroundColor: "#CEEDC7" }}
+          >
+            <i
+              class="fa fa-chevron-right"
+              style={{ fontSize: "100px", color: "#36544F" }}
+            ></i>
+          </button>
         </div>
         <div className="card-footer bg-transparent justify-content-center">
           <a
-            href={"/perdidos"}
+            href={"/en-adopcion"}
             className="btn btn-light mt-4"
             style={{
               width: "160px",
