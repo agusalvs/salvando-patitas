@@ -7,5 +7,9 @@ import React, { useState, useEffect, useContext } from "react";
 import ContactForm from "../component/contactform.jsx";
 
 export const Contactus = () => {
-  return <ContactForm />;
+  return (
+    <div className="mx-auto py-5" style={{ backgroundColor: "#FFF6BD" }}>
+      <ContactForm />
+    </div>
+  );
 };
