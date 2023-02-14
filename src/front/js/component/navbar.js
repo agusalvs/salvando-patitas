@@ -111,7 +111,7 @@ export const Navbar = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )}{" "}
           </div>
           <div className="nav-item">
             <div className="dropdown">
@@ -142,8 +142,14 @@ export const Navbar = () => {
                 aria-labelledby="dropdownMenuButton"
                 style={
                   estadoNavbar
-                    ? { display: "block", right: "10px" }
-                    : { display: "none", right: "10px" }
+                    ? {
+                        display: "block",
+                        right: "10px",
+                      }
+                    : {
+                        display: "none",
+                        right: "10px",
+                      }
                 }
               >
                 <a className="dropdown-item" href="#perdidos">
@@ -155,7 +161,7 @@ export const Navbar = () => {
                 <a className="dropdown-item" href="#adopcion">
                   En adopcion
                 </a>
-                {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}
+                {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}{" "}
               </div>
             </div>
           </div>

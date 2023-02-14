@@ -39,7 +39,7 @@ def inicio_de_sesion():
         return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token), 200
+    return jsonify({"access_token": access_token,"user_id":usuario.id}), 200
 
 @api.route('/publicacion/<int:user_id>', methods=['POST'])
 def publicar(user_id):
@@ -76,3 +76,21 @@ def recuperarContraseña():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
+
+    #CAMBIAR CONTRASEÑA
+@api.route("/cambiar-contrasena/<int:user_id>", methods=["POST"])
+def cambiarContrasena(user_id):
+        recover_nuevacontrasena = request.json['nuevacontrasena']
+        recover_contrasena = request.json['viejacontrasena']
+        usuario = Usuario.query.filter_by(id=user_id).first()
+        print(usuario)
+        print(recover_nuevacontrasena)
+        print(recover_contrasena)
+        if usuario.contraseña == recover_contrasena: 
+            usuario.contraseña= recover_nuevacontrasena
+            db.session.commit()
+            return jsonify({"msg": "Contraseña cambiada correctamente"}), 201
+        return jsonify({"msg": "Contraseña incorrecta"}), 400
+        # return jsonify({"msg": "ok"}), 200
+
+    
