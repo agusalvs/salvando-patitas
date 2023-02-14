@@ -6,7 +6,14 @@ import { useForm, ValidationError } from "@formspree/react";
 function ContactForm() {
   const [state, handleSubmit] = useForm("xyyaevba");
   if (state.succeeded) {
-    return <p>Nos estaremos contactando a la brevedad!</p>;
+    return (
+      <p
+        className="my-5 mx-auto d-flex justify-content-center fw-light"
+        style={{ color: "#64748B" }}
+      >
+        Nos estaremos contactando a la brevedad!
+      </p>
+    );
   }
   return (
     <div className="container mx-auto my-3 py-3" style={{ width: "700px" }}>
@@ -33,6 +40,7 @@ function ContactForm() {
             </label> */}
             <input
               type="email"
+              name="_replyto"
               id="Email"
               className="form-control form-control-lg mb-2"
               placeholder="Correo electrónico"
@@ -45,6 +53,11 @@ function ContactForm() {
                 fontSize: "15px",
               }}
             />
+            <ValidationError
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
           </div>
           <div class="mb-5">
             {/* <label for="exampleFormControlTextarea1" class="form-label">
@@ -52,7 +65,8 @@ function ContactForm() {
             </label> */}
             <textarea
               class="form-control"
-              id="exampleFormControlTextarea1"
+              name="message"
+              id="text_message"
               rows="3"
               placeholder="Mensaje"
               style={{
@@ -64,15 +78,36 @@ function ContactForm() {
                 fontSize: "15px",
               }}
             ></textarea>
+            <ValidationError
+              prefix="Message"
+              field="message"
+              errors={state.errors}
+            />
           </div>
-          {/* <input
-          type="hidden"
-          name="_subject"
-          id="email-subject"
-          value="Contact Form Submission"
-        /> */}
+          <input
+            type="hidden"
+            name="_subject"
+            id="email-subject"
+            value="Contact Form Submission"
+          />
         </fieldset>
-        <input
+        <button
+          class="col-auto mx-auto px-2 py-1 d-flex justify-content-center"
+          type="submit"
+          style={{
+            borderRadius: "1rem",
+            borderColor: "#86C8BC",
+            borderWidth: "2px",
+            backgroundColor: "#86C8BC",
+            opacity: "75%",
+            fontSize: "16px",
+            color: "white",
+          }}
+          disabled={state.submitting}
+        >
+          Enviar
+        </button>
+        {/* <input
           class="col-auto mx-auto px-2 py-1 d-flex justify-content-center"
           type="submit"
           value="Enviar"
@@ -85,30 +120,9 @@ function ContactForm() {
             fontSize: "16px",
             color: "white",
           }}
-        />
-        {/* <div class="col-auto mx-auto d-flex justify-content-center">
-          <button
-            type="submit"
-            class="btn mb-3"
-            style={{
-              borderRadius: "1rem",
-              borderColor: "#86C8BC",
-              borderWidth: "2px",
-              backgroundColor: "#FFD4B2",
-              opacity: "75%",
-              fontSize: "15px",
-            }}
-          >
-            Enviar
-          </button>
-        </div> */}
+        /> */}
       </form>
     </div>
   );
 }
 export default ContactForm;
-
-// function App() {
-//   return <ContactForm />;
-// }
-// export default App;
