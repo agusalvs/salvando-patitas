@@ -129,11 +129,18 @@ export const Single = () => {
               </p>
             </div>
             <div className="my-5 mx-3 object-fit-contain">
-              <img
-                className="rounded-3 w-100 my-1 px-5 py-2"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Google_Maps_icon_%282015-2020%29.svg/1200px-Google_Maps_icon_%282015-2020%29.svg.png"
-                alt="pepito"
-              />
+              <iframe
+                width="425"
+                height="350"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-63.98437500000001%2C-38.58252615935331%2C-45.63720703125%2C-30.259067203213018&amp;layer=mapnik&amp;marker=-34.52466147177172%2C-54.810791015625"
+                style={{ borderRadius: "15px" }}
+              ></iframe>
+              <br />
+              <small>
+                <a href="https://www.openstreetmap.org/?mlat=-34.525&amp;mlon=-54.811#map=7/-34.525/-54.811">
+                  Ver mapa más grande
+                </a>
+              </small>
             </div>
           </section>
         </div>
