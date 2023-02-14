@@ -17,13 +17,22 @@ export const Footerhome = () => (
         </ul>
 
         <div className="d-flex justify-content-end">
-          <i className="fab fa-github m-3 fs-1 text-muted"></i>
+          <p>
+            {/* inicia sesion con facebook */}
+            <a href="https://es-la.facebook.com/login/device-based/regular/login/">
+              <i className="fab fa-facebook m-3 fs-1 text-muted"></i>
+            </a>
 
-          <i className="fab fa-facebook m-3 fs-1 text-muted"></i>
+            {/* inicia sesion con twitter */}
+            <a href="https://twitter.com/i/flow/login">
+              <i className="fab fa-twitter m-3 fs-1 text-muted"></i>
+            </a>
 
-          <i className="fab fa-twitter m-3 fs-1 text-muted"></i>
-
-          <i className="fab fa-linkedin m-3 fs-1 text-muted"></i>
+            {/* inicia sesion con instagram */}
+            <a href="https://www.instagram.com/">
+              <i className="fab fa-instagram m-3 fs-1 text-muted"></i>
+            </a>
+          </p>
         </div>
       </div>
       <div className="mt-auto py-5 text-center text-white fw-normal">
