@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
@@ -8,6 +8,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { store, actions } = useContext(Context);
 
+  useEffect(() => {
+    if (store.auth) {
+      return <Navigate to="/" />
+    }
+  }, [store.auth]);
+
   function enviarDatos(e) {
     e.preventDefault();
     actions.login(email, password);
@@ -16,10 +22,6 @@ const Login = () => {
   }
 
   return (
-    <>
-      {store.auth === true ? (
-        <Navigate to="/" />
-      ) : (
         <>
           <div className="card-body py-4 px-3 text-center">
             <div className="mb-md-4 mt-md-3 pb-2">
@@ -131,9 +133,7 @@ const Login = () => {
             </div>
           </div>
         </>
-      )}
-    </>
-  );
+      );
 };
 
 export default Login;
