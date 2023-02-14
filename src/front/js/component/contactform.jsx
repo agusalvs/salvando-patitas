@@ -11,7 +11,7 @@ function ContactForm() {
         className="my-5 mx-auto d-flex justify-content-center fw-light"
         style={{ color: "#64748B" }}
       >
-        Nos estaremos contactando a la brevedad!
+        ¡Nos estaremos contactando a la brevedad!
       </p>
     );
   }
