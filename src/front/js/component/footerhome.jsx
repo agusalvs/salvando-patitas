@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Footerhome = () => (
   <footer>
     <div
-      className="footer text-center p-4 mb-0 mp-2 fixed-bottom w-100 h-auto"
+      className="footer text-center p-4 mb-0 mp-2 w-100 h-auto"
       style={{ backgroundColor: "rgb(134, 200, 188)" }}
     >
       <Link className="text-reset fw-bold" to="https://mdbootstrap.com/"></Link>
