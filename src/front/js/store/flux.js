@@ -22,20 +22,22 @@ const getState = ({
                 userContraseña,
                 userDireccion
             ) => {
-                fetch(process.env.BACKEND_URL + "/api/registro", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            nombre: userNombre,
-                            email: userCorreo,
-                            celular: userCelular,
-                            contraseña: userContraseña,
-                            direccion: userDireccion,
-                        }), // body data type must match "Content-Type" header
-                    })
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dvamqb7fbf2.ws-us87.gitpod.io/api/registro", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                nombre: userNombre,
+                                email: userCorreo,
+                                celular: userCelular,
+                                contraseña: userContraseña,
+                                direccion: userDireccion,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 201) {
@@ -63,17 +65,19 @@ const getState = ({
             },
 
             login: (userEmail, userPassword) => {
-                fetch(process.env.BACKEND_URL + "/api/autenticacion", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            email: userEmail,
-                            contraseña: userPassword,
-                        }), // body data type must match "Content-Type" header
-                    })
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dvamqb7fbf2.ws-us87.gitpod.io/api/autenticacion", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                email: userEmail,
+                                contraseña: userPassword,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 200) {
@@ -137,29 +141,32 @@ const getState = ({
             ) => {
                 //get the store
                 const store = getStore();
-                fetch(process.env.BACKEND_URL + "/api/publicacion/" + store.user_id, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            titulo,
-                            nombre,
-                            contacto,
-                            genero,
-                            ubicacion,
-                            edad,
-                            raza,
-                            estado,
-                            descripcion,
-                            categoria,
-                            tamaño,
-                            foto1: "",
-                            foto2: "",
-                            foto3: "",
-                        }), // body data type must match "Content-Type" header
-                    })
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dvamqb7fbf2.ws-us87.gitpod.io/api/publicacion/" +
+                        store.user_id, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                titulo,
+                                nombre,
+                                contacto,
+                                genero,
+                                ubicacion,
+                                edad,
+                                raza,
+                                estado,
+                                descripcion,
+                                categoria,
+                                tamaño,
+                                foto1: "",
+                                foto2: "",
+                                foto3: "",
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 201) {
@@ -185,16 +192,18 @@ const getState = ({
 
             // TERMINA PUBLICAR
             enviarcorreo: (userCorreo) => {
-                fetch(process.env.BACKEND_URL + "/api/recuperar-contraseña", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            email: userCorreo,
-                        }), // body data type must match "Content-Type" header
-                    })
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dvamqb7fbf2.ws-us87.gitpod.io/api/recuperar-contraseña", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                email: userCorreo,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 200) {
@@ -219,20 +228,20 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
-            getMessage: async () => {
-                try {
-                    // fetching data from the backend
-                    const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-                    const data = await resp.json();
-                    setStore({
-                        message: data.message,
-                    });
-                    // don't forget to return something, that is how the async resolves
-                    return data;
-                } catch (error) {
-                    console.log("Error loading message from backend", error);
-                }
-            },
+            // getMessage: async () => {
+            //     try {
+            //         // fetching data from the backend
+            //         const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+            //         const data = await resp.json();
+            //         setStore({
+            //             message: data.message,
+            //         });
+            //         // don't forget to return something, that is how the async resolves
+            //         return data;
+            //     } catch (error) {
+            //         console.log("Error loading message from backend", error);
+            //     }
+            // },
 
             changeColor: (index, color) => {
                 //get the store
@@ -260,7 +269,9 @@ const getState = ({
 
             mascotasHome: () => {
                 const store = getStore();
-                fetch(process.env.BACKEND_URL + "/api/mascotas")
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-dvamqb7fbf2.ws-us87.gitpod.io/api/mascotas"
+                    )
                     .then((res) => res.json())
                     // .then((data) => console.log(data))
                     .then((data) =>
