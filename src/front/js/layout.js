@@ -12,6 +12,8 @@ import { FooterVariable } from "./component/footervariable.jsx";
 import { Navbar } from "./component/navbar";
 import { Formulario } from "./pages/vistaRegistro";
 import { Contactus } from "./pages/contactus.js";
+import { PublicacionNueva } from "./pages/vistaPublicacion";
+
 // import { Login } from "./component/login";
 
 // create your first component
@@ -27,6 +29,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<PublicacionNueva />} path="/publicacion" />
             <Route element={<Formulario />} path="/registro" />{" "}
             <Route element={<Vistaenviarcorreo />} path="/recuperar" />{" "}
             <Route element={<Single />} path="/single/:theid" />
