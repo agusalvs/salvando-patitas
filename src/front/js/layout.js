@@ -7,8 +7,9 @@ import {Home} from "./pages/home";
 import {Single} from "./pages/single";
 import injectContext from "./store/appContext";
 
+import {Vistaenviarcorreo} from "./pages/vistaEnviarcorreo";
+import {FooterVariable} from "./component/footervariable.jsx";
 import {Navbar} from "./component/navbar";
-import {Footer} from "./component/footer";
 import {Formulario} from "./pages/vistaRegistro";
 import {RecuperarContraseña} from "./pages/vistaRecuperar";
 // import { Login } from "./component/login";
@@ -19,28 +20,32 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    return (<div>
-        <BrowserRouter basename={basename}>
-            <ScrollToTop>
-                <Navbar/>
-                <Routes>
-                    <Route element={<Home/>}
-                        path="/"/>
-                    <Route element={<RecuperarContraseña/>}
-                        path="/recuperar"/>
-                    <Route element={<Formulario/>}
-                        path="/formulario"/> {/* <Route element={<Demo/>} */}
-                    {/* path="/demo"/> */}
-                    <Route element={<Single/>}
-                        path="/single/:theid"/>
-                    <Route element={
-                        <h1>Not found!</h1>
-                    }/>
-                </Routes>
-                <Footer/>
-            </ScrollToTop>
-        </BrowserRouter>
-    </div>);
+    return (
+        <div>
+            <BrowserRouter basename={basename}>
+                <ScrollToTop>
+                    <Navbar/>
+                    <Routes>
+                        <Route element={<Home/>}
+                            path="/"/>
+                        <Route element={<Formulario/>}
+                            path="/registro"/>{" "}
+                        <Route element={<RecuperarContraseña/>}
+                            path="/recuperar"/>
+                        <Route element={<Vistaenviarcorreo/>}
+                            path="/recuperar"/>{" "}
+                        <Route element={<Single/>}
+                            path="/single/:theid"/>
+                        <Route element={
+                            <h1>Not found!</h1>
+                        }/>
+                    </Routes>
+                    {" "}
+                    <FooterVariable/>
+                </ScrollToTop>
+                {" "} </BrowserRouter>
+            {" "} </div>
+    );
 };
 
 export default injectContext(Layout);
