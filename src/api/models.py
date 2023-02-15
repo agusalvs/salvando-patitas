@@ -37,7 +37,6 @@ class Mascota(db.Model):
     descripcion =  db.Column(db.String(250), nullable=False)
     contacto =  db.Column(db.String(80), nullable=False)
     ubicacion =  db.Column(db.String(80), nullable=False)
-    fecha =  db.Column(db.String(80), unique=False, nullable=False)
     foto1 =  db.Column(db.String(250), unique=False, nullable=False)
     foto2 =  db.Column(db.String(80), unique=False)
     foto3 =  db.Column(db.String(80), unique=False)
@@ -60,7 +59,6 @@ class Mascota(db.Model):
             "descripcion": self.descripcion,
             "contacto": self.contacto,
             "ubicacion": self.ubicacion,
-            "fecha": self.fecha,
             "foto1": self.foto1,
             "foto2": self.foto2,
             "foto3": self.foto3,
