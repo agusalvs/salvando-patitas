@@ -39,12 +39,12 @@ def inicio_de_sesion():
         return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token), 200
+    return jsonify({"access_token": access_token,"user_id":usuario.id}), 200
 
 @api.route('/publicacion/<int:user_id>', methods=['POST'])
 def publicar(user_id):
     request_body = json.loads(request.data)
-    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], fecha = request_body['fecha'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
+    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
     db.session.add(nueva_publicacion)
     db.session.commit()
     todos_las_mascota = Mascota.query.all()
@@ -76,4 +76,21 @@ def recuperarContraseña():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
+
+    #CAMBIAR CONTRASEÑA
+@api.route("/cambiar-contrasena/<int:user_id>", methods=["POST"])
+def cambiarContrasena(user_id):
+        recover_nuevacontrasena = request.json['nuevacontrasena']
+        recover_contrasena = request.json['viejacontrasena']
+        usuario = Usuario.query.filter_by(id=user_id).first()
+        print(usuario)
+        print(recover_nuevacontrasena)
+        print(recover_contrasena)
+        if usuario.contraseña == recover_contrasena: 
+            usuario.contraseña= recover_nuevacontrasena
+            db.session.commit()
+            return jsonify({"msg": "Contraseña cambiada correctamente"}), 201
+        return jsonify({"msg": "Contraseña incorrecta"}), 400
+        # return jsonify({"msg": "ok"}), 200
+
     
