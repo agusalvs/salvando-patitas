@@ -11,6 +11,7 @@ import { Vistaenviarcorreo } from "./pages/vistaEnviarcorreo";
 import { FooterVariable } from "./component/footervariable.jsx";
 import { Navbar } from "./component/navbar";
 import { Formulario } from "./pages/vistaRegistro";
+import { Contactus } from "./pages/contactus.js";
 import { PublicacionNueva } from "./pages/vistaPublicacion";
 
 // import { Login } from "./component/login";
@@ -33,6 +34,7 @@ const Layout = () => {
             <Route element={<Vistaenviarcorreo />} path="/recuperar" />{" "}
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
+            <Route element={<Contactus />} path="/contacto" />
           </Routes>{" "}
           <FooterVariable />
         </ScrollToTop>{" "}
