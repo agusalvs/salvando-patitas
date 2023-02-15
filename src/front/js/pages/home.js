@@ -52,7 +52,7 @@ export const Home = () => {
         <h1 style={{ color: "#36544F" }}>Perdidos</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente perdidos, encontrados o en adopción.
+          actualmente perdidos.
         </p>
         <div className="d-flex px-5">
           <button
@@ -117,7 +117,7 @@ export const Home = () => {
         <h1 style={{ color: "#36544F" }}>Encontrados</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente encontrados, encontrados o en adopción.
+          actualmente encontrados.
         </p>
         <div className="d-flex px-5">
           <button
@@ -181,7 +181,7 @@ export const Home = () => {
         <h1 style={{ color: "#36544F" }}>En adopción</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
           En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente encontrados, encontrados o en adopción.
+          actualmente en adopción.
         </p>
         <div className="d-flex px-5">
           <button
