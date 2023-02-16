@@ -43,7 +43,7 @@ class Mascota(db.Model):
     usuario_id =  db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
 
     def __repr__(self):
-        return f'<Mascota {self.email}>'
+        return f'<Mascota {self.id}>'
 
     def serialize(self):
         return {
