@@ -12,7 +12,7 @@ import { Mascotas } from "../component/mascotas.jsx";
 import "../../styles/home.css";
 // import { element } from "prop-types";
 
-export const Home = () => {
+export const Perdidos = () => {
   const { store, actions } = useContext(Context);
   // const params = useParams();
 
@@ -24,38 +24,38 @@ export const Home = () => {
     (mascota) => mascota.estado == "Perdido"
   );
 
-  const encontrados = store.mascotas.filter(
-    (mascota) => mascota.estado == "Encontrado"
-  );
+  // const encontrados = store.mascotas.filter(
+  //   (mascota) => mascota.estado == "Encontrado"
+  // );
 
-  const adopcion = store.mascotas.filter(
-    (mascota) => mascota.estado == "En adopción"
-  );
+  // const adopcion = store.mascotas.filter(
+  //   (mascota) => mascota.estado == "En adopción"
+  // );
 
   const ref = useRef(null);
 
-  const scroll = (scrollOffset) => {
-    ref.current.scrollLeft += scrollOffset;
-  };
+  // const scroll = (scrollOffset) => {
+  //   ref.current.scrollLeft += scrollOffset;
+  // };
 
   return (
     // <!-- Page Content -->
     <div className="mx-auto">
       {/* <!-- First Featurette --> */}
-      <Inicio />
+      {/* <Inicio /> */}
 
       <div
         className="container-fluid py-5 text-center mx-auto"
-        id="perdidos"
+        id="vista-perdidos"
         style={{ backgroundColor: "#FFF6BD" }}
       >
         <h1 style={{ color: "#36544F" }}>Perdidos</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
-          En esta sección podrás ver todos los animalitos que se encuentran
-          actualmente perdidos.
+          Aquí podrás ver todos los animalitos que se encuentran actualmente
+          perdidos.
         </p>
         <div className="d-flex px-5">
-          <button
+          {/* <button
             className="border-0"
             onClick={() => scroll(-180)}
             style={{ backgroundColor: "#FFF6BD" }}
@@ -64,20 +64,20 @@ export const Home = () => {
               className="fa fa-chevron-left"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
-          </button>
+          </button> */}
           <div
-            className="row mx-auto flex-nowrap overflow-auto scrollbar scrollbar-black bordered-black round"
-            style={{ width: "70%", scrollBehavior: "smooth" }}
-            ref={ref}
+            className="row mx-auto "
+            // style={{ width: "70%", scrollBehavior: "smooth" }}
+            // ref={ref}
           >
             {perdidos.map((item) => (
-              <div className="col mx-auto ">
+              <div className="col mx-auto">
                 <Mascotas
-                  width={"18rem"}
-                  height={"28rem"}
+                  width={"12rem"}
+                  height={"20rem"}
                   backgroundColor={"#CEEDC7"}
                   titulo={item?.titulo}
-                  descripcion={item.descripcion}
+                  //   descripcion={item.descripcion}
                   foto1={item.foto1}
                   key={item}
                   id={item.id}
@@ -85,7 +85,7 @@ export const Home = () => {
               </div>
             ))}
           </div>
-          <button
+          {/* <button
             className="border-0"
             onClick={() => scroll(180)}
             style={{ backgroundColor: "#FFF6BD" }}
@@ -94,9 +94,9 @@ export const Home = () => {
               className="fa fa-chevron-right"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
-          </button>
+          </button> */}
         </div>
-        <div className="card-footer bg-transparent justify-content-center">
+        {/* <div className="card-footer bg-transparent justify-content-center">
           <a
             href={"/perdidos"}
             className="btn btn-light mt-4"
@@ -109,9 +109,9 @@ export const Home = () => {
           >
             Ver más
           </a>
-        </div>
+        </div> */}
       </div>
-      <div
+      {/* <div
         className="container-fluid py-5 text-center"
         id="encontrados"
         style={{ backgroundColor: "#FFD4B2" }}
@@ -139,8 +139,6 @@ export const Home = () => {
             {encontrados.map((item) => (
               <div className="col mx-auto">
                 <Mascotas
-                  width={"18rem"}
-                  height={"28rem"}
                   backgroundColor={"#FFF6BD"}
                   titulo={item?.titulo}
                   descripcion={item.descripcion}
@@ -205,8 +203,6 @@ export const Home = () => {
             {adopcion.map((item) => (
               <div className="col mx-auto">
                 <Mascotas
-                  width={"18rem"}
-                  height={"28rem"}
                   backgroundColor={"#FFD4B2"}
                   titulo={item?.titulo}
                   descripcion={item.descripcion}
@@ -242,7 +238,7 @@ export const Home = () => {
             Ver más
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
     //   </div>
     // </div>
