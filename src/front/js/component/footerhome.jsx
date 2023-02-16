@@ -147,8 +147,8 @@ export const Footerhome = () => (
           </p>
         </div>
       </div>
-      <div className="mt-auto py-5 text-center text-white fw-normal">
-        ©2023 SalvandoPatitas.com All rights reserved.
+      <div className="mt-auto py-1 text-center text-white fw-normal">
+        ©2023 SalvandoPatitas.com Todos los derechos reservados.
       </div>
     </div>
   </footer>

@@ -1,20 +1,35 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+// import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Login from "../component/login.jsx";
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const [estadoNavbar, setEstadoNavbar] = useState(false);
-
+  const Swal = require("sweetalert2");
+  const navigate = useNavigate(); //activamos useNavigate
   const onChangeMenuHamburguesa = () => {
     setEstadoNavbar(!estadoNavbar);
   };
 
   function handleLogout() {
-    var result = confirm("Seguro que quieres cerrar sesion?");
-    if (result == true) {
-      actions.logout(); //cerrar la sesion
-    }
+    Swal.fire({
+      title: "¿Deseas cerrar sesión?",
+      text: "No podrás revertir esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "¡Sí, cerrar sesión!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        actions.logout(); //cerrar la sesion
+        Swal.fire("¡Sesión cerrada!", "Has cerrado sesión.", "success");
+        navigate("/"); //usamos navigate para redireccionar
+      }
+    });
   }
 
   return (
@@ -50,12 +65,10 @@ export const Navbar = () => {
             </a>
           </div>
           <div className="nav-item float-right">
-            {store.auth ? (
+            {store.auth === true ? (
               <div className="nav-item">
                 <a
-                  onClick={() => {
-                    if (event.target.tagName === "A") handleLogout();
-                  }}
+                  onClick={handleLogout}
                   className="nav-link active ml-25px"
                   style={{ backgroundColor: "#CEEDC7", color: "#36544F" }}
                   aria-current="page"
@@ -99,7 +112,7 @@ export const Navbar = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )}{" "}
           </div>
           <div className="nav-item">
             <div className="dropdown">
@@ -130,8 +143,14 @@ export const Navbar = () => {
                 aria-labelledby="dropdownMenuButton"
                 style={
                   estadoNavbar
-                    ? { display: "block", right: "10px" }
-                    : { display: "none", right: "10px" }
+                    ? {
+                        display: "block",
+                        right: "10px",
+                      }
+                    : {
+                        display: "none",
+                        right: "10px",
+                      }
                 }
               >
                 <a className="dropdown-item" href="#perdidos">
@@ -143,12 +162,12 @@ export const Navbar = () => {
                 <a className="dropdown-item" href="#adopcion">
                   En adopcion
                 </a>
-                {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}
+                {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}{" "}
               </div>
             </div>
           </div>
         </div>
-        {/* <!-- Modal --> */}
+        {/* <!-- Modal -->
         <div
           className="modal fade"
           id="exampleModal"
@@ -169,7 +188,7 @@ export const Navbar = () => {
               <Login />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
