@@ -167,8 +167,8 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* <!-- Modal --> */}
-        {/* <div
+        {/* <!-- Modal -->
+        <div
           className="modal fade"
           id="exampleModal"
           tabIndex="-1"
