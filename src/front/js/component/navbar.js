@@ -34,7 +34,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="navbar bg-body-tertiary fixed-top"
+      className="navbar bg-body-tertiary "
       style={{ backgroundColor: "#86C8BC" }}
     >
       <div className="container-fluid ps-4">
@@ -64,16 +64,18 @@ export const Navbar = () => {
               </button>
             </Link>
           </div>
-          <div className="nav-item float-right mx-2 px-2">
+          <div className="nav-item float-right">
             {store.auth === true ? (
-              <div className="nav-item mx-2 px-2">
-                <button
+              <div className="nav-item">
+                <a
                   onClick={handleLogout}
-                  className="btn ml-25px"
+                  className="nav-link active ml-25px"
                   style={{ backgroundColor: "#CEEDC7", color: "#36544F" }}
+                  aria-current="page"
+                  href="#"
                 >
-                  Cerrar sesión
-                </button>
+                  Cerrar sesion
+                </a>
               </div>
             ) : (
               <div className="nav-item ms-2 ps-2">
