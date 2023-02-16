@@ -34,7 +34,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="navbar bg-body-tertiary"
+      className="navbar bg-body-tertiary fixed-top"
       style={{ backgroundColor: "#86C8BC" }}
     >
       <div className="container-fluid ps-4">

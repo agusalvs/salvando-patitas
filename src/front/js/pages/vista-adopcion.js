@@ -22,7 +22,7 @@ export const Adopcion = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto">
+    <div className="mx-auto pt-5">
       {/* <!-- First Featurette --> */}
 
       <div

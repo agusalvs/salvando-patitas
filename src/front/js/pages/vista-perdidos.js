@@ -40,7 +40,7 @@ export const Perdidos = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto">
+    <div className="mx-auto pt-5">
       {/* <!-- First Featurette --> */}
       {/* <Inicio /> */}
 

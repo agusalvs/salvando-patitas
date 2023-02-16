@@ -4,7 +4,7 @@ import React from "react";
 export const Inicio = () => {
   return (
     <>
-      <div id="about" className="my-4">
+      <div id="about" className="my-4 pt-5">
         <img
           className="mx-auto mt-5"
           style={{ width: "100%" }}
