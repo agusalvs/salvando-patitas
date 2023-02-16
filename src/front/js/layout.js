@@ -31,7 +31,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<PublicacionNueva />} path="/publicacion" />
+            <Route element={<PublicacionNueva />} path="/publicar" />
             <Route element={<Formulario />} path="/registro" />{" "}
             <Route element={<Vistaenviarcorreo />} path="/recuperar" />{" "}
             <Route element={<Single />} path="/single/:theid" />

@@ -37,7 +37,7 @@ export const Navbar = () => {
       className="navbar bg-body-tertiary"
       style={{ backgroundColor: "#86C8BC" }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid ps-4">
         <Link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
