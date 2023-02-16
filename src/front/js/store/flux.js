@@ -59,23 +59,27 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: (userEmail, userPassword) => {
-        fetch(process.env.BACKEND_URL + "/api/autenticacion", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: JSON.stringify({
-            email: userEmail,
-            contraseña: userPassword,
-          }), // body data type must match "Content-Type" header
-        })
+        const store = getStore();
+        fetch(
+          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/autenticacion",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+              email: userEmail,
+              contraseña: userPassword,
+            }), // body data type must match "Content-Type" header
+          }
+        )
           .then((response) => {
             console.log(response.status);
             if (response.status === 200) {
-              // setStore({
-              //     showModal: "show"
-              // });
+              setStore({
+                auth: true,
+              });
               Swal.fire({
                 position: "middle",
                 icon: "success",
@@ -105,12 +109,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                   popup: "animate__animated animate__fadeOutUp",
                 },
               });
+            } else if (store.auth === true) {
+              setStore({
+                user_id: data.user_id,
+              });
             }
-            setStore({
-              auth: true,
-              user_id: data.user_id,
-            });
             localStorage.setItem("token", data.access_token);
+            localStorage.setItem("ID", data.user_id);
           })
           .catch((err) => console.log(err));
       },
@@ -179,16 +184,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       // TERMINA PUBLICAR
       enviarcorreo: (userCorreo) => {
-        fetch(process.env.BACKEND_URL + "/api/recuperar-contraseña", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: JSON.stringify({
-            email: userCorreo,
-          }), // body data type must match "Content-Type" header
-        })
+        fetch(
+          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/recuperar-contraseña",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+              email: userCorreo,
+            }), // body data type must match "Content-Type" header
+          }
+        )
           .then((response) => {
             console.log(response.status);
             if (response.status === 200) {
@@ -214,9 +222,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
-        const store = getStore();
+        let ID = localStorage.getItem("ID");
         fetch(
-          process.env.BACKEND_URL + "/api/cambiar-contrasena/" + store.user_id,
+          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+            ID,
           {
             method: "POST",
             headers: {
