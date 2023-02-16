@@ -16,7 +16,9 @@ const injectContext = (PassedComponent) => {
         setStore: (updatedStore) =>
           setState({
             store: Object.assign(state.store, updatedStore),
-            actions: { ...state.actions },
+            actions: {
+              ...state.actions,
+            },
           }),
       })
     );
@@ -28,7 +30,7 @@ const injectContext = (PassedComponent) => {
        * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
        * store, instead use actions, like this:
        **/
-      state.actions.getMessage(); // <---- calling this function from the flux.js actions
+      // state.actions.getMessage(); // <---- calling this function from the flux.js actions
       // state.actions.mascotasHome();
     }, []);
 
@@ -37,7 +39,7 @@ const injectContext = (PassedComponent) => {
     // on the state of this component
     return (
       <Context.Provider value={state}>
-        <PassedComponent {...props} />
+        <PassedComponent {...props} />{" "}
       </Context.Provider>
     );
   };

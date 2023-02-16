@@ -61,7 +61,7 @@ export const Home = () => {
             style={{ backgroundColor: "#FFF6BD" }}
           >
             <i
-              class="fa fa-chevron-left"
+              className="fa fa-chevron-left"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
@@ -89,7 +89,7 @@ export const Home = () => {
             style={{ backgroundColor: "#FFF6BD" }}
           >
             <i
-              class="fa fa-chevron-right"
+              className="fa fa-chevron-right"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
@@ -126,7 +126,7 @@ export const Home = () => {
             style={{ backgroundColor: "#FFD4B2" }}
           >
             <i
-              class="fa fa-chevron-left"
+              className="fa fa-chevron-left"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
@@ -153,7 +153,7 @@ export const Home = () => {
             style={{ backgroundColor: "#FFD4B2" }}
           >
             <i
-              class="fa fa-chevron-right"
+              className="fa fa-chevron-right"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
@@ -190,7 +190,7 @@ export const Home = () => {
             style={{ backgroundColor: "#CEEDC7" }}
           >
             <i
-              class="fa fa-chevron-left"
+              className="fa fa-chevron-left"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
@@ -217,7 +217,7 @@ export const Home = () => {
             style={{ backgroundColor: "#CEEDC7" }}
           >
             <i
-              class="fa fa-chevron-right"
+              className="fa fa-chevron-right"
               style={{ fontSize: "100px", color: "#36544F" }}
             ></i>
           </button>
