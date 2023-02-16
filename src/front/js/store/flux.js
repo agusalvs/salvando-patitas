@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(response.status);
             if (response.status === 201) {
               Swal.fire({
-                position: "middle",
+                position: "center",
                 icon: "success",
                 title: "Te registraste correctamente",
                 showConfirmButton: false,
@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -81,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 auth: true,
               });
               Swal.fire({
-                position: "middle",
+                position: "center",
                 icon: "success",
                 title: "Has iniciado sesión",
                 showConfirmButton: false,
@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(response.status);
             if (response.status === 201) {
               Swal.fire({
-                position: "middle",
+                position: "center",
                 icon: "success",
                 title: "Has publicado correctamente",
                 showConfirmButton: false,
@@ -185,7 +185,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // TERMINA PUBLICAR
       enviarcorreo: (userCorreo) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/recuperar-contraseña",
+          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/recuperar-contraseña",
           {
             method: "POST",
             headers: {
@@ -224,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
-          "https://3001-agusalvs-salvandopatita-r3o6skiuidd.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/cambiar-contrasena/" +
             ID,
           {
             method: "POST",
@@ -242,7 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(response.status);
             if (response.status === 201) {
               Swal.fire({
-                position: "middle",
+                position: "center",
                 icon: "success",
                 title: "Contraseña cambiada correctamente",
                 showConfirmButton: false,

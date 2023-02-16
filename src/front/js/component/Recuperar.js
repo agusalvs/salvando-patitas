@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
-// import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
 const Recuperar = () => {
   const [contraseñagmail, setContraseñagmail] = useState("");
   const [nuevacontraseña, setNuevacontraseña] = useState("");
   const [repetircontraseña, setRepetircontraseña] = useState("");
   const Swal = require("sweetalert2");
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
   function enviarDatos(e) {
     e.preventDefault();
@@ -16,6 +16,7 @@ const Recuperar = () => {
       setContraseñagmail("");
       setNuevacontraseña("");
       setRepetircontraseña("");
+      navigate("/");
     } else {
       Swal.fire({
         icon: "error",
@@ -23,7 +24,6 @@ const Recuperar = () => {
         text: "¡Las contraseñas no coinciden!",
       });
     }
-    console.log(contraseñagmail, nuevacontraseña, repetircontraseña);
   }
 
   return (
@@ -44,7 +44,7 @@ const Recuperar = () => {
         >
           {" "}
           Cambiar contraseña{" "}
-        </p>
+        </p>{" "}
         <p
           className="mb-5 fw-light"
           style={{
@@ -52,7 +52,7 @@ const Recuperar = () => {
           }}
         >
           Crear nueva contraseña{" "}
-        </p>
+        </p>{" "}
         <form
           className="row g-3 mx-auto "
           onSubmit={enviarDatos}
@@ -78,7 +78,7 @@ const Recuperar = () => {
                 fontSize: "15px",
               }}
             />{" "}
-          </div>
+          </div>{" "}
           <div className="col-md-12">
             <input
               type="password"
