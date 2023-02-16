@@ -36,15 +36,15 @@ def inicio_de_sesion():
     if usuario is None:
         return jsonify({"msg": "El usuario no existe"}), 404   
     if contraseña != usuario.contraseña:
-        return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
+        return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404
 
     access_token = create_access_token(identity=email)
-    return jsonify({"access_token": access_token,"user_id":usuario.id}), 200
+    return jsonify({"access_token": access_token,"user_id":usuario.id, "msg":"Usuario logeado"}), 200
 
 @api.route('/publicacion/<int:user_id>', methods=['POST'])
 def publicar(user_id):
     request_body = json.loads(request.data)
-    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], fecha = request_body['fecha'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
+    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
     db.session.add(nueva_publicacion)
     db.session.commit()
     todos_las_mascota = Mascota.query.all()
