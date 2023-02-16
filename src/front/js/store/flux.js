@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      message: null,
       mascotas: [],
       Swal: require("sweetalert2"),
       user_id: null,
@@ -18,20 +17,23 @@ const getState = ({ getStore, getActions, setStore }) => {
         userContraseña,
         userDireccion
       ) => {
-        fetch(process.env.BACKEND_URL + "/api/registro", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: JSON.stringify({
-            nombre: userNombre,
-            email: userCorreo,
-            celular: userCelular,
-            contraseña: userContraseña,
-            direccion: userDireccion,
-          }), // body data type must match "Content-Type" header
-        })
+        fetch(
+          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/registro",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+              nombre: userNombre,
+              email: userCorreo,
+              celular: userCelular,
+              contraseña: userContraseña,
+              direccion: userDireccion,
+            }), // body data type must match "Content-Type" header
+          }
+        )
           .then((response) => {
             console.log(response.status);
             if (response.status === 201) {
@@ -119,6 +121,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       publicar: (
         titulo,
         nombre,
@@ -137,29 +140,33 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         //get the store
         const store = getStore();
-        fetch(process.env.BACKEND_URL + "/api/publicacion/" + store.user_id, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: JSON.stringify({
-            titulo,
-            nombre,
-            contacto,
-            genero,
-            ubicacion,
-            edad,
-            raza,
-            estado,
-            descripcion,
-            categoria,
-            tamaño,
-            foto1: "",
-            foto2: "",
-            foto3: "",
-          }), // body data type must match "Content-Type" header
-        })
+        fetch(
+          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/publicacion/" +
+            store.user_id,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+              titulo,
+              nombre,
+              contacto,
+              genero,
+              ubicacion,
+              edad,
+              raza,
+              estado,
+              descripcion,
+              categoria,
+              tamaño,
+              foto1: "",
+              foto2: "",
+              foto3: "",
+            }), // body data type must match "Content-Type" header
+          }
+        )
           .then((response) => {
             console.log(response.status);
             if (response.status === 201) {
@@ -182,6 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       // TERMINA PUBLICAR
       enviarcorreo: (userCorreo) => {
         fetch(
@@ -288,8 +296,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       mascotasHome: () => {
-        let store = getStore();
-        fetch(process.env.BACKEND_URL + "/api/mascotas")
+        const store = getStore();
+        fetch(
+          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/mascotas"
+        )
           .then((res) => res.json())
           // .then((data) => console.log(data))
           .then((data) =>
