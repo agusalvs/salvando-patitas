@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
-import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+// import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Login from "../component/login.jsx";
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const [estadoNavbar, setEstadoNavbar] = useState(false);
   const Swal = require("sweetalert2");
-
+  const navigate = useNavigate(); //activamos useNavigate
   const onChangeMenuHamburguesa = () => {
     setEstadoNavbar(!estadoNavbar);
   };
@@ -167,7 +168,7 @@ export const Navbar = () => {
           </div>
         </div>
         {/* <!-- Modal --> */}
-        <div
+        {/* <div
           className="modal fade"
           id="exampleModal"
           tabIndex="-1"
@@ -187,7 +188,7 @@ export const Navbar = () => {
               <Login />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
