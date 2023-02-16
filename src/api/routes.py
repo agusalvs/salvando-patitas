@@ -93,4 +93,8 @@ def cambiarContrasena(user_id):
         return jsonify({"msg": "Contraseña incorrecta"}), 400
         # return jsonify({"msg": "ok"}), 200
 
-    
+    #FILTRAR MASCOTAS POR ID
+@api.route("/mascotas/<int:mascota_id>", methods=["GET"])
+def get_mascota_info(mascota_id):
+    mascota= Mascota.query.filter_by(id=mascota_id).first()
+    return jsonify(mascota.serialize()),200
