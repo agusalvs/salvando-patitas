@@ -7,7 +7,6 @@ const getState = ({
 }) => {
     return {
         store: {
-            message: null,
             mascotas: [],
             Swal: require("sweetalert2"),
             user_id: null,
@@ -23,7 +22,7 @@ const getState = ({
                 userDireccion
             ) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-yp2yoipd64w.ws-us85.gitpod.io/api/registro", {
+                        "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/registro", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -42,7 +41,7 @@ const getState = ({
                         console.log(response.status);
                         if (response.status === 201) {
                             Swal.fire({
-                                position: "middle",
+                                position: "center",
                                 icon: "success",
                                 title: "Te registraste correctamente",
                                 showConfirmButton: false,
@@ -65,8 +64,9 @@ const getState = ({
             },
 
             login: (userEmail, userPassword) => {
+                const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-fscvn7dk3kj.ws-us87.gitpod.io/api/autenticacion", {
+                        "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/autenticacion", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -81,11 +81,11 @@ const getState = ({
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 200) {
-                            // setStore({
-                            //     showModal: "show"
-                            // });
+                            setStore({
+                                auth: true,
+                            });
                             Swal.fire({
-                                position: "middle",
+                                position: "center",
                                 icon: "success",
                                 title: "Has iniciado sesión",
                                 showConfirmButton: false,
@@ -113,15 +113,17 @@ const getState = ({
                                     popup: "animate__animated animate__fadeOutUp",
                                 },
                             });
+                        } else if (store.auth === true) {
+                            setStore({
+                                user_id: data.user_id,
+                            });
                         }
-                        setStore({
-                            auth: true,
-                            user_id: data.user_id,
-                        });
                         localStorage.setItem("token", data.access_token);
+                        localStorage.setItem("ID", data.user_id);
                     })
                     .catch((err) => console.log(err));
             },
+
             publicar: (
                 titulo,
                 nombre,
@@ -141,7 +143,7 @@ const getState = ({
                 //get the store
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-aihimlanubc.ws-us86.gitpod.io/api/publicacion/" +
+                        "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/publicacion/" +
                         store.user_id, {
                             method: "POST",
                             headers: {
@@ -170,7 +172,7 @@ const getState = ({
                         console.log(response.status);
                         if (response.status === 201) {
                             Swal.fire({
-                                position: "middle",
+                                position: "center",
                                 icon: "success",
                                 title: "Has publicado correctamente",
                                 showConfirmButton: false,
@@ -241,10 +243,49 @@ const getState = ({
                 }
             },
 
+            cambiar: (userContraseñagmail, userNuevacontraseña) => {
+                let ID = localStorage.getItem("ID");
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+                        ID, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                viejacontrasena: userContraseñagmail,
+                                nuevacontrasena: userNuevacontraseña,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Contraseña cambiada correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                        if (response.status === 400) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Contraseña incorrecta",
+                            });
+                        }
+
+                        return response.json();
+                    })
+                    .catch((err) => console.log(err));
+            },
+
             changeColor: (index, color) => {
                 //get the store
                 const store = getStore();
-
                 //we have to loop the entire demo array to look for the respective index
                 //and change its color
                 const demo = store.demo.map((elm, i) => {
@@ -257,7 +298,6 @@ const getState = ({
                     demo: demo,
                 });
             },
-
             // para cerrar sesion:
             logout: () => {
                 localStorage.removeItem("token");
@@ -280,8 +320,6 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
                 return store.mascotas;
-
-                // console.log(store.mascotas);
             },
         },
     };

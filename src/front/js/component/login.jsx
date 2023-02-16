@@ -1,12 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+    if (store.auth) {
+      return <Navigate to="/" />;
+    }
+  }, [store.auth]);
 
   function enviarDatos(e) {
     e.preventDefault();
@@ -30,7 +35,6 @@ const Login = () => {
               <p className="mb-5 fw-light" style={{ color: "#64748B" }}>
                 Ingrese sus datos para acceder a su cuenta
               </p>
-
               <div className="form-outline form-white mb-4">
                 <input
                   type="email"
@@ -49,7 +53,6 @@ const Login = () => {
                   }}
                 />
               </div>
-
               <div className="form-outline form-white mb-2">
                 <input
                   type="password"
@@ -78,7 +81,6 @@ const Login = () => {
                   ¿Olviaste tu contraseña?
                 </p>
               </Link>
-
               <button
                 className="btn btn-lg px-5 "
                 data-bs-dismiss="modal"
@@ -92,7 +94,6 @@ const Login = () => {
               >
                 Continuar
               </button>
-
               {/* <div className="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" className="text-white">
                   <i
@@ -114,7 +115,6 @@ const Login = () => {
                 </a>
               </div> */}
             </div>
-
             <div>
               <p className="mb-0" style={{ color: "#36544F" }}>
                 ¿No tienes una cuenta?

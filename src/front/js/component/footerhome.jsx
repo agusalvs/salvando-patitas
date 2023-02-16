@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 export const Footerhome = () => (
   <footer>
     <div
-      className="footer text-center p-4 mb-0 mp-2 fixed-bottom w-100 h-auto"
+      className="footer text-center p-2 w-100 h-auto"
       style={{ backgroundColor: "rgb(134, 200, 188)" }}
     >
-      <Link className="text-reset fw-bold" to="https://mdbootstrap.com/"></Link>
+      {/* <Link className="text-reset fw-bold" to="https://mdbootstrap.com/"></Link> */}
 
-      <div className="text-start m-3 fw-bold fs-5 d-flex justify-content-between">
+      <div className="text-start m-1 fw-bold fs-5 d-flex justify-content-between">
         <ul>
           <li>Sobre nosotros</li>
           <li>E-mail de empresa</li>
@@ -35,8 +35,8 @@ export const Footerhome = () => (
           </p>
         </div>
       </div>
-      <div className="mt-auto py-5 text-center text-white fw-normal">
-        ©2023 SalvandoPatitas.com All rights reserved.
+      <div className="mt-auto py-1 text-center text-white fw-normal">
+        ©2023 SalvandoPatitas.com Todos los derechos reservados.
       </div>
     </div>
   </footer>

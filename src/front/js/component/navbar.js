@@ -1,20 +1,35 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+// import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Login from "../component/login.jsx";
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const [estadoNavbar, setEstadoNavbar] = useState(false);
-
+  const Swal = require("sweetalert2");
+  const navigate = useNavigate(); //activamos useNavigate
   const onChangeMenuHamburguesa = () => {
     setEstadoNavbar(!estadoNavbar);
   };
 
   function handleLogout() {
-    var result = confirm("Seguro que quieres cerrar sesion?");
-    if (result == true) {
-      actions.logout(); // cerrar la sesion
-    }
+    Swal.fire({
+      title: "¿Deseas cerrar sesión?",
+      text: "No podrás revertir esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "¡Sí, cerrar sesión!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        actions.logout(); //cerrar la sesion
+        Swal.fire("¡Sesión cerrada!", "Has cerrado sesión.", "success");
+        navigate("/"); //usamos navigate para redireccionar
+      }
+    });
   }
 
   return (
@@ -42,10 +57,7 @@ export const Navbar = () => {
           <div className="nav-item ">
             <a
               className="nav-link active"
-              style={{
-                backgroundColor: "#FFD4B2",
-                color: "#36544F",
-              }}
+              style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
               aria-current="page"
               href="#"
             >
@@ -53,17 +65,12 @@ export const Navbar = () => {
             </a>
           </div>
           <div className="nav-item float-right">
-            {store.auth ? (
+            {store.auth === true ? (
               <div className="nav-item">
                 <a
-                  onClick={() => {
-                    if (event.target.tagName === "A") handleLogout();
-                  }}
+                  onClick={handleLogout}
                   className="nav-link active ml-25px"
-                  style={{
-                    backgroundColor: "#CEEDC7",
-                    color: "#36544F",
-                  }}
+                  style={{ backgroundColor: "#CEEDC7", color: "#36544F" }}
                   aria-current="page"
                   href="#"
                 >
@@ -157,28 +164,6 @@ export const Navbar = () => {
                 </a>
                 {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}{" "}
               </div>
-            </div>
-          </div>
-        </div>
-        {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div
-              className="modal-content"
-              style={{
-                borderRadius: "2rem",
-                borderColor: "#36544F",
-                borderWidth: "3px",
-                backgroundColor: "#FFF6BD",
-              }}
-            >
-              <Login />
             </div>
           </div>
         </div>
