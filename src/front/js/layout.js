@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
-import { Home } from "./pages/home";
-// import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
+import { Home } from "./pages/home";
+import { Perdidos } from "./pages/vista-perdidos.js";
+import { Single } from "./pages/single";
 import { Vistaenviarcorreo } from "./pages/vistaEnviarcorreo";
 import { FooterVariable } from "./component/footervariable.jsx";
 import { Navbar } from "./component/navbar";
@@ -14,6 +13,8 @@ import { Formulario } from "./pages/vistaRegistro";
 import { Contactus } from "./pages/contactus.js";
 import { PublicacionNueva } from "./pages/vistaPublicacion";
 import { RecuperarContraseña } from "./pages/vistaRecuperar";
+import { Encontrados } from "./pages/vista-encontrados";
+import { Adopcion } from "./pages/vista-adopcion";
 
 // import { Login } from "./component/login";
 
@@ -30,7 +31,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<PublicacionNueva />} path="/publicacion" />
+            <Route element={<PublicacionNueva />} path="/publicar" />
             <Route element={<Formulario />} path="/registro" />{" "}
             <Route element={<Vistaenviarcorreo />} path="/recuperar" />{" "}
             <Route element={<Single />} path="/mascotas/:id" />
@@ -40,6 +41,9 @@ const Layout = () => {
               element={<RecuperarContraseña />}
               path="/cambiar-contrasena"
             />
+            <Route element={<Perdidos />} path="/perdidos" />
+            <Route element={<Encontrados />} path="/encontrados" />
+            <Route element={<Adopcion />} path="/en-adopcion" />
           </Routes>{" "}
           <FooterVariable />
         </ScrollToTop>{" "}
