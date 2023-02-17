@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotas: [],
       Swal: require("sweetalert2"),
       user_id: null,
+      mascota: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -18,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -63,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -141,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         //get the store
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/publicacion/" +
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/publicacion/" +
             store.user_id,
           {
             method: "POST",
@@ -189,11 +190,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-
       // TERMINA PUBLICAR
       enviarcorreo: (userCorreo) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/recuperar-contraseña",
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/recuperar-contraseña",
           {
             method: "POST",
             headers: {
@@ -229,10 +229,25 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => console.log(err));
       },
 
+      getMessage: async () => {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+          const data = await resp.json();
+          setStore({
+            message: data.message,
+          });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
-          "https://3001-agusalvs-salvandopatita-131gv9vmjaf.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/cambiar-contrasena/" +
             ID,
           {
             method: "POST",
@@ -267,7 +282,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             return response.json();
           })
-
           .catch((err) => console.log(err));
       },
 
@@ -286,7 +300,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           demo: demo,
         });
       },
-
       // para cerrar sesion:
       logout: () => {
         localStorage.removeItem("token");
@@ -296,9 +309,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       mascotasHome: () => {
-        const store = getStore();
+        let store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
           // .then((data) => console.log(data))
@@ -309,8 +322,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
         return store.mascotas;
+      },
 
-        // console.log(store.mascotas);
+      getSingleMascota: (id) => {
+        fetch(
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+            id
+        )
+          .then((res) => res.json())
+          .then(
+            (data) =>
+              setStore({
+                mascota: data,
+              }),
+            console.log(id)
+          )
+          // .then((data) => console.log(data))
+          .catch((err) => console.error(err));
       },
     },
   };
