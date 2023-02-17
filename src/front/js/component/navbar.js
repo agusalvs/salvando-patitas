@@ -34,10 +34,10 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="navbar bg-body-tertiary"
+      className="navbar bg-body-tertiary "
       style={{ backgroundColor: "#86C8BC" }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid ps-4">
         <Link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -51,18 +51,18 @@ export const Navbar = () => {
           </svg>
         </Link>
         <div
-          className="nav nav-pills d-flex  justify-content-between"
+          className="nav nav-pills d-flex  justify-content-end "
           style={{ width: "40rem" }}
         >
-          <div className="nav-item ">
-            <a
-              className="nav-link active"
-              style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
-              aria-current="page"
-              href="#"
-            >
-              Publicar
-            </a>
+          <div className="nav-item mx-2 px-2 ">
+            <Link to="/publicar">
+              <button
+                className="btn"
+                style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
+              >
+                Publicar
+              </button>
+            </Link>
           </div>
           <div className="nav-item float-right">
             {store.auth === true ? (
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 </a>
               </div>
             ) : (
-              <div className="nav-item">
+              <div className="nav-item ms-2 ps-2">
                 <button
                   type="button"
                   className="btn"
@@ -114,56 +114,40 @@ export const Navbar = () => {
               </div>
             )}{" "}
           </div>
-          <div className="nav-item">
+          <div className="nav-item mx-2 px-2">
             <div className="dropdown">
-              <a
-                onClick={onChangeMenuHamburguesa}
-                className="dropdown-toggle"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
+              <button
+                type="button"
+                className="btn dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
                 aria-expanded="false"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="currentColor"
-                  className="bi bi-list"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                  />
-                </svg>
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-left"
-                aria-labelledby="dropdownMenuButton"
-                style={
-                  estadoNavbar
-                    ? {
-                        display: "block",
-                        right: "10px",
-                      }
-                    : {
-                        display: "none",
-                        right: "10px",
-                      }
-                }
+                <i
+                  className="fa fa-bars"
+                  style={{ fontSize: "25px", color: "#36544F" }}
+                ></i>
+              </button>
+              <ul
+                className="dropdown-menu dropdown-menu-lg-end"
+                style={{ backgroundColor: "#86C8BC" }}
               >
-                <a className="dropdown-item" href="#perdidos">
-                  Perdidos
-                </a>
-                <a className="dropdown-item" href="#encontrados">
-                  Encontrados
-                </a>
-                <a className="dropdown-item" href="#adopcion">
-                  En adopcion
-                </a>
-                {/* <a className="dropdown-item" href="#donaciones">Donaciones</a> */}{" "}
-              </div>
+                <li>
+                  <a href="/perdidos" className="dropdown-item">
+                    Perdidos
+                  </a>
+                </li>
+                <li>
+                  <a href="/encontrados" className="dropdown-item">
+                    Encontrados
+                  </a>
+                </li>
+                <li>
+                  <a href="/en-adopcion" className="dropdown-item">
+                    En adopción
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -141,7 +141,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         //get the store
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/publicacion/" +
+          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/publicacion/" +
             store.user_id,
           {
             method: "POST",
@@ -298,7 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotasHome: () => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-shqihvnlij6.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-s2sgduiybia.ws-us87.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
           // .then((data) => console.log(data))
