@@ -20,7 +20,7 @@ export const Encontrados = () => {
       <div
         className="container-fluid py-5 text-center mx-auto"
         id="vista-encontrados"
-        style={{ backgroundColor: "#FFF6BD" }}
+        style={{ backgroundColor: "#FFD4B2" }}
       >
         <h1 style={{ color: "#36544F" }}>Encontrados</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
