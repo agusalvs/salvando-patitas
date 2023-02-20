@@ -232,57 +232,38 @@ const getState = ({
             cambiar: (userContraseñagmail, userNuevacontraseña) => {
                 let ID = localStorage.getItem("ID");
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/cambiar-contrasena/" +
-                        ID, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                // 'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: JSON.stringify({
-                                viejacontrasena: userContraseñagmail,
-                                nuevacontrasena: userNuevacontraseña,
-                            }), // body data type must match "Content-Type" header
-                        }
-                    )
-                    .then((response) => {
-                        console.log(response.status);
-                        if (response.status === 201) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: "Contraseña cambiada correctamente",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                        if (response.status === 400) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops...",
-                                text: "Contraseña incorrecta",
-                            });
-                        }
+                    "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+                    ID, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: JSON.stringify({
+                            viejacontrasena: userContraseñagmail,
+                            nuevacontrasena: userNuevacontraseña,
+                        }), // body data type must match "Content-Type" header
+                    }
+                ).then((response) => {
+                    console.log(response.status);
+                    if (response.status === 201) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Contraseña cambiada correctamente",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                    if (response.status === 400) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Contraseña incorrecta",
+                        });
+                    }
 
-                        return response.json();
-                    })
-
-                    .catch((err) => console.log(err));
-            },
-
-            changeColor: (index, color) => {
-                //get the store
-                const store = getStore();
-                //we have to loop the entire demo array to look for the respective index
-                //and change its color
-                const demo = store.demo.map((elm, i) => {
-                    if (i === index) elm.background = color;
-                    return elm;
-                });
-
-                //reset the global store
-                setStore({
-                    demo: demo,
+                    return response.json();
                 });
             },
 

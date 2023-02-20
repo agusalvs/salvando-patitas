@@ -2,14 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Pets } from "../component/pets.jsx";
-// import { Encontrados } from "../component/encontrados.jsx";
-// import { Adopción } from "../component/adopcion.jsx";
-// import Login from "../component/login.jsx";
-// import { Footer } from "../component/footer.jsx";
-// import { Footerhome } from "../component/footerhome.jsx";
-// import { Link } from "react-router-dom";
 import "../../styles/home.css";
-// import { element } from "prop-types";
 
 export const Perdidos = () => {
   const { store, actions } = useContext(Context);
@@ -39,7 +32,7 @@ export const Perdidos = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto pt-5">
+    <div className="mx-auto ">
       {/* <!-- First Featurette --> */}
       {/* <Inicio /> */}
       <div
