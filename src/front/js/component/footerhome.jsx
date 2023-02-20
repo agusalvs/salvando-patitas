@@ -19,7 +19,7 @@ export const Footerhome = () => (
                 aria-expanded="true"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                <i class="fas fa-users"></i> Sobre nosotros
+                <i className="fas fa-users me-2"></i> Sobre nosotros
               </button>
             </h2>
             <div
@@ -40,41 +40,19 @@ export const Footerhome = () => (
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo"
-                aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo"
-              >
-                <i class="fas fa-envelope"></i>
-                Email de la empresa
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseTwo"
-              className="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-headingTwo"
-            >
-              <div className="accordion-body">
-                <strong>salvandopatitas@gmail.com</strong>
-              </div>
-            </div>
-          </div>
+
           <div className="accordion-item">
             <h2 className="accordion-header" id="panelsStayOpen-headingThree">
               <button
-                className="accordion-button collapsed"
+                className="accordion-button collapsed me-2"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseThree"
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseThree"
               >
-                <i class="fas fa-question-circle"></i> Preguntas frecuentes
+                <i className="fas fa-question-circle me-2"></i> Preguntas
+                frecuentes
               </button>
             </h2>
             <div
@@ -123,6 +101,34 @@ export const Footerhome = () => (
                     nosotros por correo electrónico
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                <i className="fas fa-envelope me-2"></i>
+                Contáctanos
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div className="accordion-body">
+                <a href="/contacto" className="dropdown-item">
+                  Haz click aquí para dirigirte hacia nuestro formulario de
+                  contacto.{" "}
+                </a>
+                {/* <strong>salvandopatitas@gmail.com</strong> */}
               </div>
             </div>
           </div>
