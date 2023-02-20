@@ -311,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotasHome: () => {
         let store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-njp17s8b9l5.ws-us87.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
           // .then((data) => console.log(data))
@@ -326,7 +326,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getSingleMascota: (id) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+          "https://3001-agusalvs-salvandopatita-njp17s8b9l5.ws-us87.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
