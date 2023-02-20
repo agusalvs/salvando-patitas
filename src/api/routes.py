@@ -36,10 +36,10 @@ def inicio_de_sesion():
     if usuario is None:
         return jsonify({"msg": "El usuario no existe"}), 404   
     if contraseña != usuario.contraseña:
-        return jsonify({"msg": "Usuario o contraseña incorrecta"}), 404
+        return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404
 
     access_token = create_access_token(identity=email)
-    return jsonify({"access_token": access_token,"user_id":usuario.id}), 200
+    return jsonify({"access_token": access_token,"user_id":usuario.id, "msg":"Usuario logeado"}), 200
 
 @api.route('/publicacion/<int:user_id>', methods=['POST'])
 def publicar(user_id):
@@ -93,4 +93,8 @@ def cambiarContrasena(user_id):
         return jsonify({"msg": "Contraseña incorrecta"}), 400
         # return jsonify({"msg": "ok"}), 200
 
-    
+    #FILTRAR MASCOTAS POR ID
+@api.route("/mascotas/<int:mascota_id>", methods=["GET"])
+def get_mascota_info(mascota_id):
+    mascota= Mascota.query.filter_by(id=mascota_id).first()
+    return jsonify(mascota.serialize()),200

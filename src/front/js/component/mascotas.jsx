@@ -5,10 +5,10 @@ export const Mascotas = (props) => {
   return (
     <>
       <div
-        className="card mb-3 py-2"
+        className="card container mb-3 py-2"
         style={{
-          width: "20rem",
-          height: "32rem",
+          width: props.width,
+          height: props.height,
           backgroundColor: props.backgroundColor,
           borderColor: props.borderColor,
           borderWidth: "4px",
@@ -30,7 +30,7 @@ export const Mascotas = (props) => {
         <div className="card-footer bg-transparent justify-content-center">
           <p className="card-text text-truncate">{props.descripcion}</p>
           <a
-            href={"/single/" + props.id}
+            href={"/mascotas/" + props.id}
             className="btn btn-light"
             style={{
               color: "white",
