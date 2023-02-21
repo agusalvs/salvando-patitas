@@ -11,6 +11,12 @@ from flask_cors import CORS
 from flask_mail import Message
 import random
 import string
+
+# SDK de Mercado Pago
+import mercadopago
+# Agrega credenciales
+sdk = mercadopago.SDK(os.getenv("PROD_ACCESS_TOKEN"))
+
 api = Blueprint('api', __name__)
 
 
@@ -98,3 +104,32 @@ def cambiarContrasena(user_id):
 def get_mascota_info(mascota_id):
     mascota= Mascota.query.filter_by(id=mascota_id).first()
     return jsonify(mascota.serialize()),200
+
+
+@api.route('/createPreference', methods=['POST'])
+def createPreference():
+    body = json.loads(request.data)
+    # Crea un ítem en la preferencia
+    preference_data = {
+    #Los items estan hardcordeados para la prueba
+    "items": [
+    {
+    "title": "Donaciones Salvando Patitas",
+    "quantity": 1,
+    "unit_price": 100,
+    }
+    ],
+    # Adonde te re-dirige en caso de éxito total / o no
+    "back_urls": {
+    "success":
+    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/",
+    "failure":
+    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/",
+    "pending":
+    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/"
+    },
+    "auto_return": "approved"
+    }
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference
