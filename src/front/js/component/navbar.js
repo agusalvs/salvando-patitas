@@ -54,16 +54,20 @@ export const Navbar = () => {
           className="nav nav-pills d-flex  justify-content-end "
           style={{ width: "40rem" }}
         >
-          <div className="nav-item mx-2 px-2 ">
-            <Link to="/publicar">
-              <button
-                className="btn"
-                style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
-              >
-                Publicar
-              </button>
-            </Link>
-          </div>
+          {store.auth === true ? (
+            <div className="nav-item mx-2 px-2 ">
+              <Link to="/publicar">
+                <button
+                  className="btn"
+                  style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
+                >
+                  Publicar
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="nav-item float-right">
             {store.auth === true ? (
               <div className="nav-item">
