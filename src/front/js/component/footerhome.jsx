@@ -16,14 +16,18 @@ export const Footerhome = () => (
             <h2 className="accordion-header" id="panelsStayOpen-headingOne">
               <button
                 className="accordion-button"
-                style={{ backgroundColor: "#86C8BC" }}
+                style={{ backgroundColor: "#86C8BC", color: "#36544F" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseOne"
                 aria-expanded="true"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                <i className="fas fa-users me-2"></i> Sobre nosotros
+                <i
+                  className="fas fa-users me-2"
+                  style={{ color: "#36544F" }}
+                ></i>{" "}
+                Sobre nosotros
               </button>
             </h2>
             <div
@@ -31,7 +35,7 @@ export const Footerhome = () => (
               className="accordion-collapse collapse show"
               aria-labelledby="panelsStayOpen-headingOne"
             >
-              <div className="accordion-body">
+              <div className="accordion-body" style={{ color: "#36544F" }}>
                 <strong>
                   Somos una asociación civil uruguaya sin fines de lucro
                 </strong>{" "}
@@ -51,7 +55,7 @@ export const Footerhome = () => (
             <h2 className="accordion-header" id="panelsStayOpen-headingThree">
               <button
                 className="accordion-button collapsed me-2"
-                style={{ backgroundColor: "#86C8BC" }}
+                style={{ backgroundColor: "#86C8BC", color: "#36544F" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseThree"
@@ -67,7 +71,7 @@ export const Footerhome = () => (
               className="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingThree"
             >
-              <div className="accordion-body">
+              <div className="accordion-body" style={{ color: "#36544F" }}>
                 <ul>
                   <li>
                     {" "}
@@ -161,7 +165,7 @@ export const Footerhome = () => (
             <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
               <button
                 className="accordion-button collapsed"
-                style={{ backgroundColor: "#86C8BC" }}
+                style={{ backgroundColor: "#86C8BC", color: "#36544F" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseTwo"
@@ -177,8 +181,12 @@ export const Footerhome = () => (
               className="accordion-collapse collapse"
               aria-labelledby="panelsStayOpen-headingTwo"
             >
-              <div className="accordion-body">
-                <a href="/contacto" className="dropdown-item">
+              <div className="accordion-body" style={{ color: "#36544F" }}>
+                <a
+                  href="/contacto"
+                  className="dropdown-item"
+                  style={{ color: "#36544F" }}
+                >
                   Haz click aquí para dirigirte hacia nuestro formulario de
                   contacto.{" "}
                 </a>
@@ -192,17 +200,26 @@ export const Footerhome = () => (
           <p>
             {/* inicia sesion con facebook */}
             <a href="https://www.facebook.com/profile.php?id=100090599072422">
-              <i className="fab fa-facebook m-3 fs-1 text-muted"></i>
+              <i
+                className="fab fa-facebook m-3 fs-1"
+                style={{ color: "#36544F" }}
+              ></i>
             </a>
 
             {/* inicia sesion con twitter */}
             <a href="https://twitter.com/Patita8Salvando">
-              <i className="fab fa-twitter m-3 fs-1 text-muted"></i>
+              <i
+                className="fab fa-twitter m-3 fs-1"
+                style={{ color: "#36544F" }}
+              ></i>
             </a>
 
             {/* inicia sesion con instagram */}
             <a href="https://www.instagram.com/salvandopatitas28/">
-              <i className="fab fa-instagram m-3 fs-1 text-muted"></i>
+              <i
+                className="fab fa-instagram m-3 fs-1"
+                style={{ color: "#36544F" }}
+              ></i>
             </a>
           </p>
         </div>
