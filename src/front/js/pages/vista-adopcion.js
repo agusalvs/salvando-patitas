@@ -42,7 +42,7 @@ export const Adopcion = () => {
                 <Mascotas
                   width={"12rem"}
                   height={"20rem"}
-                  backgroundColor={"#CEEDC7"}
+                  backgroundColor={"#FFD4B2"}
                   titulo={item?.titulo}
                   //   descripcion={item.descripcion}
                   foto1={item.foto1}

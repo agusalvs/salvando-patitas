@@ -22,7 +22,7 @@ const getState = ({
                 userDireccion
             ) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/registro", {
+                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/registro", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const getState = ({
             login: (userEmail, userPassword) => {
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/autenticacion", {
+                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/autenticacion", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -143,7 +143,7 @@ const getState = ({
                 //get the store
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/publicacion/" +
+                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/publicacion/" +
                         store.user_id, {
                             method: "POST",
                             headers: {
@@ -194,7 +194,7 @@ const getState = ({
             // TERMINA PUBLICAR
             enviarcorreo: (userCorreo) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/recuperar-contraseña", {
+                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/recuperar-contraseña", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -232,7 +232,7 @@ const getState = ({
             cambiar: (userContraseñagmail, userNuevacontraseña) => {
                 let ID = localStorage.getItem("ID");
                 fetch(
-                    "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+                    "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/cambiar-contrasena/" +
                     ID, {
                         method: "POST",
                         headers: {
@@ -278,7 +278,7 @@ const getState = ({
             mascotasHome: () => {
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-p4wz70xg0xl.ws-us87.gitpod.io/api/mascotas"
+                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/mascotas"
                     )
                     .then((res) => res.json())
                     // .then((data) => console.log(data))

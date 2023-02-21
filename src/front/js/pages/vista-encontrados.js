@@ -34,7 +34,7 @@ export const Encontrados = () => {
                 <Pets
                   width={"12rem"}
                   height={"20rem"}
-                  backgroundColor={"#CEEDC7"}
+                  backgroundColor={"#FFF6BD"}
                   titulo={item?.titulo}
                   //   descripcion={item.descripcion}
                   foto1={item.foto1}
