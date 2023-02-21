@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
-
+import { Mapa } from "../component/mapa.jsx";
 export const Publicar = () => {
   const [image, setImage] = useState(null);
   const [titulo, setTitulo] = useState("");
@@ -16,6 +16,7 @@ export const Publicar = () => {
   const [nombre, setNombre] = useState("");
   const [tamaño, setTamaño] = useState("");
   const [comentarios, setComentarios] = useState("");
+  const [localizacion, setLocalizacion] = useState("");
   const { store, actions } = useContext(Context);
 
   const handleFileChange = (event) => {
@@ -29,6 +30,7 @@ export const Publicar = () => {
   };
 
   function enviarDatos(e) {
+    setLocalizacion(store.localizacion);
     e.preventDefault();
     if (store.auth) {
       actions.publicar(
@@ -45,7 +47,8 @@ export const Publicar = () => {
         tamaño,
         image,
         image,
-        image
+        image,
+        localizacion
       );
       setTitulo("");
       setEdad("");
@@ -59,6 +62,7 @@ export const Publicar = () => {
       setTamaño("");
       setNombre("");
       setComentarios("");
+      setLocalizacion("");
     }
   }
 
@@ -122,10 +126,10 @@ export const Publicar = () => {
           </select>
 
           <div
-            class="ui segment d-flex justify-content-start align-items-center"
+            className="ui segment d-flex justify-content-start align-items-center"
             style={{ height: "150px" }}
           >
-            <div class="field w-50">
+            <div className="field w-50">
               <label for="#elegir">
                 A continuacion puede subir una foto de la mascota:{" "}
               </label>
@@ -217,18 +221,50 @@ export const Publicar = () => {
           <label>Comentarios</label>
           <div className="input-group" placeholder="Ingrese comentarios">
             <textarea
-              class="form-control"
+              className="form-control"
               rows="2"
               value={comentarios}
               onChange={(e) => setComentarios(e.target.value)}
             ></textarea>
           </div>
         </div>
-
+        <div className="nav-item ms-2 ps-2">
+          {/* <button
+                type="button"
+                className="btn"
+                data-bs-toggle="modal"
+                data-bs-target="#mapeModal"
+                style={{ backgroundColor: "#CEEDC7" }}
+                >
+                Click para abrir el Mapa
+              </button> */}
+          {/* <!-- Modal --> */}
+          {/* <div
+                className="modal fade"
+                id="mapModal"
+                tabIndex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+                >
+                <div className="modal">
+                <div
+                className="modal-content"
+                style={{
+                  borderRadius: "2rem",
+                  borderColor: "#36544F",
+                  borderWidth: "3px",
+                  backgroundColor: "#FFF6BD",
+                }}
+              > */}
+          <Mapa />
+          {/* </div>
+                </div>
+              </div> */}
+        </div>
         <div className="d-flex justify-content-center">
           <button
             type="submit"
-            class="btn btn-secondary w-25"
+            className="btn btn-secondary w-25"
             style={{ color: "black", backgroundColor: "RGB(134, 200, 188)" }}
           >
             Publicar Anuncio
