@@ -37,7 +37,7 @@ export const Inicio = () => {
                 opacity: "75%",
               }}
             >
-              <b>buscando hacer la diferencia</b>
+              <b>Buscando hacer la diferencia.</b>
             </p>
           </div>
         </div>

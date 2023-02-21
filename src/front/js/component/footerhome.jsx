@@ -83,7 +83,7 @@ export const Footerhome = () => (
                     Para ello puedes ingresar en la sección{" "}
                     <a
                       href="/publicar"
-                      class="link-light text-decoration-none "
+                      class="link-primary text-decoration-none "
                     >
                       Publicar
                     </a>{" "}
@@ -147,7 +147,7 @@ export const Footerhome = () => (
                     llenar el formulario que se encuentra en la sección{" "}
                     <a
                       href="/contacto"
-                      class="link-light text-decoration-none "
+                      class="link-primary text-decoration-none "
                     >
                       Contáctanos
                     </a>{" "}
