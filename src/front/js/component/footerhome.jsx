@@ -83,7 +83,7 @@ export const Footerhome = () => (
                     Para ello puedes ingresar en la sección{" "}
                     <a
                       href="/publicar"
-                      class="link-primary text-decoration-none "
+                      class="link-light text-decoration-none "
                     >
                       Publicar
                     </a>{" "}
@@ -147,7 +147,7 @@ export const Footerhome = () => (
                     llenar el formulario que se encuentra en la sección{" "}
                     <a
                       href="/contacto"
-                      class="link-primary text-decoration-none "
+                      class="link-light text-decoration-none "
                     >
                       Contáctanos
                     </a>{" "}
@@ -224,7 +224,10 @@ export const Footerhome = () => (
           </p>
         </div>
       </div>
-      <div className="mt-auto py-1 text-center text-white fw-normal">
+      <div
+        className="mt-auto py-1 text-center fw-normal"
+        style={{ color: "#FFF6BD" }}
+      >
         ©2023 SalvandoPatitas.com Todos los derechos reservados.
       </div>
     </div>
