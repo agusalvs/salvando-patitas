@@ -4,7 +4,7 @@ import React from "react";
 export const Inicio = () => {
   return (
     <>
-      <div id="about" className="py-4" style={{ backgroundColor: "#CEEDC7" }}>
+      <div id="about" className="py-4" style={{ backgroundColor: "#ceedc783" }}>
         <img
           className="mx-auto mt-5"
           style={{ width: "100%" }}
@@ -16,10 +16,10 @@ export const Inicio = () => {
           <div className="row h-100 text-center d-flex align-items-center justify-content-center">
             <div className="col-12 text-center">
               <h1
-                className="display-2 5-rem mb-4"
+                className="display-2 5-rem  mb-4"
                 style={{
-                  marginTop: "-50%",
-                  color: "#86C8BC",
+                  marginTop: "-49%",
+                  color: "#36544F",
                   fontStyle: "italic",
                   // backgroundColor: "#FFF6BD",
                   // opacity: "50%",

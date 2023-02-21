@@ -99,6 +99,7 @@ export const Navbar = () => {
                   data-bs-target="#exampleModal"
                   style={{
                     backgroundColor: "#CEEDC7",
+                    color: "#36544F",
                   }}
                 >
                   Iniciar sesión{" "}
@@ -152,17 +153,29 @@ export const Navbar = () => {
                 }}
               >
                 <li>
-                  <a href="/perdidos" className="dropdown-item">
+                  <a
+                    href="/perdidos"
+                    className="dropdown-item"
+                    style={{ color: "#36544F" }}
+                  >
                     Perdidos{" "}
                   </a>{" "}
                 </li>{" "}
                 <li>
-                  <a href="/encontrados" className="dropdown-item">
+                  <a
+                    href="/encontrados"
+                    className="dropdown-item"
+                    style={{ color: "#36544F" }}
+                  >
                     Encontrados{" "}
                   </a>{" "}
                 </li>{" "}
                 <li>
-                  <a href="/en-adopcion" className="dropdown-item">
+                  <a
+                    href="/en-adopcion"
+                    className="dropdown-item"
+                    style={{ color: "#36544F" }}
+                  >
                     En adopción{" "}
                   </a>{" "}
                 </li>{" "}
