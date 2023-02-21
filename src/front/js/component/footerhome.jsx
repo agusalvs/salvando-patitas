@@ -9,10 +9,14 @@ export const Footerhome = () => (
     >
       <div className="text-start m-3 fs-5 d-flex justify-content-between">
         <div className="accordion" id="accordionPanelsStayOpenExample">
-          <div className="accordion-item">
+          <div
+            className="accordion-item"
+            style={{ backgroundColor: "#FFF6BD" }}
+          >
             <h2 className="accordion-header" id="panelsStayOpen-headingOne">
               <button
                 className="accordion-button"
+                style={{ backgroundColor: "#86C8BC" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseOne"
@@ -41,10 +45,14 @@ export const Footerhome = () => (
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div
+            className="accordion-item"
+            style={{ backgroundColor: "#FFF6BD" }}
+          >
             <h2 className="accordion-header" id="panelsStayOpen-headingThree">
               <button
                 className="accordion-button collapsed me-2"
+                style={{ backgroundColor: "#86C8BC" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseThree"
@@ -62,18 +70,6 @@ export const Footerhome = () => (
             >
               <div className="accordion-body">
                 <ul>
-                  <li>
-                    <strong>
-                      ¿Qué pasos debo seguir para poder adoptar una mascota?
-                    </strong>
-                    <br></br>
-                    Hay muchos animales en Salvando Patitas esperando tener una
-                    familia. Si deseas adoptar a alguno de ellos, es importante
-                    que puedes completar el formulario que aparece en la sección
-                    "En adopción" para coordinar tu visita. En el correr de los
-                    días siguientes, nos comunicaremos contigo por mail y/o
-                    teléfono para agendar.
-                  </li>
                   <li>
                     {" "}
                     <strong>¿Cómo publicar animales perdidos?</strong>
@@ -93,6 +89,18 @@ export const Footerhome = () => (
                     y reencontrarse con ella lo mas pronto posible
                   </li>
                   <li>
+                    <strong>
+                      ¿Qué pasos debo seguir para poder adoptar una mascota?
+                    </strong>
+                    <br></br>
+                    Hay muchos animales en Salvando Patitas esperando tener una
+                    familia. Si deseas adoptar a alguno de ellos, es importante
+                    que puedes completar el formulario que aparece en la sección
+                    "En adopción" para coordinar tu visita. En el correr de los
+                    días siguientes, nos comunicaremos contigo por mail y/o
+                    teléfono para agendar.
+                  </li>
+                  <li>
                     {" "}
                     <strong>¿De qué manera puedo hacer donaciones?</strong>
                     <br></br>
@@ -104,10 +112,14 @@ export const Footerhome = () => (
               </div>
             </div>
           </div>
-          <div className="accordion-item">
+          <div
+            className="accordion-item"
+            style={{ backgroundColor: "#FFF6BD" }}
+          >
             <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
               <button
                 className="accordion-button collapsed"
+                style={{ backgroundColor: "#86C8BC" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseTwo"

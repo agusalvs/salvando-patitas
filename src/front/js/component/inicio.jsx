@@ -4,11 +4,11 @@ import React from "react";
 export const Inicio = () => {
   return (
     <>
-      <div id="about" className="my-4">
+      <div id="about" className="py-4" style={{ backgroundColor: "#CEEDC7" }}>
         <img
           className="mx-auto mt-5"
           style={{ width: "100%" }}
-          src="https://static1.elcomercio.es/www/multimedia/202302/10/media/ley-bienestar-animal-mascotas.jpg"
+          src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1676992731/Salvando%20Patitas/ley-bienestar-animal-mascotas-removebg_j3hsuo.png"
           alt=""
         />
 
@@ -16,13 +16,14 @@ export const Inicio = () => {
           <div className="row h-100 text-center d-flex align-items-center justify-content-center">
             <div className="col-12 text-center">
               <h1
+                className="display-2 5-rem mb-4"
                 style={{
-                  marginTop: "-48%",
+                  marginTop: "-50%",
                   color: "#86C8BC",
+                  fontStyle: "italic",
                   // backgroundColor: "#FFF6BD",
                   // opacity: "50%",
                 }}
-                className=" display-1 5rem  mb-4 "
               >
                 <b>Salvando Patitas</b>
               </h1>
