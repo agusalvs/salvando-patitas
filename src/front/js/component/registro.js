@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import Swal from "sweetalert2";
-
+import { useForm } from "react-hook-form";
 const Registro = () => {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -11,8 +11,13 @@ const Registro = () => {
   const [direccion, setDireccion] = useState("");
   const { store, actions } = useContext(Context);
   const Swal = require("sweetalert2");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  function enviarDatos(e) {
+  function enviarDatos() {
     e.preventDefault();
     if (contraseña === confirmar) {
       actions.signup(nombre, correo, celular, contraseña, direccion);
@@ -53,11 +58,14 @@ const Registro = () => {
 
         <form
           className="row g-3 mx-auto "
-          onSubmit={enviarDatos}
+          onSubmit={handleSubmit(enviarDatos)}
           style={{ width: "700px" }}
         >
           <div className="col-md-6">
             <input
+              {...register("nombre", {
+                required: "Debe ingresar su nombre",
+              })}
               type="text"
               className="form-control me-2"
               id="inputNombre"
@@ -74,9 +82,17 @@ const Registro = () => {
                 fontSize: "15px",
               }}
             />
+            {errors.nombre && (
+              <p role="alert" style={{ color: "#ff6b60" }}>
+                {errors.nombre?.message}
+              </p>
+            )}
           </div>
           <div className="col-md-6">
             <input
+              {...register("contraseña", {
+                required: "Debe ingresar una contraseña",
+              })}
               type="password"
               className="form-control me-2"
               id="inputPassword4"
@@ -93,9 +109,17 @@ const Registro = () => {
                 fontSize: "15px",
               }}
             />
+            {errors.contraseña && (
+              <p role="alert" style={{ color: "#ff6b60" }}>
+                {errors.contraseña?.message}
+              </p>
+            )}
           </div>
           <div className="col-md-6">
             <input
+              {...register("correo", {
+                required: "Debe ingresar un correo electronico",
+              })}
               type="email"
               className="form-control me-2"
               id="inputEmail4"
@@ -111,10 +135,18 @@ const Registro = () => {
                 opacity: "75%",
                 fontSize: "15px",
               }}
-            />
+            />{" "}
+            {errors.correo && (
+              <p role="alert" style={{ color: "#ff6b60" }}>
+                {errors.correo?.message}
+              </p>
+            )}
           </div>
           <div className="col-md-6">
             <input
+              {...register("confirmar", {
+                required: "Debe confirmar su contraseña",
+              })}
               type="password"
               className="form-control me-2"
               id="inputPassword4"
@@ -131,6 +163,11 @@ const Registro = () => {
                 fontSize: "15px",
               }}
             />
+            {errors.confirmar && (
+              <p role="alert" style={{ color: "#ff6b60" }}>
+                {errors.confirmar?.message}
+              </p>
+            )}
           </div>
           <div className="col-md-6">
             <input
@@ -153,6 +190,9 @@ const Registro = () => {
           </div>
           <div className="col-md-6">
             <input
+              {...register("direccion", {
+                required: "Debe ingresar una direccion",
+              })}
               type="text"
               className="form-control"
               id="inputDireccion"
@@ -169,6 +209,11 @@ const Registro = () => {
                 fontSize: "15px",
               }}
             />
+            {errors.direccion && (
+              <p role="alert" style={{ color: "#ff6b60" }}>
+                {errors.direccion?.message}
+              </p>
+            )}
           </div>
           <div className="col-12 d-flex justify-content-center mt-5">
             <button
