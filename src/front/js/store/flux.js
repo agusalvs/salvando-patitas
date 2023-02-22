@@ -10,10 +10,13 @@ const getState = ({
             mascotas: [],
             Swal: require("sweetalert2"),
             user_id: null,
+            mascota: {},
+            auth: false,
         },
         actions: {
             // Use getActions to call a function within a fuction
 
+            // REGISTRARSE
             signup: (
                 userNombre,
                 userCorreo,
@@ -22,7 +25,7 @@ const getState = ({
                 userDireccion
             ) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/registro", {
+                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -63,10 +66,11 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
+            // INICIAR SESIÓN
             login: (userEmail, userPassword) => {
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/autenticacion", {
+                        "https://3001-agusalvs-salvandopatita-n6311umonjx.ws-us87.gitpod.io/api/autenticacion", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -124,6 +128,7 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
+            // PUBLICAR
             publicar: (
                 titulo,
                 nombre,
@@ -143,7 +148,7 @@ const getState = ({
                 //get the store
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/publicacion/" +
+                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/publicacion/" +
                         store.user_id, {
                             method: "POST",
                             headers: {
@@ -191,10 +196,10 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
-            // TERMINA PUBLICAR
+            // ENVIAR CORREO CON NUEVA CONTRASEÑA
             enviarcorreo: (userCorreo) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/recuperar-contraseña", {
+                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/recuperar-contraseña", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -229,45 +234,7 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
 
-            cambiar: (userContraseñagmail, userNuevacontraseña) => {
-                let ID = localStorage.getItem("ID");
-                fetch(
-                    "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/cambiar-contrasena/" +
-                    ID, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            viejacontrasena: userContraseñagmail,
-                            nuevacontrasena: userNuevacontraseña,
-                        }), // body data type must match "Content-Type" header
-                    }
-                ).then((response) => {
-                    console.log(response.status);
-                    if (response.status === 201) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Contraseña cambiada correctamente",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
-                    if (response.status === 400) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Contraseña incorrecta",
-                        });
-                    }
-
-                    return response.json();
-                });
-            },
-
-            // para cerrar sesion:
+            // CERRAR SESIÓN
             logout: () => {
                 localStorage.removeItem("token");
                 setStore({
@@ -275,6 +242,7 @@ const getState = ({
                 });
             },
 
+            // OBTENER INFORMACIÓN DE LAS MASCOTAS
             mascotasHome: () => {
                 const store = getStore();
                 fetch(
@@ -291,6 +259,78 @@ const getState = ({
                 return store.mascotas;
 
                 // console.log(store.mascotas);
+            },
+
+            // CAMBIAR CONTRASEÑA
+            cambiar: (userContraseñagmail, userNuevacontraseña) => {
+                let ID = localStorage.getItem("ID");
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+                        ID, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                viejacontrasena: userContraseñagmail,
+                                nuevacontrasena: userNuevacontraseña,
+                            }), // body data type must match "Content-Type" header
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 201) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Contraseña cambiada correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                        if (response.status === 400) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Contraseña incorrecta",
+                            });
+                        }
+
+                        return response.json();
+                    })
+                    .catch((err) => console.log(err));
+            },
+
+            // OBTENER INFORMACIÓN DE UNA MASCOTA
+            getSingleMascota: (id) => {
+                fetch(
+                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+                        id
+                    )
+                    .then((res) => res.json())
+                    .then(
+                        (data) =>
+                        setStore({
+                            mascota: data,
+                        }),
+                        console.log(id)
+                    )
+                    // .then((data) => console.log(data))
+                    .catch((err) => console.error(err));
+            },
+
+            // VERIFICAR AUTORIZACIÓN
+            checkAuth: () => {
+                if (localStorage.getItem("token")) {
+                    setStore({
+                        auth: true,
+                    });
+                } else {
+                    setStore({
+                        auth: false,
+                    });
+                }
             },
         },
     };
