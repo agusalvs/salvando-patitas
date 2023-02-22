@@ -8,7 +8,7 @@ export const Inicio = () => {
         <img
           className="mx-auto mt-5"
           style={{ width: "100%" }}
-          src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1676992731/Salvando%20Patitas/ley-bienestar-animal-mascotas-removebg_j3hsuo.png"
+          src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677003587/Salvando%20Patitas/ley-bienestar-animal-mascotas-removebg_rjtyam.png"
           alt=""
         />
 
