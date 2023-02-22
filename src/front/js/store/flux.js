@@ -25,7 +25,7 @@ const getState = ({
                 userDireccion
             ) => {
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro", {
+                        "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/registro", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -148,7 +148,7 @@ const getState = ({
                 //get the store
                 const store = getStore();
                 fetch(
-                        "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/publicacion/" +
+                        "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/publicacion/" +
                         store.user_id, {
                             method: "POST",
                             headers: {
@@ -233,7 +233,7 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
-
+            
             // CERRAR SESIÓN
             logout: () => {
                 localStorage.removeItem("token");
