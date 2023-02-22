@@ -62,6 +62,10 @@ export const Publicar = () => {
     }
   }
 
+  if (!store.auth) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="card-body">
       <form onSubmit={enviarDatos} className="row g-3">
