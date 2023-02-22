@@ -11,7 +11,7 @@ const getState = ({
             Swal: require("sweetalert2"),
             user_id: null,
             mascota: {},
-            localizacion: "",
+            localizacion: {},
         },
         actions: {
             // Use getActions to call a function within a fuction
@@ -341,19 +341,20 @@ const getState = ({
                     .catch((err) => console.error(err));
             },
             localizacion: (latLong) => {
-                setStore({
-                    localizacion: "",
-                });
-                setStore({
-                    localizacion: latLong,
-                });
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: latLong,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                console.log(latLong);
+                // setStore({
+                //     localizacion: "",
+                // });
+                // setStore({
+                //     localizacion: latLong,
+                // });
+                // Swal.fire({
+                //     position: "center",
+                //     icon: "success",
+                //     title: latLong,
+                //     showConfirmButton: false,
+                //     timer: 1500,
+                // });
             },
         },
     };
