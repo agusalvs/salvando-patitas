@@ -22,13 +22,13 @@ export const Adopcion = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto pt-5">
+    <div className="mx-auto">
       {/* <!-- First Featurette --> */}
 
       <div
         className="container-fluid py-5 text-center mx-auto"
         id="vista-adopcion"
-        style={{ backgroundColor: "#FFF6BD" }}
+        style={{ backgroundColor: "#CEEDC7" }}
       >
         <h1 style={{ color: "#36544F" }}>En adopción</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>
@@ -42,7 +42,7 @@ export const Adopcion = () => {
                 <Mascotas
                   width={"12rem"}
                   height={"20rem"}
-                  backgroundColor={"#CEEDC7"}
+                  backgroundColor={"#FFD4B2"}
                   titulo={item?.titulo}
                   //   descripcion={item.descripcion}
                   foto1={item.foto1}

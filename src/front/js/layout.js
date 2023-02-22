@@ -9,7 +9,7 @@ import { Perdidos } from "./pages/vista-perdidos.js";
 import { Single } from "./pages/single";
 import { Vistaenviarcorreo } from "./pages/vistaEnviarcorreo";
 import { FooterVariable } from "./component/footervariable.jsx";
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Formulario } from "./pages/vistaRegistro";
 import { Contactus } from "./pages/contactus.js";
 import { PublicacionNueva } from "./pages/vistaPublicacion";
