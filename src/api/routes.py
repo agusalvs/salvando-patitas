@@ -53,7 +53,7 @@ def inicio_de_sesion():
 @api.route('/publicacion/<int:user_id>', methods=['POST'])
 def publicar(user_id):
     request_body = json.loads(request.data)
-    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
+    nueva_publicacion = Mascota(titulo =  request_body['titulo'], estado = request_body['estado'], categoria = request_body['categoria'], nombre = request_body['nombre'], edad = request_body['edad'], tamaño =  request_body['tamaño'], genero = request_body['genero'], raza = request_body['raza'], descripcion = request_body['descripcion'], contacto = request_body['contacto'], ubicacion =  request_body['ubicacion'], localizacion = request_body['localizacion'], foto1 = request_body['foto1'], foto2 = request_body['foto2'], foto3 = request_body['foto3'], usuario_id = user_id)
     db.session.add(nueva_publicacion)
     db.session.commit()
     todos_las_mascota = Mascota.query.all()

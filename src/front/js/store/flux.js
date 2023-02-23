@@ -10,7 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascota: {},
       mercadopago: {},
       auth: false,
+      localizacion: {},
     },
+
     actions: {
       // Use getActions to call a function within a fuction
 
@@ -355,6 +357,24 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           }
         },
+
+      // LOCALIZACIÓN MAPA LEAFLET
+      localizacion: (latLong) => {
+        console.log(latLong);
+        setStore({
+          localizacion: "",
+        });
+        setStore({
+          localizacion: latLong,
+        });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Ubicacion confirmada, proceda a publicar..",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
     },
   };
 };
