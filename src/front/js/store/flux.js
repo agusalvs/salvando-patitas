@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       Swal: require("sweetalert2"),
       user_id: null,
       mascota: {},
-      mercadopago: [],
+      mercadopago: {},
       auth: false,
     },
     actions: {
@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-n6311umonjx.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -148,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         //get the store
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/publicacion/" +
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/publicacion/" +
             store.user_id,
           {
             method: "POST",
@@ -200,7 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // ENVIAR CORREO CON NUEVA CONTRASEÑA
       enviarcorreo: (userCorreo) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/recuperar-contraseña",
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/recuperar-contraseña",
           {
             method: "POST",
             headers: {
@@ -248,7 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotasHome: () => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
           // .then((data) => console.log(data))
@@ -267,7 +267,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/cambiar-contrasena/" +
             ID,
           {
             method: "POST",
@@ -308,7 +308,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // OBTENER INFORMACIÓN DE UNA MASCOTA
       getSingleMascota: (id) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+          "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
@@ -343,7 +343,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         {
           try {
             const response = await axios.post(
-              "https://3001-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io" +
+              "https://3001-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io" +
                 "/api/createPreference",
               {}
             );

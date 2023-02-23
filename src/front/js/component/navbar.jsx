@@ -70,18 +70,16 @@ export const Navbar = () => {
             {" "}
             {store.auth === true ? (
               <div className="nav-item">
-                <a
+                <button
                   onClick={handleLogout}
                   className="nav-link active ml-25px"
                   style={{
                     backgroundColor: "#CEEDC7",
                     color: "#36544F",
                   }}
-                  aria-current="page"
-                  href="/"
                 >
                   Cerrar sesion{" "}
-                </a>{" "}
+                </button>{" "}
               </div>
             ) : (
               <div className="nav-item ms-2 ps-2">

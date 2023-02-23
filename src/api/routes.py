@@ -4,9 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint, json, current_app
 from api.models import db, Usuario, Mascota
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from flask_mail import Message
 import random
@@ -16,9 +14,13 @@ import os
 # SDK de Mercado Pago
 import mercadopago
 # Agrega credenciales
-sdk = mercadopago.SDK(os.getenv("PROD_ACCESS_TOKEN"))
+sdk = mercadopago.SDK("TEST-8022433466763977-022116-a504fd54af68af1fda21b102532a56f1-207691467")
 
 api = Blueprint('api', __name__)
+
+# # Setup the Flask-JWT-Extended extension
+# api.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+# jwt = JWTManager(api)
 
 
 @api.route('/registro', methods=['POST'])
@@ -123,14 +125,15 @@ def createPreference():
     # Adonde te re-dirige en caso de éxito total / o no
     "back_urls": {
     "success":
-    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//",
+    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/",
     "failure":
-    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//",
+    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/",
     "pending":
-    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//"
+    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/"
     },
     "auto_return": "approved"
     }
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response["response"]
     return preference
+
