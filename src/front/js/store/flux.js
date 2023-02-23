@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       Swal: require("sweetalert2"),
       user_id: null,
       mascota: {},
+      busqueda: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -311,10 +312,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotasHome: () => {
         let store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-hf0tjwozsat.ws-us87.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
-          // .then((data) => console.log(data))
           .then((data) =>
             setStore({
               mascotas: data,
@@ -326,7 +326,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getSingleMascota: (id) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+          "https://3001-agusalvs-salvandopatita-hf0tjwozsat.ws-us87.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
@@ -339,6 +339,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           // .then((data) => console.log(data))
           .catch((err) => console.error(err));
+      },
+      filterSearch: (tipodeanimal, raza, tamaño, genero) => {
+        const store = getStore();
+        const results = store.mascotas.filter((item) => {
+          if (
+            item.categoria
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tipodeanimal.toLowerCase()) &&
+            item.raza
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(raza.toLowerCase()) &&
+            item.tamaño
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tamaño.toLowerCase()) &&
+            item.genero
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(genero.toLowerCase())
+          ) {
+            console.log(item.categoria);
+            return item;
+          }
+        });
+        console.log(results);
+        console.log(store.mascotas);
+
+        // setStore({
+        //     busqueda: results,
+        // });
       },
     },
   };

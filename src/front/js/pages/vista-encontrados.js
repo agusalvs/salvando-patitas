@@ -11,6 +11,7 @@ import { Mascotas } from "../component/mascotas.jsx";
 // import { Link } from "react-router-dom";
 import "../../styles/home.css";
 // import { element } from "prop-types";
+import { Busquedafiltros } from "../component/busquedafiltros.jsx";
 
 export const Encontrados = () => {
   const { store, actions } = useContext(Context);
@@ -239,6 +240,7 @@ export const Encontrados = () => {
           </a>
         </div>
       </div> */}
+      <Busquedafiltros />
     </div>
     //   </div>
     // </div>
