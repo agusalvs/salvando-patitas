@@ -24,7 +24,7 @@ export const Busquedafiltros = () => {
   return (
     <>
       <div
-        className="mx-auto py-5, container col-sm-2 mx-auto py-5"
+        className="col-md-12"
         style={{
           backgroundColor: "#CEEDC7",
         }}

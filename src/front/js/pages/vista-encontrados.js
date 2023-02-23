@@ -18,9 +18,14 @@ export const Encontrados = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto">
+    <div className="row " style={{ bsGutterX: "0" }}>
+      <div className="col-md-2">
+        {" "}
+        <Busquedafiltros />
+      </div>
+
       <div
-        className="container-fluid py-5 text-center mx-auto"
+        className="container-fluid  text-center mx-auto col-md-10"
         id="vista-encontrados"
         style={{ backgroundColor: "#FFD4B2" }}
       >
@@ -48,7 +53,6 @@ export const Encontrados = () => {
           </div>
         </div>
       </div>
-      <Busquedafiltros />
     </div>
   );
 };
