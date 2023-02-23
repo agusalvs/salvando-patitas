@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { MapaSingle } from "../component/mapaSingle.jsx";
 import { Mapa } from "../component/mapa.jsx";
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
@@ -155,7 +156,13 @@ export const Single = (props) => {
               </p>{" "}
             </div>{" "}
             <div className="my-5 mx-3 object-fit-contain">
-              <Mapa />{" "}
+              {" "}
+              {/* <MapaSingle
+                                                                                                                          // center={store.mascota.localizacion}
+                                                                                                                          // position={store.mascota.localizacion}
+                                                                                                                          />{" "} */}{" "}
+              {/* <Mapa /> */}{" "}
+              <MapaSingle position={store.mascota.localizacion} />{" "}
             </div>{" "}
           </section>{" "}
         </div>{" "}

@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qgdzse0gyv0.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -143,11 +143,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         foto3
       ) => {
         //get the store
+        let ID = localStorage.getItem("ID");
         const store = getStore();
         const localizacion = store.localizacion;
         fetch(
-          "https://3001-agusalvs-salvandopatita-qgdzse0gyv0.ws-us87.gitpod.io/api/publicacion/" +
-            store.user_id,
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/publicacion/" +
+            ID,
           {
             method: "POST",
             headers: {
@@ -166,7 +167,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               descripcion,
               categoria,
               tamaño,
-              localizacion,
+              localizacion: localizacion["lat"] + ", " + localizacion["lng"],
               foto1: "",
               foto2: "",
               foto3: "",
@@ -199,7 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // ENVIAR CORREO CON NUEVA CONTRASEÑA
       enviarcorreo: (userCorreo) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/recuperar-contraseña",
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/recuperar-contraseña",
           {
             method: "POST",
             headers: {
@@ -266,7 +267,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/cambiar-contrasena/" +
             ID,
           {
             method: "POST",
@@ -307,7 +308,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // OBTENER INFORMACIÓN DE UNA MASCOTA
       getSingleMascota: (id) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
+          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
@@ -341,13 +342,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
         setStore({
           localizacion: latLong,
-        });
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Ubicacion confirmada, proceda a publicar..",
-          showConfirmButton: false,
-          timer: 1500,
         });
       },
     },

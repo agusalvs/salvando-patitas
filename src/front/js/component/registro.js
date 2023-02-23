@@ -18,7 +18,6 @@ const Registro = () => {
   } = useForm();
 
   function enviarDatos() {
-    e.preventDefault();
     if (contraseña === confirmar) {
       actions.signup(nombre, correo, celular, contraseña, direccion);
       setNombre("");
