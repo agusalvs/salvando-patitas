@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
+import { Context } from "../js/store/appContext";
 
 import { Home } from "./pages/home";
 import { Perdidos } from "./pages/vista-perdidos.js";
 import { Single } from "./pages/single";
 import { Vistaenviarcorreo } from "./pages/vistaEnviarcorreo";
 import { FooterVariable } from "./component/footervariable.jsx";
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Formulario } from "./pages/vistaRegistro";
 import { Contactus } from "./pages/contactus.js";
 import { PublicacionNueva } from "./pages/vistaPublicacion";
 import { RecuperarContraseña } from "./pages/vistaRecuperar";
 import { Encontrados } from "./pages/vista-encontrados";
 import { Adopcion } from "./pages/vista-adopcion";
+import { Donaciones } from "./pages/donaciones";
 
 // import { Login } from "./component/login";
 
 // create your first component
 const Layout = () => {
+  const { actions } = useContext(Context);
   // the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
+  useEffect(() => {
+    actions.checkAuth();
+  }, []);
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -44,6 +50,7 @@ const Layout = () => {
             <Route element={<Perdidos />} path="/perdidos" />
             <Route element={<Encontrados />} path="/encontrados" />
             <Route element={<Adopcion />} path="/en-adopcion" />
+            <Route element={<Donaciones />} path="/donaciones" />
           </Routes>{" "}
           <FooterVariable />
         </ScrollToTop>{" "}

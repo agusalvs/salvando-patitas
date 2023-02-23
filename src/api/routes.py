@@ -11,6 +11,7 @@ from flask_cors import CORS
 from flask_mail import Message
 import random
 import string
+import os
 
 # SDK de Mercado Pago
 import mercadopago
@@ -122,11 +123,11 @@ def createPreference():
     # Adonde te re-dirige en caso de éxito total / o no
     "back_urls": {
     "success":
-    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//",
     "failure":
-    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//",
     "pending":
-    "https://3000-agusalvs-salvandopatita-9z8xtdhg7rz.ws-us87.gitpod.io/"
+    "https://3000-agusalvs-salvandopatita-jffh0k9xmqa.ws-us87.gitpod.io//"
     },
     "auto_return": "approved"
     }
