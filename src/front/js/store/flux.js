@@ -8,10 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       user_id: null,
       mascota: {},
       auth: false,
+      localizacion: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
-
       // REGISTRARSE
       signup: (
         userNombre,
@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -125,7 +125,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-
       // PUBLICAR
       publicar: (
         titulo,
@@ -145,6 +144,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         //get the store
         const store = getStore();
+        const localizacion = store.localizacion;
         fetch(
           "https://3001-agusalvs-salvandopatita-qgdzse0gyv0.ws-us87.gitpod.io/api/publicacion/" +
             store.user_id,
@@ -166,6 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               descripcion,
               categoria,
               tamaño,
+              localizacion,
               foto1: "",
               foto2: "",
               foto3: "",
@@ -332,6 +333,22 @@ const getState = ({ getStore, getActions, setStore }) => {
             auth: false,
           });
         }
+      },
+      localizacion: (latLong) => {
+        console.log(latLong);
+        setStore({
+          localizacion: "",
+        });
+        setStore({
+          localizacion: latLong,
+        });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Ubicacion confirmada, proceda a publicar..",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       },
     },
   };

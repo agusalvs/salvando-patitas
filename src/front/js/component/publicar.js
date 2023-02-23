@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Mapa } from "../component/mapa.jsx";
 export const Publicar = () => {
   const [image, setImage] = useState(null);
   const [titulo, setTitulo] = useState("");
@@ -16,6 +17,7 @@ export const Publicar = () => {
   const [nombre, setNombre] = useState("");
   const [tamaño, setTamaño] = useState("");
   const [comentarios, setComentarios] = useState("");
+  const [localizacion, setLocalizacion] = useState("");
   const { store, actions } = useContext(Context);
   const {
     register,
@@ -35,6 +37,7 @@ export const Publicar = () => {
   };
 
   function enviarDatos() {
+    setLocalizacion(store.localizacion);
     if (store.auth) {
       actions.publicar(
         titulo,
@@ -50,7 +53,8 @@ export const Publicar = () => {
         tamaño,
         image,
         image,
-        image
+        image,
+        localizacion
       );
       setTitulo("");
       setEdad("");
@@ -64,6 +68,7 @@ export const Publicar = () => {
       setTamaño("");
       setNombre("");
       setComentarios("");
+      setLocalizacion("");
     }
   }
 
@@ -147,7 +152,7 @@ export const Publicar = () => {
               height: "150px",
             }}
           >
-            <div class="field w-50">
+            <div className="field w-50">
               <label for="#elegir">
                 A continuacion puede subir una foto de la mascota:{" "}
               </label>{" "}
@@ -266,21 +271,21 @@ export const Publicar = () => {
           <label> Comentarios </label>{" "}
           <div className="input-group" placeholder="Ingrese comentarios">
             <textarea
-              class="form-control"
+              className="form-control"
               rows="2"
               value={comentarios}
               onChange={(e) => setComentarios(e.target.value)}
-            ></textarea>{" "}
-          </div>{" "}
-        </div>{" "}
+            ></textarea>
+          </div>
+        </div>
+        <div className="nav-item ms-2 ps-2">
+          <Mapa />
+        </div>
         <div className="d-flex justify-content-center">
           <button
             type="submit"
-            class="btn btn-secondary w-25"
-            style={{
-              color: "black",
-              backgroundColor: "RGB(134, 200, 188)",
-            }}
+            className="btn btn-secondary w-25"
+            style={{ color: "black", backgroundColor: "RGB(134, 200, 188)" }}
           >
             Publicar Anuncio{" "}
           </button>{" "}

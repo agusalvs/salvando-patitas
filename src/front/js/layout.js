@@ -16,7 +16,6 @@ import { PublicacionNueva } from "./pages/vistaPublicacion";
 import { RecuperarContraseña } from "./pages/vistaRecuperar";
 import { Encontrados } from "./pages/vista-encontrados";
 import { Adopcion } from "./pages/vista-adopcion";
-
 // import { Login } from "./component/login";
 
 // create your first component
