@@ -133,7 +133,13 @@ export const Single = (props) => {
               }}
             >
               <i className="fab fa-whatsapp m-3 mx-5 fs-1 text-success"> </i>{" "}
-              <h2 className="m-3 mx-5"> {store.mascota.contacto} </h2>{" "}
+              <a
+                className="m-3 mx-5"
+                href={`https://wa.me/598${store.mascota.contacto}`}
+              >
+                {" "}
+                {store.mascota.contacto}{" "}
+              </a>{" "}
             </div>{" "}
           </section>{" "}
           <section>

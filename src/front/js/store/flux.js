@@ -7,11 +7,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       Swal: require("sweetalert2"),
       user_id: null,
       mascota: {},
+      auth: false,
       localizacion: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
-
+      // REGISTRARSE
       signup: (
         userNombre,
         userCorreo,
@@ -20,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userDireccion
       ) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/registro",
+          "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/registro",
           {
             method: "POST",
             headers: {
@@ -62,10 +63,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => console.log(err));
       },
 
+      // INICIAR SESIÓN
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-n6311umonjx.ws-us87.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -123,7 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-
+      // PUBLICAR
       publicar: (
         titulo,
         nombre,
@@ -143,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         //get the store
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/publicacion/" +
+          "https://3001-agusalvs-salvandopatita-pw5vyzfeeh7.ws-us87.gitpod.io/api/publicacion/" +
             store.user_id,
           {
             method: "POST",
@@ -191,7 +193,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-      // TERMINA PUBLICAR
+
+      // ENVIAR CORREO CON NUEVA CONTRASEÑA
       enviarcorreo: (userCorreo) => {
         fetch(
           "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/recuperar-contraseña",
@@ -230,21 +233,34 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => console.log(err));
       },
 
-      getMessage: async () => {
-        try {
-          // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-          const data = await resp.json();
-          setStore({
-            message: data.message,
-          });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
-        }
+      // CERRAR SESIÓN
+      logout: () => {
+        localStorage.removeItem("token");
+        setStore({
+          auth: false,
+        });
       },
 
+      // OBTENER INFORMACIÓN DE LAS MASCOTAS
+      mascotasHome: () => {
+        const store = getStore();
+        fetch(
+          "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/mascotas"
+        )
+          .then((res) => res.json())
+          // .then((data) => console.log(data))
+          .then((data) =>
+            setStore({
+              mascotas: data,
+            })
+          )
+          .catch((err) => console.error(err));
+        return store.mascotas;
+
+        // console.log(store.mascotas);
+      },
+
+      // CAMBIAR CONTRASEÑA
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
@@ -286,48 +302,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => console.log(err));
       },
 
-      changeColor: (index, color) => {
-        //get the store
-        const store = getStore();
-        //we have to loop the entire demo array to look for the respective index
-        //and change its color
-        const demo = store.demo.map((elm, i) => {
-          if (i === index) elm.background = color;
-          return elm;
-        });
-
-        //reset the global store
-        setStore({
-          demo: demo,
-        });
-      },
-      // para cerrar sesion:
-      logout: () => {
-        localStorage.removeItem("token");
-        setStore({
-          auth: false,
-        });
-      },
-
-      mascotasHome: () => {
-        let store = getStore();
-        fetch(
-          "https://3001-agusalvs-salvandopatita-njp17s8b9l5.ws-us87.gitpod.io/api/mascotas"
-        )
-          .then((res) => res.json())
-          // .then((data) => console.log(data))
-          .then((data) =>
-            setStore({
-              mascotas: data,
-            })
-          )
-          .catch((err) => console.error(err));
-        return store.mascotas;
-      },
-
+      // OBTENER INFORMACIÓN DE UNA MASCOTA
       getSingleMascota: (id) => {
         fetch(
-          "https://3001-agusalvs-salvandopatita-njp17s8b9l5.ws-us87.gitpod.io/api/mascotas/" +
+          "https://3001-agusalvs-salvandopatita-qzngnibyhp6.ws-us87.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
@@ -341,8 +319,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           // .then((data) => console.log(data))
           .catch((err) => console.error(err));
       },
+
+      // VERIFICAR AUTORIZACIÓN
+      checkAuth: () => {
+        if (localStorage.getItem("token")) {
+          setStore({
+            auth: true,
+          });
+        } else {
+          setStore({
+            auth: false,
+          });
+        }
+      },
       localizacion: (latLong) => {
-        const store = getStore();
         console.log(latLong);
         setStore({
           localizacion: "",
