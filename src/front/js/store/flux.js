@@ -109,9 +109,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                 text: data.msg,
                 // footer: '<a href="">Why do I have this issue?</a>'
               })(data.msg);
-            } else if (data.msg === "Necesitas registrarte") {
+            } else if (data.msg === "El usuario no existe") {
               Swal.fire({
-                title: data.msg,
+                title: data.msg + ". Necesitas registrarte",
                 showClass: {
                   popup: "animate__animated animate__fadeInDown",
                 },
