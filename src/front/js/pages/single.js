@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-
+import { Mapa } from "../component/mapa.jsx";
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
@@ -28,7 +28,7 @@ export const Single = (props) => {
               borderRadius: "2rem",
             }}
           >
-            <h1 className="text-center m-4">{store.mascota.titulo}</h1>{" "}
+            <h1 className="text-center m-4"> {store.mascota.titulo} </h1>{" "}
           </div>{" "}
           <div
             className="my-5 mx-5 align-self-center"
@@ -37,7 +37,7 @@ export const Single = (props) => {
               borderRadius: "2rem",
             }}
           >
-            <h5 className="text-center m-4">{store.mascota.estado}</h5>{" "}
+            <h5 className="text-center m-4"> {store.mascota.estado} </h5>{" "}
           </div>{" "}
         </div>{" "}
         <div className="d-flex justify-content-between">
@@ -47,7 +47,10 @@ export const Single = (props) => {
                 src={store.mascota.foto1}
                 alt="pepito"
                 className="object-fit-fill"
-                style={{ width: "100%", borderRadius: "2rem" }}
+                style={{
+                  width: "100%",
+                  borderRadius: "2rem",
+                }}
               />{" "}
             </div>{" "}
             <div className="d-flex justify-content-around m-2 mx-4">
@@ -60,7 +63,7 @@ export const Single = (props) => {
               >
                 <h6 className="p-3"> {store.mascota.edad} </h6>{" "}
                 <p className="px-4"> Edad </p>{" "}
-              </div>
+              </div>{" "}
               <div
                 className="px-3 mb-2 m-1"
                 style={{
@@ -78,7 +81,7 @@ export const Single = (props) => {
                   borderRadius: "2rem",
                 }}
               >
-                <h6 className="p-3">{store.mascota.genero} </h6>{" "}
+                <h6 className="p-3"> {store.mascota.genero} </h6>{" "}
                 <p className="px-4"> Genero </p>{" "}
               </div>{" "}
             </div>{" "}
@@ -129,7 +132,7 @@ export const Single = (props) => {
                 borderRadius: "2rem",
               }}
             >
-              <i className="fab fa-whatsapp m-3 mx-5 fs-1 text-success"></i>
+              <i className="fab fa-whatsapp m-3 mx-5 fs-1 text-success"> </i>{" "}
               <a
                 className="m-3 mx-5"
                 href={`https://wa.me/598${store.mascota.contacto}`}
@@ -152,20 +155,7 @@ export const Single = (props) => {
               </p>{" "}
             </div>{" "}
             <div className="my-5 mx-3 object-fit-contain">
-              <iframe
-                width="425"
-                height="350"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-63.98437500000001%2C-38.58252615935331%2C-45.63720703125%2C-30.259067203213018&amp;layer=mapnik&amp;marker=-34.52466147177172%2C-54.810791015625"
-                style={{
-                  borderRadius: "2rem",
-                }}
-              ></iframe>{" "}
-              <br />
-              <small>
-                <a href="https://www.openstreetmap.org/?mlat=-34.525&amp;mlon=-54.811#map=7/-34.525/-54.811">
-                  Ver mapa más grande{" "}
-                </a>{" "}
-              </small>{" "}
+              <Mapa />{" "}
             </div>{" "}
           </section>{" "}
         </div>{" "}
