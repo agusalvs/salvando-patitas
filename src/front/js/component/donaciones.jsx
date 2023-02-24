@@ -16,20 +16,31 @@ export const Donaciones = () => {
   return (
     <div className="py-4" style={{ backgroundColor: "#ceedc783" }}>
       <div className="container">
-        <div className="card w-50 mx-auto my-4 ">
-          <div className="card-body">
-            <h5 className="card-title"> Hola </h5>{" "}
-            <p className="card-text">
+        {/* <div className="card w-50 mx-auto my-4 "> */}
+        <div className="card-body">
+          <h5 className="card-title"> Hola </h5>{" "}
+          <p className="card-text">
+            {" "}
+            With supporting text below as a natural lead - in to additional
+            content.{" "}
+          </p>{" "}
+          <img
+            src="https://st.depositphotos.com/1594920/2453/i/600/depositphotos_24533529-stock-photo-group-of-pets-surrounding-a.jpg"
+            style={{ width: "50%", height: "50%" }}
+          ></img>
+          <img
+            src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677003615/Salvando%20Patitas/9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j.png"
+            alt=""
+            type="button"
+            onClick={pagoMercadoPago}
+            style={{ width: "20%", height: "20%", marginLeft: "-34%" }}
+          />
+          {/* <button className="btn btn-primary" onClick={pagoMercadoPago}>
               {" "}
-              With supporting text below as a natural lead - in to additional
-              content.{" "}
-            </p>{" "}
-            <button className="btn btn-primary" onClick={pagoMercadoPago}>
-              {" "}
-              Button{" "}
-            </button>{" "}
-          </div>{" "}
-        </div>
+              DONAR{" "}
+            </button>{" "} */}
+        </div>{" "}
+        {/* </div> */}
       </div>
     </div>
   );

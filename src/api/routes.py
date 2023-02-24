@@ -117,7 +117,7 @@ def createPreference():
     #Los items estan hardcordeados para la prueba
     "items": [
     {
-    "title": "Donaciones Salvando Patitas",
+    "title": "Donar a Salvando Patitas",
     "quantity": 1,
     "unit_price": 100,
     }
@@ -125,11 +125,11 @@ def createPreference():
     # Adonde te re-dirige en caso de éxito total / o no
     "back_urls": {
     "success":
-    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
     "failure":
-    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
     "pending":
-    "https://3000-agusalvs-salvandopatita-yhrnby52i4v.ws-us87.gitpod.io/"
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/"
     },
     "auto_return": "approved"
     }
