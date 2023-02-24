@@ -97,4 +97,18 @@ def cambiarContrasena(user_id):
 @api.route("/mascotas/<int:mascota_id>", methods=["GET"])
 def get_mascota_info(mascota_id):
     mascota= Mascota.query.filter_by(id=mascota_id).first()
-    return jsonify(mascota.serialize()),200
+    localizacionMascota = mascota.localizacion.split(", ")
+    print(localizacionMascota)
+    coordsArray = [float(item) for item in localizacionMascota]
+    print(coordsArray)
+    infoMascota = {}
+    
+    for clave in mascota.serialize():
+        if clave == "localizacion":
+            infoMascota["lat"] = coordsArray[0]
+            infoMascota["lng"] = coordsArray[1]
+    # Hacer algo con esa clave
+        else:
+            infoMascota[clave] = mascota.serialize()[clave]
+    print(infoMascota)        
+    return jsonify(infoMascota),200

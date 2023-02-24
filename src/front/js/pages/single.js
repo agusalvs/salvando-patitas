@@ -1,16 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { MapaSingle } from "../component/mapaSingle.jsx";
+// const { MapaSingle } = React.lazy(() => import("../component/mapaSingle.jsx"));
+// const Footer = React.lazy(() => import("../component/footer.jsx"));
 import { Mapa } from "../component/mapa.jsx";
+
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   let id = params.id;
+  console.log(id);
   useEffect(() => {
     actions.getSingleMascota(id);
   }, []);
+  console.log(`Prueba ${store?.mascota.localizacion}`);
+  // const [position, setPosition] = useState("");
+  // const [arrPosition, setArrPosition] = useState([]);
+
+  // function setearPosicionMascota() {
+  //   setPosition(store.mascota.localizacion);
+  //   setArrPosition(position.split(", ").map(parseFloat));
+  //   // console.log(arrPosition);
+  //   // console.log(typeof arrPosition);
+  //   return arrPosition;
+  // }
+  // useEffect(() => {
+  //   setearPosicionMascota();
+  // }, []);
 
   return (
     <>
@@ -162,7 +180,26 @@ export const Single = (props) => {
                                                                                                                           // position={store.mascota.localizacion}
                                                                                                                           />{" "} */}{" "}
               {/* <Mapa /> */}{" "}
-              <MapaSingle position={store.mascota.localizacion} />{" "}
+              {/* <Suspense fallback={<div>Loading...</div>}> */}
+              {/* <MapaSingle position={store.mascota.localizacion} /> */}
+              <iframe
+                style={{ borderRadius: "0.5rem", marginTop: "1rem" }}
+                width="350px"
+                height="300px"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight="0"
+                marginWidth="0"
+                src={
+                  "https://maps.google.com/?q=" +
+                  store?.mascota?.lat +
+                  "," +
+                  store?.mascota?.lng +
+                  "&z=14&t=m&output=embed"
+                }
+              ></iframe>
+              {/* <Footer />
+              </Suspense>{" "} */}
             </div>{" "}
           </section>{" "}
         </div>{" "}

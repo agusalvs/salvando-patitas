@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: (userEmail, userPassword) => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/autenticacion",
+          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/autenticacion",
           {
             method: "POST",
             headers: {
@@ -147,7 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const localizacion = store.localizacion;
         fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/publicacion/" +
+          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/publicacion/" +
             ID,
           {
             method: "POST",
@@ -248,7 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mascotasHome: () => {
         const store = getStore();
         fetch(
-          "https://3001-agusalvs-salvandopatita-5gl3yjykzfl.ws-us87.gitpod.io/api/mascotas"
+          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/mascotas"
         )
           .then((res) => res.json())
           // .then((data) => console.log(data))
@@ -267,7 +267,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
         fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/cambiar-contrasena/" +
+          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/cambiar-contrasena/" +
             ID,
           {
             method: "POST",
@@ -306,19 +306,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       // OBTENER INFORMACIÓN DE UNA MASCOTA
-      getSingleMascota: (id) => {
-        fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/mascotas/" +
+      getSingleMascota: async (id) => {
+        await fetch(
+          "https://3001-agusalvs-salvandopatita-3rr37xltrs1.ws-us88.gitpod.io/api/mascotas/" +
             id
         )
           .then((res) => res.json())
-          .then(
-            (data) =>
-              setStore({
-                mascota: data,
-              }),
-            console.log(id)
-          )
+          .then((data) => {
+            setStore({
+              mascota: data,
+            });
+            console.log(id);
+            console.log(data);
+          })
           // .then((data) => console.log(data))
           .catch((err) => console.error(err));
       },
