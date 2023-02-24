@@ -19,9 +19,9 @@ export const Encontrados = () => {
   return (
     // <!-- Page Content -->
     <div className="row " style={{ bsGutterX: "0" }}>
-      <div className="col-md-2">
+      <div className="col-md-2 pe-0">
         {" "}
-        <Busquedafiltros />
+        <Busquedafiltros backgroundColor={"#FFF6BD"} />
       </div>
 
       <div

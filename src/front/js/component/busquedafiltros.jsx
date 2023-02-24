@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext.js";
 
-export const Busquedafiltros = () => {
+export const Busquedafiltros = (props) => {
   const [tipodeanimal, setTipodeanimal] = useState("");
   const [raza, setRaza] = useState("");
   const [tamaño, setTamaño] = useState("");
@@ -24,9 +24,9 @@ export const Busquedafiltros = () => {
   return (
     <>
       <div
-        className="col-md-12"
+        className="col-md-12 py-3 "
         style={{
-          backgroundColor: "#CEEDC7",
+          backgroundColor: props.backgroundColor,
         }}
       >
         <div style={{ textAlign: "center" }}>
@@ -36,7 +36,10 @@ export const Busquedafiltros = () => {
           <p className="mb-5 fw-light" style={{ color: "#64748B" }}>
             Filtrar busqueda
           </p>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column" }}
+            className=" d-flex justify-content-center align-items-center"
+          >
             <input
               style={{
                 marginBottom: "20px",
@@ -111,10 +114,10 @@ export const Busquedafiltros = () => {
               type="submit"
               className="btn btn-primary"
               style={{
-                width: "200px",
-                backgroundColor: "#FFD4B2",
+                width: "190px",
+                backgroundColor: "#B5F1CC",
                 color: "#000000",
-                borderColor: "#FFD4B2",
+                borderColor: "#B5F1CC",
                 borderRadius: "2rem",
               }}
               onClick={() => {
