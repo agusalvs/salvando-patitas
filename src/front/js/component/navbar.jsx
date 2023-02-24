@@ -170,6 +170,15 @@ export const Navbar = () => {
                     En adopción{" "}
                   </a>{" "}
                 </li>{" "}
+                <li>
+                  <a
+                    href="/#donaciones"
+                    className="dropdown-item"
+                    style={{ color: "#36544F" }}
+                  >
+                    Donaciones{" "}
+                  </a>{" "}
+                </li>{" "}
               </ul>{" "}
             </div>{" "}
           </div>{" "}

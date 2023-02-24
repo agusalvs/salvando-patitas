@@ -14,7 +14,11 @@ export const Donaciones = () => {
   }, []);
 
   return (
-    <div className="py-4" style={{ backgroundColor: "#ceedc783" }}>
+    <div
+      id="donaciones"
+      className="py-4"
+      style={{ backgroundColor: "#ceedc783" }}
+    >
       <div className="container">
         {/* <div className="card w-50 mx-auto my-4 "> */}
         <div className="card-body">
@@ -29,7 +33,7 @@ export const Donaciones = () => {
             style={{ width: "50%", height: "50%" }}
           ></img>
           <img
-            src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677003615/Salvando%20Patitas/9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j.png"
+            src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677246353/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_qdytiv.png"
             alt=""
             type="button"
             onClick={pagoMercadoPago}
