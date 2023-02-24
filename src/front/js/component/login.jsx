@@ -2,16 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store, actions } = useContext(Context);
 
-  useEffect(() => {
-    if (store.auth) {
-      return <Navigate to="/" />;
-    }
-  }, [store.auth]);
+  // useEffect(() => {
+  //   if (store.auth) {
+  //     return <Navigate to="/" />;
+  //   }
+  // }, [store.auth]);
 
   function enviarDatos(e) {
     e.preventDefault();
@@ -94,26 +95,6 @@ const Login = () => {
               >
                 Continuar
               </button>
-              {/* <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                <a href="#!" className="text-white">
-                  <i
-                    className="fab fa-facebook-f fa-lg"
-                    style={{ color: "#86C8BC" }}
-                  ></i>
-                </a>
-                <a href="#!" className="text-white">
-                  <i
-                    className="fab fa-twitter fa-lg mx-4 px-2"
-                    style={{ color: "#86C8BC" }}
-                  ></i>
-                </a>
-                <a href="#!" className="text-white">
-                  <i
-                    className="fab fa-google fa-lg"
-                    style={{ color: "#86C8BC" }}
-                  ></i>
-                </a>
-              </div> */}
             </div>
             <div>
               <p className="mb-0" style={{ color: "#36544F" }}>
