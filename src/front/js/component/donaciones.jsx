@@ -19,7 +19,7 @@ export const Donaciones = () => {
       className="py-4"
       style={{ backgroundColor: "#ceedc783" }}
     >
-      <div className="container">
+      <div className="">
         {/* <div className="card w-50 mx-auto my-4 "> */}
         <div className="card-body">
           <h5 className="card-title"> Hola </h5>{" "}
@@ -33,11 +33,11 @@ export const Donaciones = () => {
             style={{ width: "50%", height: "50%" }}
           ></img>
           <img
-            src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677246353/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_qdytiv.png"
+            src="https://res.cloudinary.com/de1k9ojw2/image/upload/v1677250565/Salvando%20Patitas/5F173ADE-AD16-432D-8259-976932E66504_hgfria.png"
             alt=""
             type="button"
             onClick={pagoMercadoPago}
-            style={{ width: "20%", height: "20%", marginLeft: "-34%" }}
+            style={{ width: "18%", height: "18%", marginLeft: "-33%" }}
           />
           {/* <button className="btn btn-primary" onClick={pagoMercadoPago}>
               {" "}

@@ -244,8 +244,9 @@ export const Home = () => {
           </a>
         </div>
       </div>
-
-      <Donaciones />
+      <div className="d-flex justify-content-center align-items-center">
+        <Donaciones />
+      </div>
     </div>
     //   </div>
     // </div>
