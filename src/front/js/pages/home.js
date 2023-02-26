@@ -10,6 +10,7 @@ import { Mascotas } from "../component/mascotas.jsx";
 // import { Footerhome } from "../component/footerhome.jsx";
 // import { Link } from "react-router-dom";
 import "../../styles/home.css";
+import { Donaciones } from "../component/donaciones.jsx";
 // import { element } from "prop-types";
 
 export const Home = () => {
@@ -242,6 +243,9 @@ export const Home = () => {
             Ver más
           </a>
         </div>
+      </div>
+      <div className="d-flex justify-content-center align-items-center">
+        <Donaciones />
       </div>
     </div>
     //   </div>

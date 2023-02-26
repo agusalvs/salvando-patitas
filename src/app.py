@@ -13,6 +13,8 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
@@ -87,6 +89,17 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+@app.route('/publicar', methods=['GET'])
+@jwt_required()
+def get_profile():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = Usuario.query.filter_by(email=current_user).first()
+    if user is None:
+        return jsonify({"msg": "User does not exist"}), 404
+    
+    # return jsonify({"user": user.serialize()}), 200
+    return jsonify(logged_in_as=current_user), 200
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
