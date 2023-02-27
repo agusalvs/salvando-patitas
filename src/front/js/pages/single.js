@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Mapa } from "../component/mapa.jsx";
+
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   let id = params.id;
+  console.log(id);
   useEffect(() => {
     actions.getSingleMascota(id);
   }, []);
-
+  console.log(`Prueba ${store?.mascota.localizacion}`);
   return (
     <>
       <div
@@ -155,7 +156,22 @@ export const Single = (props) => {
               </p>{" "}
             </div>{" "}
             <div className="my-5 mx-3 object-fit-contain">
-              <Mapa />{" "}
+              <iframe
+                style={{ borderRadius: "0.5rem", marginTop: "1rem" }}
+                width="350px"
+                height="300px"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight="0"
+                marginWidth="0"
+                src={
+                  "https://maps.google.com/?q=" +
+                  store?.mascota?.lat +
+                  "," +
+                  store?.mascota?.lng +
+                  "&z=14&t=m&output=embed"
+                }
+              ></iframe>
             </div>{" "}
           </section>{" "}
         </div>{" "}
