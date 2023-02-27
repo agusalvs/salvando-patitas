@@ -244,9 +244,9 @@ export const Home = () => {
           </a>
         </div>
       </div>
-      {/* <div className=" mx-auto"> */}
-      <Donaciones />
-      {/* </div> */}
+      <div className=" mx-auto d-flex justify-content-center">
+        <Donaciones />
+      </div>
     </div>
     //   </div>
     // </div>

@@ -18,16 +18,16 @@ export const Encontrados = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="row " style={{ bsGutterX: "0" }}>
-      <div className="col-md-2 pe-0">
+    <div className="row vh-100" style={{ bsGutterX: "0" }}>
+      <div className="col-md-2" style={{ backgroundColor: "#CEEDC7" }}>
         {" "}
-        <Busquedafiltros backgroundColor={"#FFF6BD"} />
+        <Busquedafiltros backgroundColor={"#FFF6BD"} borderColor={"#FFF6BD"} />
       </div>
 
       <div
-        className="container-fluid  text-center mx-auto col-md-10"
+        className="container-fluid py-5 text-center mx-auto col-md-10"
         id="vista-encontrados"
-        style={{ backgroundColor: "#FFD4B2" }}
+        style={{ backgroundColor: "#FFD4B2", color: "#36544F" }}
       >
         <h1 style={{ color: "#36544F" }}>Encontrados</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>

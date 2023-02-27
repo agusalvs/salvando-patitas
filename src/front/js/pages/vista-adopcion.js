@@ -23,17 +23,17 @@ export const Adopcion = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="row " style={{ bsGutterX: "0" }}>
+    <div className="row vh-100" style={{ bsGutterX: "0" }}>
       {/* <!-- First Featurette --> */}
-      <div className="col-md-2 pe-0">
+      <div className="col-md-2" style={{ backgroundColor: "#FFF6BD" }}>
         {" "}
-        <Busquedafiltros backgroundColor={"#FFD4B2"} />
+        <Busquedafiltros backgroundColor={"#FFD4B2"} borderColor={"#FFD4B2"} />
       </div>
 
       <div
-        className="container-fluid  text-center mx-auto col-md-10"
+        className="container-fluid py-5 text-center mx-auto col-md-10"
         id="vista-adopcion"
-        style={{ backgroundColor: "#CEEDC7" }}
+        style={{ backgroundColor: "#CEEDC7", color: "#36544F" }}
       >
         <h1 style={{ color: "#36544F" }}>En adopción</h1>
         <p className="pb-4" style={{ color: "#36544F" }}>

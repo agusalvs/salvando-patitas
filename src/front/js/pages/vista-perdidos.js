@@ -36,37 +36,23 @@ export const Perdidos = () => {
     <div className="row vh-100" style={{ bsGutterX: "0" }}>
       {/* <!-- First Featurette --> */}
       {/* <Inicio /> */}
-      <div className="col-md-2 pe-0" style={{ backgroundColor: "#FFD4B2" }}>
+      <div className="col-md-2 " style={{ backgroundColor: "#FFD4B2" }}>
         {" "}
-        <Busquedafiltros />
+        <Busquedafiltros backgroundColor={"#CEEDC7"} borderColor={"#CEEDC7"} />
       </div>
 
       <div
         className="container-fluid py-5 text-center mx-auto col-md-10"
         id="vista-perdidos"
-        style={{ backgroundColor: "#FFF6BD" }}
+        style={{ backgroundColor: "#FFF6BD", color: "#36544F" }}
       >
         <h1 style={{ color: "#36544F" }}>Perdidos</h1>
-        <p className="pb-4" style={{ color: "#36544F" }}>
+        <p className="pb-4" style={{ color: "#64748B" }}>
           Aquí podrás ver todos los animalitos que se encuentran actualmente
           perdidos.
         </p>
         <div className="d-flex px-5">
-          {/* <button
-            className="border-0"
-            onClick={() => scroll(-180)}
-            style={{ backgroundColor: "#FFF6BD" }}
-          >
-            <i
-              className="fa fa-chevron-left"
-              style={{ fontSize: "100px", color: "#36544F" }}
-            ></i>
-          </button> */}
-          <div
-            className="row mx-auto "
-            // style={{ width: "70%", scrollBehavior: "smooth" }}
-            // ref={ref}
-          >
+          <div className="row mx-auto ">
             {perdidos.map((item) => (
               <div className="col mx-auto">
                 <Pets

@@ -24,32 +24,31 @@ export const Busquedafiltros = (props) => {
   return (
     <>
       <div
-        className="col-md-12 py-3 h-100"
+        className="col-md-12 pt-5 h-100 mx-auto"
         // style={{
         //   backgroundColor: props.backgroundColor,
         // }}
       >
-        <div style={{ textAlign: "center" }}>
+        <div className="text-center mx-auto">
           <p className="mb-2 fs-2" style={{ color: "#36544F" }}>
-            Indagación
+            Búsqueda
           </p>
-          <p className="mb-5 fw-light" style={{ color: "#64748B" }}>
-            Filtrar busqueda
+          <p className="mb-5 fw-light" style={{ color: "#36544F" }}>
+            Filtrar búsqueda
           </p>
           <div
-            style={{ display: "flex", flexDirection: "column" }}
-            className=" d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center"
+            style={{ flexDirection: "column" }}
           >
             <input
               style={{
-                marginBottom: "20px",
                 width: "150px",
                 borderRadius: "2rem",
                 backgroundColor: "#86C8BC",
-                color: "#000000",
+                color: "#36544F",
               }}
               type="text"
-              className="form-control"
+              className="form-control mb-3"
               id="inputTipo"
               placeholder="Categoría"
               value={tipodeanimal}
@@ -57,27 +56,27 @@ export const Busquedafiltros = (props) => {
             />
             <input
               style={{
-                marginBottom: "20px",
                 width: "150px",
                 borderRadius: "2rem",
                 backgroundColor: "#86C8BC",
+                color: "#36544F",
               }}
               type="text"
-              className="form-control"
+              className="form-control mb-3"
               id="inputRaza"
               placeholder="Raza"
               value={raza}
               onChange={(e) => setRaza(e.target.value)}
             />
             <select
-              className="form-select form-select-sm"
+              className="form-select form-select-sm mb-3"
               aria-label=".form-select-sm example"
               style={{
-                marginBottom: "20px",
                 width: "150px",
                 height: "40px",
                 borderRadius: "2rem",
                 backgroundColor: "#86C8BC",
+                color: "#36544F",
               }}
               value={tamaño}
               onChange={(e) => setTamaño(e.target.value)}
@@ -88,17 +87,18 @@ export const Busquedafiltros = (props) => {
               <option value="Pequeño">Pequeño</option>
               <option value="Mediano">Mediano</option>
               <option value="Grande">Grande</option>
+              <option value="Grande">XL</option>
             </select>
 
             <select
-              className="form-select form-select-sm"
+              className="form-select form-select-sm mb-3"
               aria-label="Género"
               style={{
-                marginBottom: "20px",
                 width: "150px",
                 height: "40px",
                 borderRadius: "2rem",
                 backgroundColor: "#86C8BC",
+                color: "#36544F",
               }}
               value={genero}
               onChange={(e) => setGenero(e.target.value)}
@@ -112,13 +112,13 @@ export const Busquedafiltros = (props) => {
 
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn "
               style={{
-                width: "190px",
-                backgroundColor: "#B5F1CC",
-                color: "#000000",
-                borderColor: "#B5F1CC",
+                width: "100px",
                 borderRadius: "2rem",
+                color: "#36544F",
+                backgroundColor: props.backgroundColor,
+                borderColor: props.borderColor,
               }}
               onClick={() => {
                 buscarAnimales();

@@ -112,6 +112,15 @@ export const Mapa = () => {
         <LocationMarker />
       </MapContainer>
       <button
+        className="mt-3 d-flex justify-content-center"
+        style={{
+          borderRadius: "2rem",
+          borderColor: "#86C8BC",
+          borderWidth: "2px",
+          backgroundColor: "#FFF6BD",
+          opacity: "75%",
+          fontSize: "15px",
+        }}
         onClick={(e) =>
           enviarDatos(e, {
             latitud: position.lat.toFixed(4),
@@ -119,7 +128,7 @@ export const Mapa = () => {
           })
         }
       >
-        Confirma ubicacion
+        Confirmar ubicación
       </button>
     </>
   );

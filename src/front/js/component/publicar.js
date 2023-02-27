@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { Mapa } from "../component/mapa.jsx";
 
 export const Publicar = () => {
-  const [image, setImage] = useState("");
   const [titulo, setTitulo] = useState("");
   const [edad, setEdad] = useState("");
   const [genero, setGenero] = useState("");
@@ -26,15 +25,28 @@ export const Publicar = () => {
     watch,
     formState: { errors },
   } = useForm();
+  //declaro estados para subir la imagen
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setImage(reader.result);
-    };
-    // setImage(URL.createObjectURL(event.target.files[0]));
+  const subirImagen = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "images");
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/de1k9ojw2/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    // console.log(res);
+    setImage(file.secure_url);
+    console.log(file.secure_url);
+    setLoading(false);
   };
 
   function enviarDatos() {
@@ -71,125 +83,119 @@ export const Publicar = () => {
     }
   }
 
-  // if (!store.auth) {
-  //   return <Navigate to="/" />;
-  // }
-
   return (
-    <div className="card-body">
+    <div className="card-body px-5">
+      <div id="titulo-publicar" className="text-center">
+        <p className="mb-2 fs-2" style={{ color: "#36544F" }}>
+          {" "}
+          Publicar anuncio{" "}
+        </p>
+        <p className="mb-5 fw-light" style={{ color: "#64748B" }}>
+          Complete los siguientes campos para realizar una nueva publicación:{" "}
+        </p>
+      </div>
       <form onSubmit={handleSubmit(enviarDatos)} className="row g-3">
-        <div className="alert alert-danger" role="alert">
-          Complete los siguientes campos para realizar una nueva publicación:
-        </div>{" "}
         {/* COLUMNA IZQUIERDA */}{" "}
         <div className="col-md-6">
-          <label htmlFor="inputTitulo" className="form-label">
-            Título
-          </label>
           <input
             {...register("titulo", {
-              required: "Debe ingresar un titulo",
+              required: "Debe ingresar un título",
             })}
             type="text"
-            className="form-control"
+            className="form-control mb-4"
             id="inputTitulo"
-            placeholder="Escriba aqui el titulo de su publicacion"
+            placeholder="Título para su publicación"
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           />{" "}
           {errors.titulo && (
             <p role="alert" style={{ color: "#ff6b60" }}>
               {errors.titulo?.message}
             </p>
           )}
-          <label htmlFor="inputNombre" className="form-label">
-            Nombre{" "}
-          </label>{" "}
           <input
             type="text"
-            className="form-control"
+            className="form-control mb-4"
             id="inputNombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            placeholder="Escriba aqui el nombre de su mascota"
+            placeholder="Nombre de la mascota"
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           />
-          <label htmlFor="Nombre" className="form-label">
-            Teléfono
-          </label>
           <input
             {...register("telefono", {
-              required: "Debe ingresar un telefono de contacto",
+              required: "Debe ingresar un teléfono de contacto",
             })}
             type="number"
-            className="form-control"
+            className="form-control mb-4"
             id="inputTelefono"
-            placeholder="Ingrese su telefono de contacto"
+            placeholder="Teléfono de contacto"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           />{" "}
           {errors.telefono && (
             <p role="alert" style={{ color: "#ff6b60" }}>
               {errors.telefono?.message}
             </p>
           )}
-          <label htmlFor="inputGenero" className="form-label">
-            Seleccione género:
-          </label>{" "}
           <select
             id="inputGenero"
-            className="form-select"
+            className="form-select mb-4"
             value={genero}
             onChange={(e) => setGenero(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           >
             <option defaultValue>Seleccione género</option>
             <option>Macho</option>
             <option>Hembra</option>
             <option>Desconocido</option>
           </select>
-          <div
-            className="ui segment d-flex justify-content-start align-items-center"
-            style={{
-              height: "150px",
-            }}
-          >
-            <div className="field w-50">
-              <label htmlFor="#elegir">
-                A continuación puede subir una foto de la mascota:{" "}
-              </label>{" "}
-              <br />
-              <input
-                {...register("image", {
-                  required: "Debe ingresar una imagen del animal",
-                })}
-                name="uploadedfile"
-                type="file"
-                onChange={handleFileChange}
-              />
-              {errors.image && (
-                <p role="alert" style={{ color: "#ff6b60" }}>
-                  {errors.image?.message}
-                </p>
-              )}
-            </div>{" "}
-            {image && (
-              <img src={image} alt="Uploaded Image" width="100" height="100" />
-            )}{" "}
-            <br />
-          </div>{" "}
-        </div>{" "}
-        {/* COLUMNA DERECHA */}{" "}
-        <div className="col-md-6">
-          <label htmlFor="inputState" className="form-label">
-            Estado de la mascota:
-          </label>{" "}
           <select
             {...register("inputState", {
               required: "Seleccione una de las secciones",
             })}
             id="inputState"
-            className="form-select"
+            className="form-select mb-4"
             value={inputState}
             onChange={(e) => setinputState(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           >
             <option defaultValue> Seleccione estado </option>{" "}
             <option> Perdido </option> <option> Encontrado </option>{" "}
@@ -200,44 +206,62 @@ export const Publicar = () => {
               {errors.inputState?.message}
             </p>
           )}
-          <label htmlFor="inputDireccion" className="form-label">
-            Dirección{" "}
-          </label>{" "}
           <input
             {...register("direccion", {
-              required: "Ingrese una direccion",
+              required: "Ingrese una dirección",
             })}
             type="text"
-            className="form-control"
+            className="form-control mb-4"
             id="inputDireccion"
-            placeholder="Direccion"
+            placeholder="Ubicación"
             value={direccion}
             onChange={(e) => setDomicilio(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           />{" "}
           {errors.direccion && (
             <p role="alert" style={{ color: "#ff6b60" }}>
               {errors.direccion?.message}
             </p>
           )}
-          <label htmlFor="inputCategoria" className="form-label">
-            Categoría{" "}
-          </label>{" "}
+        </div>{" "}
+        {/* COLUMNA DERECHA */}
+        <div className="col-md-6">
           <input
             type="text"
-            className="form-control"
+            className="form-control mb-4"
             id="inputCategoria"
-            placeholder="Especie/Categoria de animal (ej. gato, perro, conejo, etc)"
+            placeholder="Categoría de animal (ej.: gato, perro, conejo, etc.)"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           />{" "}
-          <label htmlFor="inputEdad" className="form-label">
-            Seleccione edad:
-          </label>{" "}
           <select
             id="inputEdad"
-            className="form-select"
+            className="form-select mb-4"
             value={edad}
             onChange={(e) => setEdad(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           >
             <option defaultValue>Seleccione edad</option>
             <option>Cachorro (menos de 1 año)</option>
@@ -245,25 +269,35 @@ export const Publicar = () => {
             <option>Adulto (3-8 años)</option>
             <option>Senior (+8 años)</option>
           </select>
-          <label htmlFor="inputRaza" className="form-label">
-            Raza
-          </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control mb-4"
             id="inputRaza"
-            placeholder="Ingrese la raza de su mascota"
+            placeholder="Raza de la mascota"
             value={raza}
             onChange={(e) => setRaza(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           ></input>
-          <label htmlFor="inputTamaño" className="form-label">
-            Seleccione tamaño:
-          </label>{" "}
           <select
             id="inputTamaño"
-            className="form-select"
+            className="form-select mb-4"
             value={tamaño}
             onChange={(e) => setTamaño(e.target.value)}
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#FFF6BD",
+              opacity: "75%",
+              fontSize: "15px",
+            }}
           >
             <option defaultValue>Seleccione tamaño</option>
             <option>Pequeño (0-10 kgs)</option>
@@ -271,26 +305,119 @@ export const Publicar = () => {
             <option>Grande (28-45 kgs)</option>
             <option>XL (+46 kgs)</option>
           </select>
-          <label>Comentarios</label>
-          <div className="input-group" placeholder="Ingrese comentarios">
+          <div className="input-group">
             <textarea
-              className="form-control"
+              className="form-control pt-2 mb-4"
+              placeholder="Descripción"
               rows="2"
               value={comentarios}
               onChange={(e) => setComentarios(e.target.value)}
+              style={{
+                borderRadius: "2rem",
+                borderColor: "#86C8BC",
+                borderWidth: "2px",
+                backgroundColor: "#FFF6BD",
+                opacity: "75%",
+                fontSize: "15px",
+              }}
             ></textarea>
           </div>
+          <div
+            className="ui segment "
+            style={{
+              height: "75px",
+            }}
+          >
+            <div
+              className="field w-50"
+              style={{
+                width: "580px",
+                height: "40px",
+                borderRadius: "2rem",
+                border: "solid",
+                borderColor: "#86C8BC",
+                borderWidth: "2px",
+                backgroundColor: "#FFF6BD",
+                opacity: "75%",
+                fontSize: "15px",
+              }}
+            >
+              <br />
+              <label
+                htmlFor="files"
+                className="btn"
+                style={{ marginTop: "-30px" }}
+              >
+                <i className="fa fa-upload me-2"></i>Seleccione una imagen
+              </label>
+              <input
+                {...register("image", {
+                  required: "Debe ingresar una imagen del animal",
+                })}
+                id="files"
+                className="mb-4"
+                name="uploadedfile"
+                type="file"
+                onChange={subirImagen}
+                style={{
+                  width: "580px",
+                  height: "40px",
+                  borderRadius: "2rem",
+                  borderColor: "#86C8BC",
+                  // borderWidth: "2px",
+                  // backgroundColor: "#FFF6BD",
+                  // opacity: "75%",
+                  // fontSize: "15px",
+                  visibility: "hidden",
+                }}
+              />
+              {/* {loading ? (
+                <h3> Cargando Imágenes… </h3>
+              ) : (
+                <img src={image} style={{ width: "30px" }} />
+              )} */}
+              {errors.image && (
+                <p role="alert" style={{ color: "#ff6b60" }}>
+                  {errors.image?.message}
+                </p>
+              )}
+            </div>
+            {image && (
+              <img
+                src={image}
+                alt="Uploaded Image"
+                width="100"
+                height="100"
+                style={{
+                  borderRadius: "2rem",
+                  borderColor: "#86C8BC",
+                  borderWidth: "2px",
+                  backgroundColor: "#FFF6BD",
+                  opacity: "75%",
+                  fontSize: "15px",
+                }}
+              />
+            )}{" "}
+            <br />
+          </div>{" "}
         </div>
-        <div className="nav-item ms-2 ps-2">
+        <div className="nav-item">
           <Mapa />
         </div>
         <div className="d-flex justify-content-center">
           <button
             type="submit"
-            className="btn btn-secondary w-25"
-            style={{ color: "black", backgroundColor: "RGB(134, 200, 188)" }}
+            className="btn"
+            style={{
+              borderRadius: "2rem",
+              borderColor: "#86C8BC",
+              borderWidth: "2px",
+              backgroundColor: "#86C8BC",
+              color: "white",
+              width: "400px",
+            }}
           >
-            Publicar{" "}
+            Continuar{" "}
           </button>{" "}
         </div>{" "}
       </form>{" "}
