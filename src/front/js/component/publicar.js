@@ -158,20 +158,18 @@ export const Publicar = () => {
               </label>{" "}
               <br />
               <input
+                {...register("image", {
+                  required: "Debe ingresar una imagen del animal",
+                })}
+                name="uploadedfile"
                 type="file"
-                className="form-control"
-                onChange={(e) => setImage(e.target.files[0])}
-                id="url"
+                onChange={handleFileChange}
               />
-            </div>
-            <div className="col-md-3 mb-3">
-              <button
-                type="button"
-                onClick={() => actions.cloudinary(image)}
-                className="btn btn-primary"
-              >
-                Subir foto
-              </button>
+              {errors.image && (
+                <p role="alert" style={{ color: "#ff6b60" }}>
+                  {errors.image?.message}
+                </p>
+              )}
             </div>{" "}
             {image && (
               <img src={image} alt="Uploaded Image" width="100" height="100" />
