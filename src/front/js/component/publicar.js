@@ -66,9 +66,9 @@ export const Publicar = () => {
     }
   }
 
-  if (!store.auth) {
-    return <Navigate to="/" />;
-  }
+  // if (!store.auth) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="card-body">
@@ -79,7 +79,7 @@ export const Publicar = () => {
 
         {/* COLUMNA IZQUIERDA */}
         <div className="col-md-6">
-          <label for="inputTitulo" className="form-label">
+          <label htmlFor="inputTitulo" className="form-label">
             Titulo
           </label>
           <input
@@ -90,7 +90,7 @@ export const Publicar = () => {
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
           />
-          <label for="inputNombre" className="form-label">
+          <label htmlFor="inputNombre" className="form-label">
             Nombre
           </label>
           <input
@@ -102,7 +102,7 @@ export const Publicar = () => {
             placeholder="Escriba aqui el nombre de su mascota"
           />
 
-          <label for="Nombre" className="form-label">
+          <label htmlFor="Nombre" className="form-label">
             Telefono
           </label>
           <input
@@ -114,7 +114,7 @@ export const Publicar = () => {
             onChange={(e) => setTelefono(e.target.value)}
           />
 
-          <label for="inputGenero" className="form-label">
+          <label htmlFor="inputGenero" className="form-label">
             Seccione genero:
           </label>
           <select
@@ -123,7 +123,7 @@ export const Publicar = () => {
             value={genero}
             onChange={(e) => setGenero(e.target.value)}
           >
-            <option selected>Seleccione genero</option>
+            <option defaultValue>Seleccione genero</option>
             <option>Macho</option>
             <option>Hembra</option>
             <option>Desconocido</option>
@@ -134,7 +134,7 @@ export const Publicar = () => {
             style={{ height: "150px" }}
           >
             <div className="field w-50">
-              <label for="#elegir">
+              <label htmlFor="#elegir">
                 A continuacion puede subir una foto de la mascota:{" "}
               </label>
               <br />
@@ -154,7 +154,7 @@ export const Publicar = () => {
 
         {/* COLUMNA DERECHA */}
         <div className="col-md-6">
-          <label for="inputState" className="form-label">
+          <label htmlFor="inputState" className="form-label">
             Seccion en la que publica:
           </label>
           <select
@@ -163,12 +163,12 @@ export const Publicar = () => {
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
           >
-            <option selected>Seleccione estado</option>
+            <option defaultValue>Seleccione estado</option>
             <option>Perdido</option>
             <option>Encontrado</option>
             <option>En Adopcion</option>
           </select>
-          <label for="inputDireccion" className="form-label">
+          <label htmlFor="inputDireccion" className="form-label">
             Direccion
           </label>
           <input
@@ -180,7 +180,7 @@ export const Publicar = () => {
             onChange={(e) => setDomicilio(e.target.value)}
           />
 
-          <label for="inputEdad" className="form-label">
+          <label htmlFor="inputEdad" className="form-label">
             Seccione edad:
           </label>
           <select
@@ -189,13 +189,13 @@ export const Publicar = () => {
             value={edad}
             onChange={(e) => setEdad(e.target.value)}
           >
-            <option selected>Seleccione edad</option>
+            <option defaultValue>Seleccione edad</option>
             <option>Cachorro</option>
             <option>Joven</option>
             <option>Adulto</option>
           </select>
 
-          <label for="inputRaza" className="form-label">
+          <label htmlFor="inputRaza" className="form-label">
             Raza
           </label>
           <input
@@ -207,16 +207,16 @@ export const Publicar = () => {
             onChange={(e) => setRaza(e.target.value)}
           ></input>
 
-          <label for="inputEdad" className="form-label">
+          <label htmlFor="inputTamaño" className="form-label">
             Seccione Tamaño:
           </label>
           <select
-            id="inputEdad"
+            id="inputTamaño"
             className="form-select"
             value={tamaño}
             onChange={(e) => setTamaño(e.target.value)}
           >
-            <option selected>Seleccione tamaño</option>
+            <option defaultValue>Seleccione tamaño</option>
             <option>Chico</option>
             <option>Mediano</option>
             <option>Grande</option>
