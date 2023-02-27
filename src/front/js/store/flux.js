@@ -126,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-
+      
       // PUBLICAR
       publicar: (
         titulo,
@@ -320,6 +320,17 @@ const getState = ({ getStore, getActions, setStore }) => {
             auth: false,
           });
         }
+      },
+
+      // FILTRAR BÚSQUEDA
+      localizacion: (latLong) => {
+        console.log(latLong);
+        setStore({
+          localizacion: "",
+        });
+        setStore({
+          localizacion: latLong,
+        });
       },
 
       // FILTRAR BÚSQUEDA

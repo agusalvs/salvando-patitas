@@ -33,16 +33,16 @@ export const Mapa = () => {
 
   const [position, setPosition] = useState(null);
   function LocationMarker() {
-    var myIcon = L.icon({
-      iconUrl:
-        "https://res.cloudinary.com/de1k9ojw2/image/upload/v1677005762/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_jxhbij.png",
-      iconSize: [38, 45],
-      iconAnchor: [22, 94],
-      popupAnchor: [-3, -76],
-      shadowUrl: "",
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94],
-    });
+    // var myIcon = L.icon({
+    //   iconUrl:
+    //     "https://res.cloudinary.com/de1k9ojw2/image/upload/v1677005762/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_jxhbij.png",
+    //   iconSize: [38, 45],
+    //   iconAnchor: [22, 94],
+    //   popupAnchor: [-3, -76],
+    //   shadowUrl: "",
+    //   shadowSize: [68, 95],
+    //   shadowAnchor: [22, 94],
+    // });
     const map = useMapEvents({
       click() {
         map.locate();
@@ -66,16 +66,16 @@ export const Mapa = () => {
     return position === null ? null : (
       <Marker
         position={position}
-        // onClick={(e) =>
-        //   setLocalizacion(position.lat.toFixed(4), position.lng.toFixed(4))
-        // }
-        style={{
-          backgroundImage:
-            "https://res.cloudinary.com/de1k9ojw2/image/upload/v1677005762/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_jxhbij.png",
-        }}
-        icon={myIcon}
+        // // onClick={(e) =>
+        // //   setLocalizacion(position.lat.toFixed(4), position.lng.toFixed(4))
+        // // }
+        // style={{
+        //   backgroundImage:
+        //     "https://res.cloudinary.com/de1k9ojw2/image/upload/v1677005762/Salvando%20Patitas/Salvando_Patitas_9479452d783b1ae2605a4547577e1313-removebg-preview_ygxh4j-b_rgb_86c8bc_jxhbij.png",
+        // }}
+        // icon={myIcon}
       >
-        <Popup>
+        {/* <Popup>
           <span
             onClick={() =>
               setLocalizacion({
@@ -88,7 +88,7 @@ export const Mapa = () => {
           </span>{" "}
           latitude: {position.lat.toFixed(4)}, longitude:{" "}
           {position.lng.toFixed(4)}{" "}
-        </Popup>
+        </Popup> */}
       </Marker>
     );
   }
