@@ -2,10 +2,6 @@ import React, { useState, useEffect, useContext, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { MapaSingle } from "../component/mapaSingle.jsx";
-// const { MapaSingle } = React.lazy(() => import("../component/mapaSingle.jsx"));
-// const Footer = React.lazy(() => import("../component/footer.jsx"));
-import { Mapa } from "../component/mapa.jsx";
 
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
@@ -16,20 +12,6 @@ export const Single = (props) => {
     actions.getSingleMascota(id);
   }, []);
   console.log(`Prueba ${store?.mascota.localizacion}`);
-  // const [position, setPosition] = useState("");
-  // const [arrPosition, setArrPosition] = useState([]);
-
-  // function setearPosicionMascota() {
-  //   setPosition(store.mascota.localizacion);
-  //   setArrPosition(position.split(", ").map(parseFloat));
-  //   // console.log(arrPosition);
-  //   // console.log(typeof arrPosition);
-  //   return arrPosition;
-  // }
-  // useEffect(() => {
-  //   setearPosicionMascota();
-  // }, []);
-
   return (
     <>
       <div
@@ -174,14 +156,6 @@ export const Single = (props) => {
               </p>{" "}
             </div>{" "}
             <div className="my-5 mx-3 object-fit-contain">
-              {" "}
-              {/* <MapaSingle
-                                                                                                                          // center={store.mascota.localizacion}
-                                                                                                                          // position={store.mascota.localizacion}
-                                                                                                                          />{" "} */}{" "}
-              {/* <Mapa /> */}{" "}
-              {/* <Suspense fallback={<div>Loading...</div>}> */}
-              {/* <MapaSingle position={store.mascota.localizacion} /> */}
               <iframe
                 style={{ borderRadius: "0.5rem", marginTop: "1rem" }}
                 width="350px"
@@ -198,8 +172,6 @@ export const Single = (props) => {
                   "&z=14&t=m&output=embed"
                 }
               ></iframe>
-              {/* <Footer />
-              </Suspense>{" "} */}
             </div>{" "}
           </section>{" "}
         </div>{" "}

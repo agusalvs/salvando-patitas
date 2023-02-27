@@ -16,6 +16,8 @@ import { PublicacionNueva } from "./pages/vistaPublicacion";
 import { RecuperarContraseña } from "./pages/vistaRecuperar";
 import { Encontrados } from "./pages/vista-encontrados";
 import { Adopcion } from "./pages/vista-adopcion";
+// import { Donaciones } from "./pages/donaciones";
+
 // import { Login } from "./component/login";
 
 // create your first component
@@ -48,6 +50,7 @@ const Layout = () => {
             <Route element={<Perdidos />} path="/perdidos" />
             <Route element={<Encontrados />} path="/encontrados" />
             <Route element={<Adopcion />} path="/en-adopcion" />
+            {/* <Route element={<Donaciones />} path="/donaciones" /> */}
           </Routes>{" "}
           <FooterVariable />
         </ScrollToTop>{" "}

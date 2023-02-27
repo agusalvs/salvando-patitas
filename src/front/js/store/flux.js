@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -7,8 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       Swal: require("sweetalert2"),
       user_id: null,
       mascota: {},
+      mercadopago: {},
       auth: false,
       localizacion: {},
+      url: "https://3001-agusalvs-salvandopatita-29i687tsudv.ws-us88.gitpod.io",
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -20,23 +23,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         userContraseña,
         userDireccion
       ) => {
-        fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/registro",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-              nombre: userNombre,
-              email: userCorreo,
-              celular: userCelular,
-              contraseña: userContraseña,
-              direccion: userDireccion,
-            }), // body data type must match "Content-Type" header
-          }
-        )
+        const store = getStore();
+        fetch(store.url + "/api/registro", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({
+            nombre: userNombre,
+            email: userCorreo,
+            celular: userCelular,
+            contraseña: userContraseña,
+            direccion: userDireccion,
+          }), // body data type must match "Content-Type" header
+        })
           .then((response) => {
             console.log(response.status);
             if (response.status === 201) {
@@ -66,20 +67,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       // INICIAR SESIÓN
       login: (userEmail, userPassword) => {
         const store = getStore();
-        fetch(
-          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/autenticacion",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-              email: userEmail,
-              contraseña: userPassword,
-            }), // body data type must match "Content-Type" header
-          }
-        )
+        fetch(store.url + "/api/autenticacion", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({
+            email: userEmail,
+            contraseña: userPassword,
+          }), // body data type must match "Content-Type" header
+        })
           .then((response) => {
             console.log(response.status);
             if (response.status === 200) {
@@ -107,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               })(data.msg);
             } else if (data.msg === "El usuario no existe") {
               Swal.fire({
-                title: data.msg,
+                title: data.msg + ". Necesitas registrarte",
                 showClass: {
                   popup: "animate__animated animate__fadeInDown",
                 },
@@ -146,34 +144,30 @@ const getState = ({ getStore, getActions, setStore }) => {
         let ID = localStorage.getItem("ID");
         const store = getStore();
         const localizacion = store.localizacion;
-        fetch(
-          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/publicacion/" +
-            ID,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-              titulo,
-              nombre,
-              contacto,
-              genero,
-              ubicacion,
-              edad,
-              raza,
-              estado,
-              descripcion,
-              categoria,
-              tamaño,
-              localizacion: localizacion["lat"] + ", " + localizacion["lng"],
-              foto1: "",
-              foto2: "",
-              foto3: "",
-            }), // body data type must match "Content-Type" header
-          }
-        )
+        fetch(store.url + "/api/publicacion/" + ID, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({
+            titulo,
+            nombre,
+            contacto,
+            genero,
+            ubicacion,
+            edad,
+            raza,
+            estado,
+            descripcion,
+            categoria,
+            tamaño,
+            localizacion: localizacion["lat"] + ", " + localizacion["lng"],
+            foto1: "",
+            foto2: "",
+            foto3: "",
+          }), // body data type must match "Content-Type" header
+        })
           .then((response) => {
             console.log(response.status);
             if (response.status === 201) {
@@ -199,19 +193,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       // ENVIAR CORREO CON NUEVA CONTRASEÑA
       enviarcorreo: (userCorreo) => {
-        fetch(
-          "https://3001-agusalvs-salvandopatita-a360xf7nyw0.ws-us87.gitpod.io/api/recuperar-contraseña",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-              email: userCorreo,
-            }), // body data type must match "Content-Type" header
-          }
-        )
+        const store = getStore();
+        fetch(store.url + "/api/recuperar-contraseña", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({
+            email: userCorreo,
+          }), // body data type must match "Content-Type" header
+        })
           .then((response) => {
             console.log(response.status);
             if (response.status === 200) {
@@ -247,9 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // OBTENER INFORMACIÓN DE LAS MASCOTAS
       mascotasHome: () => {
         const store = getStore();
-        fetch(
-          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/mascotas"
-        )
+        fetch(store.url + "/api/mascotas")
           .then((res) => res.json())
           // .then((data) => console.log(data))
           .then((data) =>
@@ -266,21 +256,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       // CAMBIAR CONTRASEÑA
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
-        fetch(
-          "https://3001-agusalvs-salvandopatita-jtrir4osdug.ws-us88.gitpod.io/api/cambiar-contrasena/" +
-            ID,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-              viejacontrasena: userContraseñagmail,
-              nuevacontrasena: userNuevacontraseña,
-            }), // body data type must match "Content-Type" header
-          }
-        )
+        const store = getStore();
+        fetch(store.url + "/api/cambiar-contrasena/" + ID, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({
+            viejacontrasena: userContraseñagmail,
+            nuevacontrasena: userNuevacontraseña,
+          }), // body data type must match "Content-Type" header
+        })
           .then((response) => {
             console.log(response.status);
             if (response.status === 201) {
@@ -306,19 +293,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       // OBTENER INFORMACIÓN DE UNA MASCOTA
-      getSingleMascota: async (id) => {
-        await fetch(
-          "https://3001-agusalvs-salvandopatita-3rr37xltrs1.ws-us88.gitpod.io/api/mascotas/" +
-            id
-        )
+      getSingleMascota: (id) => {
+        const store = getStore();
+        fetch(store.url + "/api/mascotas/" + id)
           .then((res) => res.json())
-          .then((data) => {
-            setStore({
-              mascota: data,
-            });
-            console.log(id);
-            console.log(data);
-          })
+          .then(
+            (data) =>
+              setStore({
+                mascota: data,
+              }),
+            console.log(id)
+          )
           // .then((data) => console.log(data))
           .catch((err) => console.error(err));
       },
@@ -344,7 +329,55 @@ const getState = ({ getStore, getActions, setStore }) => {
           localizacion: latLong,
         });
       },
+      filterSearch: (tipodeanimal, raza, tamaño, genero) => {
+        const store = getStore();
+        const results = store.mascotas.filter((item) => {
+          if (
+            item.categoria
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tipodeanimal.toLowerCase()) &&
+            item.raza
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(raza.toLowerCase()) &&
+            item.tamaño
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tamaño.toLowerCase()) &&
+            item.genero
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(genero.toLowerCase())
+          ) {
+            console.log(item.categoria);
+            return item;
+          }
+        });
+        console.log(results);
+        console.log(store.mascotas);
+      },
+      // MERCADO PAGO
+      pagoMercadoPago: async () =>
+        /*aca deberian ir los productos
+         */
+        {
+          const store = getStore();
+          try {
+            const response = await axios.post(
+              store.url + "/api/createPreference",
+              {}
+            );
+            setStore({
+              mercadopago: response.data,
+            });
+            console.log(response.data);
+          } catch (error) {
+            console.log(error);
+          }
+        },
     },
   };
 };
+
 export default getState;

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef } from "react";
 import { Context } from "../store/appContext";
 import { Pets } from "../component/pets.jsx";
 import "../../styles/home.css";
+// import { element } from "prop-types";
+import { Busquedafiltros } from "../component/busquedafiltros.jsx";
 
 export const Encontrados = () => {
   const { store, actions } = useContext(Context);
@@ -16,9 +18,14 @@ export const Encontrados = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto">
+    <div className="row " style={{ bsGutterX: "0" }}>
+      <div className="col-md-2 pe-0">
+        {" "}
+        <Busquedafiltros backgroundColor={"#FFF6BD"} />
+      </div>
+
       <div
-        className="container-fluid py-5 text-center mx-auto"
+        className="container-fluid  text-center mx-auto col-md-10"
         id="vista-encontrados"
         style={{ backgroundColor: "#FFD4B2" }}
       >

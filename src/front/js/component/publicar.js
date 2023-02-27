@@ -72,9 +72,9 @@ export const Publicar = () => {
     }
   }
 
-  if (!store.auth) {
-    return <Navigate to="/" />;
-  }
+  // if (!store.auth) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="card-body">
@@ -153,7 +153,7 @@ export const Publicar = () => {
             }}
           >
             <div className="field w-50">
-              <label for="#elegir">
+              <label htmlFor="#elegir">
                 A continuacion puede subir una foto de la mascota:{" "}
               </label>{" "}
               <br />
@@ -180,7 +180,7 @@ export const Publicar = () => {
         </div>{" "}
         {/* COLUMNA DERECHA */}{" "}
         <div className="col-md-6">
-          <label for="inputState" className="form-label">
+          <label htmlFor="inputState" className="form-label">
             Seccion en la que publica:
           </label>{" "}
           <select
@@ -259,7 +259,7 @@ export const Publicar = () => {
             Seccione Tamaño:
           </label>{" "}
           <select
-            id="inputEdad"
+            id="inputTamaño"
             className="form-select"
             value={tamaño}
             onChange={(e) => setTamaño(e.target.value)}

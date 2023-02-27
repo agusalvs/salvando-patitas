@@ -4,14 +4,23 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint, json, current_app
 from api.models import db, Usuario, Mascota
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from flask_mail import Message
 import random
 import string
+import os
+
+# SDK de Mercado Pago
+import mercadopago
+# Agrega credenciales
+sdk = mercadopago.SDK("TEST-8022433466763977-022116-a504fd54af68af1fda21b102532a56f1-207691467")
+
 api = Blueprint('api', __name__)
+
+# # Setup the Flask-JWT-Extended extension
+# api.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+# jwt = JWTManager(api)
 
 
 @api.route('/registro', methods=['POST'])
@@ -112,3 +121,33 @@ def get_mascota_info(mascota_id):
             infoMascota[clave] = mascota.serialize()[clave]
     print(infoMascota)        
     return jsonify(infoMascota),200
+
+
+@api.route('/createPreference', methods=['POST'])
+def createPreference():
+    body = json.loads(request.data)
+    # Crea un ítem en la preferencia
+    preference_data = {
+    #Los items estan hardcordeados para la prueba
+    "items": [
+    {
+    "title": "Donar a Salvando Patitas",
+    "quantity": 1,
+    "unit_price": 100,
+    }
+    ],
+    # Adonde te re-dirige en caso de éxito total / o no
+    "back_urls": {
+    "success":
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
+    "failure":
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
+    "pending":
+    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/"
+    },
+    "auto_return": "approved"
+    }
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference
+
