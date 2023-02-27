@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 
+
 const getState = ({
     getStore,
     getActions,
@@ -336,7 +337,35 @@ const getState = ({
                     });
                 }
             },
-
+      filterSearch: (tipodeanimal, raza, tamaño, genero) => {
+        const store = getStore();
+        const results = store.mascotas.filter((item) => {
+          if (
+            item.categoria
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tipodeanimal.toLowerCase()) &&
+            item.raza
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(raza.toLowerCase()) &&
+            item.tamaño
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(tamaño.toLowerCase()) &&
+            item.genero
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(genero.toLowerCase())
+          ) {
+            console.log(item.categoria);
+            return item;
+          }
+        });
+        console.log(results);
+        console.log(store.mascotas);
+      },
+    },
             // MERCADO PAGO
             pagoMercadoPago: async () =>
                 /*aca deberian ir los productos

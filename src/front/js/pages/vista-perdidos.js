@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Pets } from "../component/pets.jsx";
 import "../../styles/home.css";
+import { Busquedafiltros } from "../component/busquedafiltros.jsx";
 
 export const Perdidos = () => {
   const { store, actions } = useContext(Context);
@@ -32,11 +33,16 @@ export const Perdidos = () => {
 
   return (
     // <!-- Page Content -->
-    <div className="mx-auto ">
+    <div className="row " style={{ bsGutterX: "0" }}>
       {/* <!-- First Featurette --> */}
       {/* <Inicio /> */}
+      <div className="col-md-2 pe-0">
+        {" "}
+        <Busquedafiltros backgroundColor={"#FFD4B2"} />
+      </div>
+
       <div
-        className="container-fluid py-5 text-center mx-auto"
+        className="container-fluid py-5 text-center mx-auto col-md-10"
         id="vista-perdidos"
         style={{ backgroundColor: "#FFF6BD" }}
       >
