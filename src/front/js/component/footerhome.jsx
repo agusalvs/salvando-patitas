@@ -80,13 +80,13 @@ export const Footerhome = () => (
                       adopción?
                     </strong>
                     <br></br>
-                    Para ello puedes ingresar en la sección{" "}
-                    <a
-                      href="/publicar"
-                      class="link-primary text-decoration-none "
-                    >
-                      Publicar
-                    </a>{" "}
+                    Para ello tienes que iniciar sesión e ingresar en la sección
+                    {/* <Link
+                      to="/publicar"
+                      className="link-primary text-decoration-none "
+                    > */}
+                    "Publicar"
+                    {/* </Link>{" "} */}
                     que se encuentra en la parte superior derecha de la
                     aplicación. Aquí, tendrás disponible un formulario donde
                     puedes ingresar todas las características, información y
@@ -147,7 +147,7 @@ export const Footerhome = () => (
                     llenar el formulario que se encuentra en la sección{" "}
                     <a
                       href="/contacto"
-                      class="link-primary text-decoration-none "
+                      className="link-primary text-decoration-none "
                     >
                       Contáctanos
                     </a>{" "}

@@ -71,21 +71,21 @@ export const Publicar = () => {
     }
   }
 
-  if (!store.auth) {
-    return <Navigate to="/" />;
-  }
+  // if (!store.auth) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="card-body">
       <form onSubmit={handleSubmit(enviarDatos)} className="row g-3">
         <div className="alert alert-danger" role="alert">
-          Complete los siguientes campos para realizar una nueva publicacion:
+          Complete los siguientes campos para realizar una nueva publicación:
         </div>{" "}
         {/* COLUMNA IZQUIERDA */}{" "}
         <div className="col-md-6">
-          <label for="inputTitulo" className="form-label">
-            Titulo{" "}
-          </label>{" "}
+          <label htmlFor="inputTitulo" className="form-label">
+            Título
+          </label>
           <input
             {...register("titulo", {
               required: "Debe ingresar un titulo",
@@ -102,7 +102,7 @@ export const Publicar = () => {
               {errors.titulo?.message}
             </p>
           )}
-          <label for="inputNombre" className="form-label">
+          <label htmlFor="inputNombre" className="form-label">
             Nombre{" "}
           </label>{" "}
           <input
@@ -113,9 +113,9 @@ export const Publicar = () => {
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Escriba aqui el nombre de su mascota"
           />
-          <label for="Nombre" className="form-label">
-            Telefono{" "}
-          </label>{" "}
+          <label htmlFor="Nombre" className="form-label">
+            Teléfono
+          </label>
           <input
             {...register("telefono", {
               required: "Debe ingresar un telefono de contacto",
@@ -132,8 +132,8 @@ export const Publicar = () => {
               {errors.telefono?.message}
             </p>
           )}
-          <label for="inputGenero" className="form-label">
-            Seccione genero:
+          <label htmlFor="inputGenero" className="form-label">
+            Seleccione género:
           </label>{" "}
           <select
             id="inputGenero"
@@ -141,19 +141,20 @@ export const Publicar = () => {
             value={genero}
             onChange={(e) => setGenero(e.target.value)}
           >
-            <option selected> Seleccione genero </option>{" "}
-            <option> Macho </option> <option> Hembra </option>{" "}
-            <option> Desconocido </option>{" "}
-          </select>{" "}
+            <option defaultValue>Seleccione género</option>
+            <option>Macho</option>
+            <option>Hembra</option>
+            <option>Desconocido</option>
+          </select>
           <div
-            class="ui segment d-flex justify-content-start align-items-center"
+            className="ui segment d-flex justify-content-start align-items-center"
             style={{
               height: "150px",
             }}
           >
             <div className="field w-50">
-              <label for="#elegir">
-                A continuacion puede subir una foto de la mascota:{" "}
+              <label htmlFor="#elegir">
+                A continuación puede subir una foto de la mascota:{" "}
               </label>{" "}
               <br />
               <input
@@ -180,8 +181,8 @@ export const Publicar = () => {
         </div>{" "}
         {/* COLUMNA DERECHA */}{" "}
         <div className="col-md-6">
-          <label for="inputState" className="form-label">
-            Seccion en la que publica:
+          <label htmlFor="inputState" className="form-label">
+            Estado de la mascota:
           </label>{" "}
           <select
             {...register("inputState", {
@@ -192,17 +193,17 @@ export const Publicar = () => {
             value={inputState}
             onChange={(e) => setinputState(e.target.value)}
           >
-            <option selected> Seleccione estado </option>{" "}
+            <option defaultValue> Seleccione estado </option>{" "}
             <option> Perdido </option> <option> Encontrado </option>{" "}
-            <option> En Adopcion </option>{" "}
+            <option> En Adopción </option>{" "}
           </select>{" "}
           {errors.inputState && (
             <p role="alert" style={{ color: "#ff6b60" }}>
               {errors.inputState?.message}
             </p>
           )}
-          <label for="inputDireccion" className="form-label">
-            Direccion{" "}
+          <label htmlFor="inputDireccion" className="form-label">
+            Dirección{" "}
           </label>{" "}
           <input
             {...register("direccion", {
@@ -220,8 +221,8 @@ export const Publicar = () => {
               {errors.direccion?.message}
             </p>
           )}
-          <label for="inputCategoria" className="form-label">
-            Categoria{" "}
+          <label htmlFor="inputCategoria" className="form-label">
+            Categoría{" "}
           </label>{" "}
           <input
             type="text"
@@ -231,8 +232,8 @@ export const Publicar = () => {
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
           />{" "}
-          <label for="inputEdad" className="form-label">
-            Seccione edad:
+          <label htmlFor="inputEdad" className="form-label">
+            Seleccione edad:
           </label>{" "}
           <select
             id="inputEdad"
@@ -240,13 +241,15 @@ export const Publicar = () => {
             value={edad}
             onChange={(e) => setEdad(e.target.value)}
           >
-            <option selected> Seleccione edad </option>{" "}
-            <option> Cachorro </option> <option> Joven </option>{" "}
-            <option> Adulto </option>{" "}
-          </select>{" "}
-          <label for="inputRaza" className="form-label">
-            Raza{" "}
-          </label>{" "}
+            <option defaultValue>Seleccione edad</option>
+            <option>Cachorro (menos de 1 año)</option>
+            <option>Joven (1-3 años)</option>
+            <option>Adulto (3-8 años)</option>
+            <option>Senior (+8 años)</option>
+          </select>
+          <label htmlFor="inputRaza" className="form-label">
+            Raza
+          </label>
           <input
             type="text"
             className="form-control"
@@ -254,21 +257,23 @@ export const Publicar = () => {
             placeholder="Ingrese la raza de su mascota"
             value={raza}
             onChange={(e) => setRaza(e.target.value)}
-          ></input>{" "}
-          <label for="inputEdad" className="form-label">
-            Seccione Tamaño:
+          ></input>
+          <label htmlFor="inputTamaño" className="form-label">
+            Seleccione tamaño:
           </label>{" "}
           <select
-            id="inputEdad"
+            id="inputTamaño"
             className="form-select"
             value={tamaño}
             onChange={(e) => setTamaño(e.target.value)}
           >
-            <option selected> Seleccione tamaño </option>{" "}
-            <option> Chico </option> <option> Mediano </option>{" "}
-            <option> Grande </option>{" "}
-          </select>{" "}
-          <label> Comentarios </label>{" "}
+            <option defaultValue>Seleccione tamaño</option>
+            <option>Pequeño (0-10 kgs)</option>
+            <option>Mediano (11-27 kgs)</option>
+            <option>Grande (28-45 kgs)</option>
+            <option>XL (+46 kgs)</option>
+          </select>
+          <label>Comentarios</label>
           <div className="input-group" placeholder="Ingrese comentarios">
             <textarea
               className="form-control"
@@ -287,7 +292,7 @@ export const Publicar = () => {
             className="btn btn-secondary w-25"
             style={{ color: "black", backgroundColor: "RGB(134, 200, 188)" }}
           >
-            Publicar Anuncio{" "}
+            Publicar{" "}
           </button>{" "}
         </div>{" "}
       </form>{" "}
