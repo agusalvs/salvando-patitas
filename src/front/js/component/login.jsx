@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,11 +15,11 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    if (store.auth) {
-      return <Navigate to="/" />;
-    }
-  }, [store.auth]);
+  // useEffect(() => {
+  //   if (store.auth) {
+  //     return <Navigate to="/" />;
+  //   }
+  // }, [store.auth]);
 
   function onSubmit() {
     buttonElement.current.setAttribute("data-bs-dismiss", "modal");

@@ -14,7 +14,7 @@ import os
 # SDK de Mercado Pago
 import mercadopago
 # Agrega credenciales
-sdk = mercadopago.SDK("TEST-8022433466763977-022116-a504fd54af68af1fda21b102532a56f1-207691467")
+sdk = mercadopago.SDK("os.getenv.PROD_ACCESS_TOKEN_MP")
 
 api = Blueprint('api', __name__)
 
@@ -139,11 +139,11 @@ def createPreference():
     # Adonde te re-dirige en caso de éxito total / o no
     "back_urls": {
     "success":
-    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-n9uw0iuw2el.ws-us88.gitpod.io/",
     "failure":
-    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/",
+    "https://3000-agusalvs-salvandopatita-n9uw0iuw2el.ws-us88.gitpod.io/",
     "pending":
-    "https://3000-agusalvs-salvandopatita-sywz3d0qel2.ws-us87.gitpod.io/"
+    "https://3000-agusalvs-salvandopatita-n9uw0iuw2el.ws-us88.gitpod.io/"
     },
     "auto_return": "approved"
     }

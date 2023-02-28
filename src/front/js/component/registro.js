@@ -122,7 +122,7 @@ const Registro = () => {
               type="email"
               className="form-control me-2"
               id="inputEmail4"
-              placeholder="Correo"
+              placeholder="Correo electrónico"
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
               style={{
@@ -149,7 +149,7 @@ const Registro = () => {
               type="password"
               className="form-control me-2"
               id="inputPassword4"
-              placeholder="Confirmar Contraseña"
+              placeholder="Confirmar contraseña"
               value={confirmar}
               onChange={(e) => setConfirmar(e.target.value)}
               style={{

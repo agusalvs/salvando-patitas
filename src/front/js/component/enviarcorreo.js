@@ -41,7 +41,7 @@ const Enviarcorreo = () => {
               type="email"
               className="form-control me-2"
               id="inputEmail4"
-              placeholder="Correo Electrónico"
+              placeholder="Correo electrónico"
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
               style={{

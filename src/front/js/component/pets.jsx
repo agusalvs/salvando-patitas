@@ -30,7 +30,7 @@ export const Pets = (props) => {
         <div className="card-footer bg-transparent justify-content-center">
           <p className="card-text text-truncate">{props.descripcion}</p>
           <a
-            href={"/single/" + props.id}
+            href={"/mascotas/" + props.id}
             className="btn btn-light"
             style={{
               color: "white",

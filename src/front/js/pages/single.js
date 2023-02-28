@@ -23,7 +23,7 @@ export const Single = (props) => {
       >
         <div className="d-flex justify-content-between mb-3">
           <div
-            className="mt-4 mb-1 mx-5 flex-grow-1"
+            className="mt-4 mb-1 mx-5 flex-grow-1 d-flex align-items-center justify-content-center"
             style={{
               backgroundColor: "#FFF6BD",
               borderRadius: "2rem",

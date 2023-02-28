@@ -1,6 +1,9 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 
+console.log(process.env.BACKEND_URL);
+// console.log(process.env.PROD_ACCESS_TOKEN_MP);
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -11,10 +14,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       mercadopago: {},
       auth: false,
       localizacion: {},
-      url: "https://3001-agusalvs-salvandopatita-29i687tsudv.ws-us88.gitpod.io",
     },
+
     actions: {
       // Use getActions to call a function within a fuction
+
       // REGISTRARSE
       signup: (
         userNombre,
@@ -23,8 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         userContraseña,
         userDireccion
       ) => {
-        const store = getStore();
-        fetch(store.url + "/api/registro", {
+        fetch(process.env.BACKEND_URL + "/api/registro", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -67,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // INICIAR SESIÓN
       login: (userEmail, userPassword) => {
         const store = getStore();
-        fetch(store.url + "/api/autenticacion", {
+        fetch(process.env.BACKEND_URL + "/api/autenticacion", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -123,6 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+      
       // PUBLICAR
       publicar: (
         titulo,
@@ -144,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         let ID = localStorage.getItem("ID");
         const store = getStore();
         const localizacion = store.localizacion;
-        fetch(store.url + "/api/publicacion/" + ID, {
+        fetch(process.env.BACKEND_URL + "/api/publicacion/" + ID, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -193,8 +197,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       // ENVIAR CORREO CON NUEVA CONTRASEÑA
       enviarcorreo: (userCorreo) => {
-        const store = getStore();
-        fetch(store.url + "/api/recuperar-contraseña", {
+        fetch(process.env.BACKEND_URL + "/api/recuperar-contraseña", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -239,7 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // OBTENER INFORMACIÓN DE LAS MASCOTAS
       mascotasHome: () => {
         const store = getStore();
-        fetch(store.url + "/api/mascotas")
+        fetch(process.env.BACKEND_URL + "/api/mascotas")
           .then((res) => res.json())
           // .then((data) => console.log(data))
           .then((data) =>
@@ -256,8 +259,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // CAMBIAR CONTRASEÑA
       cambiar: (userContraseñagmail, userNuevacontraseña) => {
         let ID = localStorage.getItem("ID");
-        const store = getStore();
-        fetch(store.url + "/api/cambiar-contrasena/" + ID, {
+        fetch(process.env.BACKEND_URL + "/api/cambiar-contrasena/" + ID, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -294,8 +296,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       // OBTENER INFORMACIÓN DE UNA MASCOTA
       getSingleMascota: (id) => {
-        const store = getStore();
-        fetch(store.url + "/api/mascotas/" + id)
+        fetch(process.env.BACKEND_URL + "/api/mascotas/" + id)
           .then((res) => res.json())
           .then(
             (data) =>
@@ -320,6 +321,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         }
       },
+
+      // FILTRAR BÚSQUEDA
       localizacion: (latLong) => {
         console.log(latLong);
         setStore({
@@ -329,6 +332,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           localizacion: latLong,
         });
       },
+
+      // FILTRAR BÚSQUEDA
       filterSearch: (tipodeanimal, raza, tamaño, genero) => {
         const store = getStore();
         const results = store.mascotas.filter((item) => {
@@ -357,15 +362,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(results);
         console.log(store.mascotas);
       },
+
       // MERCADO PAGO
       pagoMercadoPago: async () =>
         /*aca deberian ir los productos
          */
         {
-          const store = getStore();
           try {
             const response = await axios.post(
-              store.url + "/api/createPreference",
+              "https://3001-agusalvs-salvandopatita-n9uw0iuw2el.ws-us88.gitpod.io" +
+                "/api/createPreference",
               {}
             );
             setStore({
@@ -376,8 +382,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           }
         },
+
+      // LOCALIZACIÓN MAPA LEAFLET
+      localizacion: (latLong) => {
+        console.log(latLong);
+        setStore({
+          localizacion: "",
+        });
+        setStore({
+          localizacion: latLong,
+        });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Ubicacion confirmada, proceda a publicar..",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
     },
   };
 };
-
 export default getState;
